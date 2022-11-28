@@ -27,14 +27,11 @@ bool EnableVTMode()
 	}
 	return true;
 }
-#define FUNCTION 15;
+bool fSuccess = EnableVTMode();
 #endif
 
 int main()
 {
-	
-	bool fSuccess = EnableVTMode();
-
 	Hero player;
 	std::cout << color("def");
 	std::cout << "[PROJECT:ALCIA]" << std::endl << std::endl;
@@ -63,16 +60,7 @@ int main()
 	std::cout << std::endl << "Get ready and press Enter to begin. . .";
 	_getch();
 	cls();
-
-
-
-
-	bones b;
-	bone_shard c;
-	player.give(&b);
-	player.give(&c);
-	player.add(b.get_name(), 150);
-	player.add(c.get_name(), 150);
+	
 	//game loop, Easy as hello ^^
 	while (player.get_hp() > 0)
 	{

@@ -1,9 +1,9 @@
-#include "Hero.h"
-#include "system_related.h"
+#include "src/Hero.h"
+#include "src/system_related.h"
 #include <conio.h>
 #include <windows.h>
 
-#include "Monster.h"
+#include "src/Monster.h"
 #ifdef _WIN32
 bool EnableVTMode()
 {

@@ -47,10 +47,22 @@ Now, invoke CMake to prepare the building grounds:
 cmake .. -DCMAKE_BUILD_TYPE=Release
 ```
 
+And to build (Enjoy all the warnings):
+Fun fact I had to roll back to C++14 as there was compilation issues using C++23 :D
+
+```bash
+cmake --build . --config Release
+```
+
+After building (Only windows compatible !):
+
+```bash
+.\bin\AlciaProject.exe
+```
+
 ## Loots list
 
-
-| Rarity    | Name           | Obtainable from            |Amount | Rate    | Price   | 
+| Rarity    | Name           | Obtainable from            |Amount | Rate    | Price   |
 | :-------- | :------------- | :------------------------- |:----- |:------- |:------- |
 | `common`  | `Zombie Flesh` | Zombies                    | 0 - 3 | 100 %   | 2/u |
 | `rare`    | `Zombie Eye`   | Zombies                    | 0 - 2 | 40 %    | 10/u|
@@ -72,4 +84,3 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 ## Author
 
 - [@Darleanow](https://www.github.com/Darleanow)
-

@@ -34,27 +34,29 @@ else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
 endif()
 
-# Link libraries if needed (e.g., for systems, frameworks)
-# target_link_libraries(${PROJECT_NAME} PRIVATE some_library)
+include(FetchContent)
 
-# Installation rules
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/src/ DESTINATION include FILES_MATCHING PATTERN "*.h")
+FetchContent_Declare(
+  SQLiteCpp
+  GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp
+  GIT_TAG master
+)
 
-# Cpack stuff
-#include(InstallRequiredSystemLibraries)
-#
-#set(CPACK_PACKAGE_NAME "AlciaProject")
-#set(CPACK_PACKAGE_VENDOR "Darleanow")
-#set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Alcia - The official installer of the game.")
-#set(CPACK_PACKAGE_VERSION "1.0")
-#set(CPACK_PACKAGE_VERSION_MAJOR "1")
-#set(CPACK_PACKAGE_VERSION_MINOR "0")
-#set(CPACK_PACKAGE_VERSION_PATCH "0")
-#set(CPACK_PACKAGE_INSTALL_DIRECTORY "AlciaProject ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
-#set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/Readme.md")
-#
-## Specify the generator
-#set(CPACK_GENERATOR "NSIS")
-#
-#include(CPack)
+FetchContent_Declare(
+  sqlite3
+  GIT_REPOSITORY https://github.com/sqlite/sqlite.git 
+  GIT_TAG master
+)
+
+FetchContent_MakeAvailable(sqlite3 SQLiteCpp)
+
+# Link the libraries correctly
+target_link_libraries(${PROJECT_NAME} 
+  PRIVATE SQLiteCpp sqlite3 pthread dl
+)
+
+# Ensure headers are included
+target_include_directories(${PROJECT_NAME} PRIVATE 
+  ${CMAKE_BINARY_DIR}/_deps/sqlitecpp-src/include
+  ${CMAKE_BINARY_DIR}/_deps/sqlite3-src
+)

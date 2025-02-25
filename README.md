@@ -37,8 +37,7 @@ This spell summons the latest version of the project into your local machine.
 Navigate to the root directory of the project where you find the `CMakeLists.txt`. Let's conjure a build directory for all the build artifacts:
 
 ```bash
-mkdir build
-cd build
+mkdir build && cd build
 ```
 
 Now, invoke CMake to prepare the building grounds:

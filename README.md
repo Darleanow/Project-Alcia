@@ -53,10 +53,10 @@ Fun fact I had to roll back to C++14 as there was compilation issues using C++23
 cmake --build . --config Release
 ```
 
-After building (Only windows compatible !):
+After building (now multiplatform):
 
 ```bash
-.\bin\AlciaProject.exe
+.\bin\AlciaProject
 ```
 
 ## Loots list

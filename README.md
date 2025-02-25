@@ -3,27 +3,21 @@
 
 A text-based RPG game.
 
-Made with love using VS2022.
-
-**DISCLAIMER**: If you read the source code, take before anti-vomit pills, you'll probably need them :D
+Made with love using neovim.
 
 # Building Project Alcia
 
-**Please note that back in time I wasn't sure about was I was doing, so it's only available on Windows, and too disgusting to be reworked**
-
-Welcome, hero! 🌟 Ready to compile the epic saga of *Alcia* on your machine? Grab your coder's sword and follow the steps below to set up your development environment and start contributing to the realms of Alcia. Here's how to build the project using Visual Studio 2022—because even wizards need the right spells to conjure greatness!
+Welcome, hero! 🌟 Ready to compile the epic saga of *Alcia* on your machine? 
+Grab your coder's sword and follow the steps below to set up your development environment and start contributing to the realms of Alcia.
+Here's how to build the project using CMake.
 
 ## Prerequisites
 
-Before we embark on this quest, you’ll need a few magical artifacts:
-
-- **Visual Studio 2022** - Ensure you have the latest version installed and ready.
-- **CMake** - For managing the dark arts of building complex projects.
-- **Git** - To clone the repository and keep track of all the ancient scrolls.
+- A C++23 compatible Compiler
+- CMake
+- Git
 
 ## Cloning the Repository
-
-First, open your favorite terminal, or use the integrated terminal in Visual Studio, and clone the repository:
 
 ```bash
 git clone https://github.com/Darleanow/Project-Alcia.git
@@ -46,8 +40,7 @@ Now, invoke CMake to prepare the building grounds:
 cmake .. -DCMAKE_BUILD_TYPE=Release
 ```
 
-And to build (Enjoy all the warnings):
-Fun fact I had to roll back to C++14 as there was compilation issues using C++23 :D
+Now, compile project:
 
 ```bash
 cmake --build . --config Release
@@ -80,6 +73,3 @@ After building (now multiplatform):
 | `epic`    | `Dragon Scale `| Mama Dragon                | 0 - 15 | 30 %   | 75/u|
 | `legendary`|`Dragon Tooth `| Mama Dragon                | 0 - 4 | 20 %    |122/u|
 
-## Author
-
-- [@Darleanow](https://www.github.com/Darleanow)

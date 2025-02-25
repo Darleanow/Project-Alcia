@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.26)
 project(AlciaProject VERSION 1.0 DESCRIPTION "Alcia" LANGUAGES CXX)
 
 # Set C++ standard to C++23
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

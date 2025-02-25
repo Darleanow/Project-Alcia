@@ -127,7 +127,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Rare_Helmet : public Item
@@ -146,7 +146,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Epic_Helmet : public Item
@@ -166,7 +166,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Legendary_Helmet : public Item
@@ -186,7 +186,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Common_Chestplate : public Item
@@ -206,7 +206,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Rare_Chestplate : public Item
@@ -226,7 +226,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Epic_Chestplate : public Item
@@ -246,7 +246,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Legendary_Chestplate : public Item
@@ -266,7 +266,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Common_Leggings : public Item
@@ -286,7 +286,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Rare_Leggings : public Item
@@ -305,7 +305,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Epic_Leggings : public Item
@@ -324,7 +324,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Legendary_Leggings : public Item
@@ -343,7 +343,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Common_Boots : public Item
@@ -362,7 +362,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Rare_Boots : public Item
@@ -381,7 +381,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Epic_Boots : public Item
@@ -400,7 +400,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class Legendary_Boots : public Item
@@ -419,7 +419,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class health_potion : public Item
@@ -438,7 +438,7 @@ public:
 	int get_hp() override;
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 class strength_potion : public Item
 {
@@ -456,7 +456,7 @@ public:
 	int get_hp() override { return 0; };
 	int get_atk() override { return this->given_atk; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 };
 
 class zombie_flesh : public Item
@@ -473,7 +473,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -491,7 +491,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -509,7 +509,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -527,7 +527,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -545,7 +545,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -563,7 +563,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -581,7 +581,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -599,7 +599,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -617,7 +617,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -635,7 +635,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -653,7 +653,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -671,7 +671,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -689,7 +689,7 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };
 
@@ -707,6 +707,6 @@ public:
 	std::string get_name() override { return this->name; }
 	int get_atk() override { return 0; }
 	int get_crit_rate() override { return 0; }
-	std::string get_status() override { return 0; }
+	std::string get_status() override { return ""; }
 	int get_hp() override { return 0; }
 };

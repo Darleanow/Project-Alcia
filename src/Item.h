@@ -6,15 +6,7 @@
 class Item
 {
 private:
-	std::string name;
-	std::string type = "type";
-	std::string rarity = "basic";
-	std::string status = "0";
-	int atk = 0;
-	int crit_rate = 0;
 	int quantity = 0;
-	int price = 0;
-	int hp = 0;
 public:
 	virtual std::string get_name() = 0;
 	int get_quantity();
@@ -458,10 +450,10 @@ private:
 	int price = 120;
 public:
 	std::string get_name() override { return this->name; };
-	std::string get_type() { return this->type; };
-	std::string get_rarity() { return this->rarity; };
-	int get_price() { return this->price; };
-	int get_hp() { return 0; };
+	std::string get_type() override { return this->type; };
+	std::string get_rarity() override { return this->rarity; };
+	int get_price() override { return this->price; };
+	int get_hp() override { return 0; };
 	int get_atk() override { return this->given_atk; }
 	int get_crit_rate() override { return 0; }
 	std::string get_status() override { return 0; }

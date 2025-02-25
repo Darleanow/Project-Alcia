@@ -55,7 +55,7 @@ void Hero::give_gold(int quantity)
 void Hero::give(Item* item, int amount)							 ///
 {																		 ///
 	bool found = false;													 ///
-	for (int search = 0; search < this->inventory.size(); search++)		 ///
+	for (size_t search = 0; search < this->inventory.size(); search++)		 ///
 	{																	 ///
 		if (this->inventory[search]->get_name() == item->get_name())			     ///
 		{																 ///
@@ -63,7 +63,7 @@ void Hero::give(Item* item, int amount)							 ///
 			break;														 ///
 		}																 ///
 	}																	 ///
-	item->add_quantity();									 ///
+	item->add_quantity(amount);									 ///
 	if (!found)															 ///
 	{																	 ///
 		this->inventory.push_back(item);								 ///
@@ -157,7 +157,7 @@ int Hero::combat_main()
 					else if (monster_choice == "5")
 						monster = new Kobold;
 					else if (monster_choice == "6")
-						monster = new Oréade;
+						monster = new Oreade;
 					else if (monster_choice == "7")
 						monster = new BabyDragon;
 					else if (monster_choice == "8")
@@ -248,7 +248,7 @@ int Hero::combat_main()
 				}
 				std::cout << std::endl << std::endl;
 				std::cout << "Press enter to continue. . .";
-				_getch();
+				getchar();
 				cls();
 			}
 
@@ -262,7 +262,7 @@ int Hero::combat_main()
 		{
 			std::cout << color("red") << "[DEFEAT]" << color("def") << std::endl;
 			std::cout << "Press enter to exit. . ." << std::endl;
-			_getch();
+			getchar();
 			exit(BYE_THANKS_4_PLAY);
 		}
 	}
@@ -287,7 +287,7 @@ void Hero::remove_elem(int index, int amount)
 
 void Hero::rem_by_name(std::string name, int quantity)
 {
-	for (int i = 0; i < this->inventory.size(); i++)
+	for (size_t i = 0; i < this->inventory.size(); i++)
 	{
 		if (this->inventory[i]->get_name() == name)
 		{
@@ -303,7 +303,7 @@ void Hero::delete_an_item()
 
 	std::string quantity_to_delete;
 	std::string delete_choice;
-	while (delete_choice < "1" || static_cast<int>(delete_choice[0] - 49) >= this->inventory.size())
+	while (delete_choice < "1" || static_cast<size_t>(delete_choice[0] - 49) >= this->inventory.size())
 	{
 		this->show_inventory();
 		std::cout << "Choose an element you want to delete (the number left to the item name) or 'quit' to quit: ";
@@ -312,7 +312,7 @@ void Hero::delete_an_item()
 		{
 			break;
 		}
-		if (static_cast<int>(delete_choice[0] - 49) < this->inventory.size())
+		if (static_cast<size_t>(delete_choice[0] - 49) < this->inventory.size())
 		{
 			std::cout << std::endl;
 			std::cout << "Enter amount to delete or 'cancel' to cancel: ";
@@ -468,7 +468,7 @@ void Hero::prompt_unequip()
 			std::cout << "Enter number from the equipement you want to unequip" << std::endl;
 			std::cout << "Choice: ";
 			std::cin >> choice;
-			for (int it = 0; it < valid_unequip.size(); it++)
+			for (size_t it = 0; it < valid_unequip.size(); it++)
 			{
 				if (choice == valid_unequip[it])
 				{
@@ -490,7 +490,7 @@ void Hero::prompt_unequip()
 
 void Hero::remove_from_inventory(Item* item)
 {
-	for (int search = 0; search < this->inventory.size(); search++)
+	for (size_t search = 0; search < this->inventory.size(); search++)
 	{
 		if (this->inventory[search]->get_name() == item->get_name())
 		{
@@ -503,7 +503,7 @@ void Hero::remove_from_inventory(Item* item)
 void Hero::show_inventory()
 {
 	std::cout << "[INVENTORY]" << std::endl;
-	for (int items = 0; items < this->inventory.size(); items++)
+	for (size_t items = 0; items < this->inventory.size(); items++)
 	{
 		std::cout << items + 1 << ". " << color(this->inventory[items]->get_rarity()) << this->inventory[items]->get_name() << color("def") << " | " << this->inventory[items]->get_quantity() << std::endl;
 	}
@@ -516,7 +516,7 @@ void Hero::show_inventory()
 
 bool Hero::check(std::string name)
 {
-	for (int i = 0; i < this->inventory.size(); i++)
+	for (size_t i = 0; i < this->inventory.size(); i++)
 	{
 		if (this->inventory[i]->get_name() == name)
 		{
@@ -528,7 +528,7 @@ bool Hero::check(std::string name)
 
 int Hero::check_quant(std::string item_name)
 {
-	for (int i = 0; i < this->inventory.size(); i++)
+	for (size_t i = 0; i < this->inventory.size(); i++)
 	{
 		if (this->inventory[i]->get_name() == item_name)
 		{
@@ -540,7 +540,7 @@ int Hero::check_quant(std::string item_name)
 
 void Hero::add(std::string name, int amount)
 {
-	for (int i = 0; i < this->inventory.size(); i++)
+	for (size_t i = 0; i < this->inventory.size(); i++)
 	{
 		if (this->inventory[i]->get_name() == name)
 		{
@@ -553,7 +553,7 @@ void Hero::add(std::string name, int amount)
 void Hero::show_equipeable_items()
 {
 	std::vector<Item*> equipeable_items;
-	for (int iter = 0; iter < this->inventory.size(); iter++)
+	for (size_t iter = 0; iter < this->inventory.size(); iter++)
 	{
 		if (this->inventory[iter]->get_type() != "type" && this->inventory[iter]->get_type() != "loot" && this->inventory[iter]->get_type() != "potion")
 		{
@@ -569,7 +569,7 @@ void Hero::show_equipeable_items()
 		while (choice != "-1" && !equipeable_items.empty())
 		{
 			std::cout << "[EQUIP POSSIBLE]" << std::endl;
-			for (int iter_equip = 0; iter_equip < equipeable_items.size(); iter_equip++)
+			for (size_t iter_equip = 0; iter_equip < equipeable_items.size(); iter_equip++)
 			{
 				std::cout << iter_equip + 1 << ". " <<
 					"[" << equipeable_items[iter_equip]->get_type() << "] " << color(equipeable_items[iter_equip]->get_rarity()) << equipeable_items[iter_equip]->get_name() << color("def") << std::endl;
@@ -577,7 +577,7 @@ void Hero::show_equipeable_items()
 			std::cout << "Enter item number to equip it or 'quit' to quit !" << std::endl;
 			std::cout << "Choice: ";
 			std::cin >> choice;
-			if (choice != "quit" && static_cast<int>(choice[0]) - 49 < equipeable_items.size())
+			if (choice != "quit" && static_cast<size_t>(choice[0]) - 49 < equipeable_items.size())
 			{
 				this->equip(equipeable_items[static_cast<int>(choice[0]) - 49]);
 				int temp = static_cast<int>(choice[0]) - 49;
@@ -595,7 +595,7 @@ void Hero::show_equipeable_items()
 void Hero::show_useable_items()
 {
 	std::vector<Item*> potions;
-	for (int i = 0; i < this->inventory.size(); i++)
+	for (size_t i = 0; i < this->inventory.size(); i++)
 	{
 		if (this->inventory[i]->get_type() == "potion")
 		{
@@ -606,16 +606,16 @@ void Hero::show_useable_items()
 	{
 		std::cout << "No items to use." << std::endl;
 		std::cout << "Press enter to continue. . .";
-		_getch();
+		getchar();
 		cls();
 	}
 	else
 	{
 		std::string choice = "0";
-		while (choice == "0" && (static_cast<int>(choice[0] - 49) > potions.size()))
+		while (choice == "0" && (static_cast<size_t>(choice[0] - 49) > potions.size()))
 		{
 			std::cout << "[USEABLES]" << std::endl;
-			for (int i = 0; i < potions.size(); i++)
+			for (size_t i = 0; i < potions.size(); i++)
 			{
 				std::cout << i + 1 << ". " << color(potions[i]->get_rarity()) << potions[i]->get_name() << color("def") << " x " << potions[i]->get_quantity() << std::endl;
 			}
@@ -623,8 +623,8 @@ void Hero::show_useable_items()
 			std::cout << "Enter quit/exit to cancel." << std::endl;
 			std::cout << "Your choice: ";
 			std::cin >> choice;
-			if (static_cast<int>(choice[0] - 49) <= potions.size() &&
-				static_cast<int>(choice[0] - 49) >= 0 || choice == "quit" || choice == "exit")
+			if ((static_cast<size_t>(choice[0] - 49) <= potions.size() &&
+				static_cast<size_t>(choice[0] - 49) >= 0) || choice == "quit" || choice == "exit")
 			{
 				if (choice != "quit" && choice != "exit")
 				{
@@ -794,7 +794,7 @@ void Hero::show_black_smith_actions()
 		std::cout << "Welcome to the forge !" << std::endl << std::endl;
 
 		std::cout << "[ITEM LIST]" << std::endl;
-		for (int i = 0; i < item_names.size(); i++)
+		for (size_t i = 0; i < item_names.size(); i++)
 		{
 			std::cout << i + 1 << ". " <<
 				(!(item_names[i].find("Legendary")) ?
@@ -815,7 +815,7 @@ void Hero::show_black_smith_actions()
 		{
 			break;
 		}
-		else if (std::stoi(user_input) - 1 < item_names.size() && std::stoi(user_input) - 1 >= 0)
+		else if (static_cast<size_t>(std::stoi(user_input) - 1) < item_names.size() && std::stoi(user_input) - 1 >= 0)
 		{
 			std::string choice;
 			while (choice != "1" && choice != "2")
@@ -855,7 +855,7 @@ void Hero::show_black_smith_actions()
 							enough = false;
 							std::cout << "Not enough materials. . ." << std::endl;
 							std::cout << "Press enter to continue. . .";
-							_getch();
+							getchar();
 							cls();
 							break;
 						}
@@ -908,7 +908,7 @@ void Hero::show_black_smith_actions()
 						else if (item_names[std::stoi(user_input) - 1] == "Legendary Boots")
 							this->give(new Legendary_Boots);
 						std::cout << std::endl << "Press Enter to continue. . .";
-						_getch();
+						getchar();
 						cls();
 					}
 				}
@@ -974,7 +974,7 @@ void Hero::show_shop_options()
 		};
 		cls();
 		std::cout << "[BUY]" << std::endl;
-		for (int i = 0; i < items.size(); i++)
+		for (size_t i = 0; i < items.size(); i++)
 		{
 			std::cout << "" << i + 1 << ". " << color(items[i]->get_rarity()) << items[i]->get_name() << color("def")
 				<< "  Price: " << items[i]->get_price() << " golds" << std::endl;
@@ -1002,7 +1002,7 @@ void Hero::show_shop_options()
 					std::cout << "You're too poor to buy this :(" << std::endl;
 					std::cout << "You can leave the shop or try again but it wont work !" << std::endl;
 					std::cout << "Press enter to continue. . .";
-					_getch();
+					getchar();
 					cls();
 					this->show_shop_options();
 				}
@@ -1016,7 +1016,7 @@ void Hero::show_shop_options()
 					this->give(items[static_cast<int>(choice[0]) - 49]);
 					std::cout << "Successfully bought the item !" << std::endl;
 					std::cout << "Press enter to continue. . .";
-					_getch();
+					getchar();
 					cls();
 					this->show_shop_options();
 				}
@@ -1033,7 +1033,7 @@ void Hero::show_shop_options()
 				std::cout << "[SELL]" << std::endl;
 				std::cout << "You have " << this->gold << " golds." << std::endl;
 				std::cout << "---------------------------------------------" << std::endl;
-				for (int i = 0; i < this->inventory.size(); i++)
+				for (size_t i = 0; i < this->inventory.size(); i++)
 				{
 					std::cout << i + 1 << ". " << color(this->inventory[i]->get_rarity()) << this->inventory[i]->get_name() <<
 						color("def") << " x " << this->inventory[i]->get_quantity() << " || " << this->inventory[i]->get_price() << " golds." << std::endl;
@@ -1045,7 +1045,7 @@ void Hero::show_shop_options()
 				{
 					break;
 				}
-				else if (static_cast<int>(choice[0] - 49) < this->inventory.size() && static_cast<int>(choice[0] - 49) >= 0)
+				else if (static_cast<size_t>(choice[0] - 49) < this->inventory.size() && static_cast<size_t>(choice[0] - 49) >= 0)
 				{
 					std::cout << "[SELECTED] -> " << color(this->inventory[static_cast<int>(choice[0] - 49)]->get_rarity())
 						<< this->inventory[static_cast<int>(choice[0] - 49)]->get_name() << color("def") << std::endl;
@@ -1074,7 +1074,7 @@ void Hero::show_shop_options()
 						}
 					}
 					std::cout << "Press enter to continue. . .";
-					_getch();
+					getchar();
 				}
 				cls();
 			}
@@ -1086,7 +1086,7 @@ void Hero::show_shop_options()
 			cls();
 			std::cout << "Inventory empty !" << std::endl;
 			std::cout << "Press enter to continue. . .";
-			_getch();
+			getchar();
 			cls();
 			this->show_shop_options();
 		}
@@ -1106,6 +1106,8 @@ Item* Hero::get_right_hand()
 	{
 		return this->right_hand.back();
 	}
+
+  return nullptr;
 }
 
 

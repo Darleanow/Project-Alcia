@@ -5,11 +5,6 @@
 
 class Monster
 {
-private:
-	int hp;
-	int atk;
-	int max_hp;
-	std::string name;
 public:
 	virtual int get_hp() = 0;
 	virtual int get_atk() = 0;
@@ -121,7 +116,7 @@ public:
 	int take_dmg(Hero* hero) override;
 };
 
-class Oréade : public Monster
+class Oreade : public Monster
 {
 private:
 	int hp = generate_random_number(15, 35);

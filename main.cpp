@@ -1,34 +1,7 @@
 #include "src/Hero.h"
 #include "src/system_related.h"
-#include <conio.h>
-#include <windows.h>
-
-#include "src/Monster.h"
-#ifdef _WIN32
-bool EnableVTMode()
-{
-	// Set output mode to handle virtual terminal sequences
-	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	if (hOut == INVALID_HANDLE_VALUE)
-	{
-		return false;
-	}
-
-	DWORD dwMode = 0;
-	if (!GetConsoleMode(hOut, &dwMode))
-	{
-		return false;
-	}
-
-	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-	if (!SetConsoleMode(hOut, dwMode))
-	{
-		return false;
-	}
-	return true;
-}
-bool fSuccess = EnableVTMode();
-#endif
+// #include <windows.h>
+#include <stdio.h>
 
 int main()
 {
@@ -58,8 +31,8 @@ int main()
 	std::cout << "    -> " << color("legendary") << "Yellow" << color("def") << " is " << color("legendary") << "Legendary" << color("def") << std::endl;
 	std::cout << "If u didn't read those rules, may the great Azeael gets you to perish. . ." << std::endl;
 	std::cout << std::endl << "Get ready and press Enter to begin. . .";
-	_getch();
-	cls();
+  getchar();
+  cls();
 	
 	//game loop, Easy as hello ^^
 	while (player.get_hp() > 0)
@@ -67,3 +40,4 @@ int main()
 		player.display_actions();
 	}
 }
+

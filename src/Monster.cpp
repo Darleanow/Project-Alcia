@@ -1,6 +1,5 @@
 #include "Monster.h"
-
-#include "god.h"
+#include <cstdio>
 
 //TODO Functions drop,apply status, take dmg, set affected round
 
@@ -70,7 +69,7 @@ void Zombie::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
 
@@ -232,22 +231,22 @@ int Kobold::get_max_hp()
 	return this->max_hp;
 }
 
-int Oréade::get_atk()
+int Oreade::get_atk()
 {
 	return this->atk;
 }
 
-int Oréade::get_hp()
+int Oreade::get_hp()
 {
 	return this->hp;
 }
 
-std::string Oréade::get_name()
+std::string Oreade::get_name()
 {
 	return this->name;
 }
 
-int Oréade::get_max_hp()
+int Oreade::get_max_hp()
 {
 	return this->max_hp;
 }
@@ -359,7 +358,7 @@ void Skeletton::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
 void Skeletton::set_affected_rounds(int num)
@@ -382,7 +381,7 @@ void Kobold::set_affected_rounds(int num)
 	this->remained_rounds_affected = num;
 }
 
-void Oréade::set_affected_rounds(int num)
+void Oreade::set_affected_rounds(int num)
 {
 	this->remained_rounds_affected = num;
 }
@@ -526,7 +525,7 @@ int Kobold::apply_status(Hero* hero)
 	return 0;
 }
 
-int Oréade::apply_status(Hero* hero)
+int Oreade::apply_status(Hero* hero)
 {
 	std::string hero_status = hero->get_right_hand()->get_status();
 	int rate = hero->get_status_rate();
@@ -697,7 +696,7 @@ void Troll::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
 void SuperTroll::drop(Hero* hero)
@@ -747,7 +746,7 @@ void SuperTroll::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
 void Kobold::drop(Hero* hero)
@@ -797,10 +796,10 @@ void Kobold::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
-void Oréade::drop(Hero* hero)
+void Oreade::drop(Hero* hero)
 {
 	hero->give_gold(this->get_hp() + this->get_atk());
 	hero->give_xp((this->get_max_hp() - 5) * 2);
@@ -808,21 +807,21 @@ void Oréade::drop(Hero* hero)
 	std::cout << "-Gold x" << this->get_max_hp() + this->get_atk() << std::endl;
 
 	int amount_oreade_powder = generate_random_number(2, 7);
-	if (!(hero->check("Oréade powder")))
+	if (!(hero->check("Oreade powder")))
 	{
 		if (amount_oreade_powder > 0)
 		{
 			hero->give(new oreade_powder);
-			hero->add("Oréade powder", amount_oreade_powder - 1);
-			std::cout << "-Oréade powder x" << amount_oreade_powder << std::endl;
+			hero->add("Oreade powder", amount_oreade_powder - 1);
+			std::cout << "-Oreade powder x" << amount_oreade_powder << std::endl;
 		}
 	}
 	else
 	{
 		if (amount_oreade_powder > 0)
 		{
-			hero->add("Oréade powder", amount_oreade_powder);
-			std::cout << "-Oréade powder x" << amount_oreade_powder << std::endl;
+			hero->add("Oreade powder", amount_oreade_powder);
+			std::cout << "-Oreade powder x" << amount_oreade_powder << std::endl;
 		}
 	}
 
@@ -842,7 +841,7 @@ void Oréade::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
 void BabyDragon::drop(Hero* hero)
@@ -882,7 +881,7 @@ void BabyDragon::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 
 void MamaDragon::drop(Hero* hero)
@@ -922,19 +921,22 @@ void MamaDragon::drop(Hero* hero)
 
 	std::cout << std::endl << std::endl;
 	std::cout << "Press enter to continue. . .";
-	_getch();
+	getchar();
 }
 void Azeael::drop(Hero* hero)
 {
 	std::cout << "Congrats, you've beaten Azeael..." << std::endl;
 	std::cout << "Light kisses your eyes...";
-	_getch();
+	getchar();
 	std::cout << std::endl << "You slowly open them back again...";
-	_getch();
+	getchar();
 	std::cout << std::endl << "And see that it was all a dream...";
-	_getch();
+	getchar();
 	std::cout << std::endl << "The end !";
-	_getch();
+  getchar();
+
+  std::cout << "Your stats" << std::endl;
+  std::cout << "Final Health: " << std::to_string(hero->get_max_hp()) << std::endl;
 	exit(BYE_THANKS_4_PLAY);
 }
 
@@ -1106,7 +1108,7 @@ int Kobold::take_dmg(Hero* hero)
 	return 0;
 }
 
-int Oréade::take_dmg(Hero* hero)
+int Oreade::take_dmg(Hero* hero)
 {
 	bool will_attk = true;
 	int actual_attack = this->get_atk();

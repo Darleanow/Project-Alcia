@@ -2,9 +2,7 @@
 
 #include <ctime>
 #include <random>
-
-
-#pragma once
+#include <cstdlib>
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 #include <windows.h>
@@ -50,14 +48,7 @@ void cls()
 
 void cls()
 {
-	if (!cur_term)
-	{
-		int result;
-		setupterm(NULL, STDOUT_FILENO, &result);
-		if (result <= 0) return;
-	}
-
-	putp(tigetstr("clear"));
+  system("clear");
 }
 #endif
 
@@ -73,7 +64,7 @@ int generate_random_number(int min, int max)
 bool roll_boolDice(int succes_percentage)
 {
 	//1.0f means float instead of double so less memory consumed ^^
-	float f = rand() * 1.0f / RAND_MAX;
+	float f = rand() * 1.0f / static_cast<float>(RAND_MAX);
 	float vv = succes_percentage / 10.0f;
 	return f < vv;
 }
@@ -123,3 +114,29 @@ std::string color(std::string attr)
 		return "";
 	}
 }
+
+#ifdef _WIN32
+bool EnableVTMode()
+{
+	// Set output mode to handle virtual terminal sequences
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (hOut == INVALID_HANDLE_VALUE)
+	{
+		return false;
+	}
+
+	DWORD dwMode = 0;
+	if (!GetConsoleMode(hOut, &dwMode))
+	{
+		return false;
+	}
+
+	dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+	if (!SetConsoleMode(hOut, dwMode))
+	{
+		return false;
+	}
+	return true;
+}
+bool fSuccess = EnableVTMode();
+#endif

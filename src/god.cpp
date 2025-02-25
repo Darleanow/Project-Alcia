@@ -9,7 +9,7 @@ Monster* generate_monster(Hero* hero)
 	{
 		new Zombie, new Skeletton,
 		new Troll, new SuperTroll,
-		new Kobold, new Oréade,
+		new Kobold, new Oreade,
 		new BabyDragon, new MamaDragon,
 		new Azeael
 	};

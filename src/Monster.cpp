@@ -37,7 +37,7 @@ void Zombie::drop(Hero* hero)
 		{
 			hero->give(new zombie_flesh);
 			hero->add("Zombie flesh", amount_flesh - 1);
-			std::cout << "- " << color("common") << "Zombie flesh " << color("def") << "x" << amount_flesh << std::endl;
+			std::cout << "- " << color(ColorType::GREEN) << "Zombie flesh " << color(ColorType::DEFAULT) << "x" << amount_flesh << std::endl;
 		}
 	}
 	else
@@ -45,7 +45,7 @@ void Zombie::drop(Hero* hero)
 		if (amount_flesh > 0)
 		{
 			hero->add("Zombie flesh", amount_flesh);
-			std::cout << "- " << color("common") << "Zombie flesh " << color("def") << "x" << amount_flesh << std::endl;
+			std::cout << "- " << color(ColorType::GREEN) << "Zombie flesh " << color(ColorType::DEFAULT) << "x" << amount_flesh << std::endl;
 		}
 	}
 
@@ -63,7 +63,7 @@ void Zombie::drop(Hero* hero)
 			{
 				hero->add("Zombie eye", amount_eye);
 			}
-			std::cout << "- " << color("rare") << "Zombie eye " << color("def") << "x" << amount_eye << std::endl;
+			std::cout << "- " << color(ColorType::BLUE) << "Zombie eye " << color(ColorType::DEFAULT) << "x" << amount_eye << std::endl;
 		}
 	}
 

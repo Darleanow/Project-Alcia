@@ -22,10 +22,6 @@ public:
 };
 
 
-//			  //
-// EQUIPEMENT //
-//			  //
-
 class Common_Sword : public Item
 {
 private:

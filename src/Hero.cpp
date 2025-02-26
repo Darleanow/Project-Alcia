@@ -1,7 +1,7 @@
 #include "Hero.h"
 
 #include "god.h"
-#include "system_related.h"
+#include "UI/SystemRelated.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -224,7 +224,7 @@ int Hero::combat_main()
 			this->atk -= 15 * strength_potions_used;
 			this->strength_potions_used = 0;
 
-			std::cout << color("rare") << "[VICTORY]" << color("def") << std::endl;
+			std::cout << color(ColorType::BLUE) << "[VICTORY]" << color(ColorType::DEFAULT) << std::endl;
 			std::cout << "[DROPS]" << std::endl;
 			std::cout << "You've got:" << std::endl;
 			monster->drop(this);
@@ -237,7 +237,7 @@ int Hero::combat_main()
 				std::cout << "While you were " << killing_sentences[generate_random_number(0, 2)]
 					<< " your enemy, you saw a chest.." << std::endl << "You opened it and found:";
 				auto item = generate_item();
-				std::cout << color(item->get_rarity()) << item->get_name() << color("def");
+				std::cout << color(get_color_from_string(get_color_from_rarity(item->get_rarity()))) << item->get_name() << color(ColorType::DEFAULT);
 				if (this->check(item->get_name()))
 				{
 					this->add(item->get_name(), 1);
@@ -260,7 +260,7 @@ int Hero::combat_main()
 		}
 		else
 		{
-			std::cout << color("red") << "[DEFEAT]" << color("def") << std::endl;
+			std::cout << color(ColorType::RED) << "[DEFEAT]" << color(ColorType::DEFAULT) << std::endl;
 			std::cout << "Press enter to exit. . ." << std::endl;
 			getchar();
 			exit(BYE_THANKS_4_PLAY);
@@ -436,27 +436,27 @@ void Hero::prompt_unequip()
 	if (!(right_hand.empty()))
 	{
 
-		std::cout << "[1] | Right hand:  " << color(right_hand.back()->get_rarity()) << right_hand.back()->get_name() << color("def") << std::endl;
+		std::cout << "[1] | Right hand:  " << color(get_color_from_string(get_color_from_rarity(right_hand.back()->get_rarity()))) << right_hand.back()->get_name() << color(ColorType::DEFAULT) << std::endl;
 		valid_unequip.push_back(1);
 	}
 	if (!(helmet.empty()))
 	{
-		std::cout << "[2] | Helmet:  " << color(helmet.back()->get_rarity()) << helmet.back()->get_name() << color("def") << std::endl;
+		std::cout << "[2] | Helmet:  " << color(get_color_from_string(get_color_from_rarity(helmet.back()->get_rarity()))) << helmet.back()->get_name() << color(ColorType::DEFAULT) << std::endl;
 		valid_unequip.push_back(2);
 	}
 	if (!(chestplate.empty()))
 	{
-		std::cout << "[3] | Chestplate:  " << color(chestplate.back()->get_rarity()) << chestplate.back()->get_name() << color("def") << std::endl;
+		std::cout << "[3] | Chestplate:  " << color(get_color_from_string(get_color_from_rarity(chestplate.back()->get_rarity()))) << chestplate.back()->get_name() << color(ColorType::DEFAULT) << std::endl;
 		valid_unequip.push_back(3);
 	}
 	if (!(pants.empty()))
 	{
-		std::cout << "[4] | Pants:  " << color(pants.back()->get_rarity()) << pants.back()->get_name() << color("def") << std::endl;
+		std::cout << "[4] | Pants:  " << color(get_color_from_string(get_color_from_rarity(pants.back()->get_rarity()))) << pants.back()->get_name() << color(ColorType::DEFAULT) << std::endl;
 		valid_unequip.push_back(4);
 	}
 	if (!(boots.empty()))
 	{
-		std::cout << "[5] | Boots:  " << color(boots.back()->get_rarity()) << boots.back()->get_name() << color("def") << std::endl;
+		std::cout << "[5] | Boots:  " << color(get_color_from_string(get_color_from_rarity(boots.back()->get_rarity()))) << boots.back()->get_name() << color(ColorType::DEFAULT) << std::endl;
 		valid_unequip.push_back(5);
 	}
 	if (!(valid_unequip.size() < 1))
@@ -505,7 +505,7 @@ void Hero::show_inventory()
 	std::cout << "[INVENTORY]" << std::endl;
 	for (size_t items = 0; items < this->inventory.size(); items++)
 	{
-		std::cout << items + 1 << ". " << color(this->inventory[items]->get_rarity()) << this->inventory[items]->get_name() << color("def") << " | " << this->inventory[items]->get_quantity() << std::endl;
+		std::cout << items + 1 << ". " << color(get_color_from_string(get_color_from_rarity(this->inventory[items]->get_rarity()))) << this->inventory[items]->get_name() << color(ColorType::DEFAULT) << " | " << this->inventory[items]->get_quantity() << std::endl;
 	}
 	if (this->inventory.size() == 0)
 	{
@@ -572,7 +572,7 @@ void Hero::show_equipeable_items()
 			for (size_t iter_equip = 0; iter_equip < equipeable_items.size(); iter_equip++)
 			{
 				std::cout << iter_equip + 1 << ". " <<
-					"[" << equipeable_items[iter_equip]->get_type() << "] " << color(equipeable_items[iter_equip]->get_rarity()) << equipeable_items[iter_equip]->get_name() << color("def") << std::endl;
+					"[" << equipeable_items[iter_equip]->get_type() << "] " << color(get_color_from_string(get_color_from_rarity(equipeable_items[iter_equip]->get_rarity()))) << equipeable_items[iter_equip]->get_name() << color(ColorType::DEFAULT) << std::endl;
 			}
 			std::cout << "Enter item number to equip it or 'quit' to quit !" << std::endl;
 			std::cout << "Choice: ";
@@ -617,7 +617,7 @@ void Hero::show_useable_items()
 			std::cout << "[USEABLES]" << std::endl;
 			for (size_t i = 0; i < potions.size(); i++)
 			{
-				std::cout << i + 1 << ". " << color(potions[i]->get_rarity()) << potions[i]->get_name() << color("def") << " x " << potions[i]->get_quantity() << std::endl;
+				std::cout << i + 1 << ". " << color(get_color_from_string(get_color_from_rarity(potions[i]->get_rarity()))) << potions[i]->get_name() << color(ColorType::DEFAULT) << " x " << potions[i]->get_quantity() << std::endl;
 			}
 			std::cout << std::endl << std::endl;
 			std::cout << "Enter quit/exit to cancel." << std::endl;
@@ -670,24 +670,24 @@ void Hero::show_actions_inventory()
 
 		std::cout << "[EQUIPEMENT]" << std::endl;
 
-		std::cout << (this->right_hand.empty() ? "Hand: Empty !" : "Hand: " + color(this->right_hand.back()->get_rarity())
-					  + this->right_hand.back()->get_name() + color("def") +
+		std::cout << (this->right_hand.empty() ? "Hand: Empty !" : "Hand: " + color(get_color_from_string(get_color_from_rarity(this->right_hand.back()->get_rarity())))
+					  + this->right_hand.back()->get_name() + color(ColorType::DEFAULT) +
 					  " || Bonus: " + std::to_string(this->right_hand.back()->get_atk()) + " atk") << std::endl;
 
-		std::cout << (this->helmet.empty() ? "Helmet: Empty !" : "Helmet: " + color(this->helmet.back()->get_rarity())
-					  + this->helmet.back()->get_name() + color("def") +
+		std::cout << (this->helmet.empty() ? "Helmet: Empty !" : "Helmet: " + color(get_color_from_string(get_color_from_rarity(this->helmet.back()->get_rarity())))
+					  + this->helmet.back()->get_name() + color(ColorType::DEFAULT) +
 					  " || Bonus: " + std::to_string(this->helmet.back()->get_hp()) + " hp") << std::endl;
 
-		std::cout << (this->chestplate.empty() ? "Chest: Empty !" : "Chest: " + color(this->chestplate.back()->get_rarity())
-					  + this->chestplate.back()->get_name() + color("def") +
+		std::cout << (this->chestplate.empty() ? "Chest: Empty !" : "Chest: " + color(get_color_from_string(get_color_from_rarity(this->chestplate.back()->get_rarity())))
+					  + this->chestplate.back()->get_name() + color(ColorType::DEFAULT) +
 					  " || Bonus: " + std::to_string(this->chestplate.back()->get_hp()) + " hp") << std::endl;
 
-		std::cout << (this->pants.empty() ? "Pants: Empty !" : "Pants: " + color(this->pants.back()->get_rarity())
-					  + this->pants.back()->get_name() + color("def") +
+		std::cout << (this->pants.empty() ? "Pants: Empty !" : "Pants: " + color(get_color_from_string(get_color_from_rarity(this->pants.back()->get_rarity())))
+					  + this->pants.back()->get_name() + color(ColorType::DEFAULT) +
 					  " || Bonus: " + std::to_string(this->pants.back()->get_hp()) + " hp") << std::endl;
 
-		std::cout << (this->boots.empty() ? "Boots: Empty !" : "Boots: " + color(this->boots.back()->get_rarity())
-					  + this->boots.back()->get_name() + color("def") +
+		std::cout << (this->boots.empty() ? "Boots: Empty !" : "Boots: " + color(get_color_from_string(get_color_from_rarity(this->boots.back()->get_rarity())))
+					  + this->boots.back()->get_name() + color(ColorType::DEFAULT) +
 					  " || Bonus: " + std::to_string(this->boots.back()->get_hp()) + " hp") << std::endl << std::endl;
 
 		std::cout << "[ACTIONS]" << std::endl;
@@ -798,10 +798,10 @@ void Hero::show_black_smith_actions()
 		{
 			std::cout << i + 1 << ". " <<
 				(!(item_names[i].find("Legendary")) ?
-				 color("legendary") : !(item_names[i].find("Epic")) ?
-				 color("epic") : !(item_names[i].find("Rare")) ?
-				 color("rare") : color("common"))
-				<< item_names[i] << color("def") << "  ";
+				 color(ColorType::YELLOW) : !(item_names[i].find("Epic")) ?
+				 color(ColorType::RED) : !(item_names[i].find("Rare")) ?
+				 color(ColorType::BLUE) : color(ColorType::GREEN))
+				<< item_names[i] << color(ColorType::DEFAULT) << "  ";
 			if (!item_names[i].find("Legendary"))
 			{
 				std::cout << std::endl;
@@ -823,14 +823,14 @@ void Hero::show_black_smith_actions()
 				cls();
 				std::cout << "[DETAILS]" << std::endl;
 				std::cout << "[" << (!(item_names[std::stoi(user_input) - 1].find("Legendary")) ?
-									 color("legendary") : !(item_names[std::stoi(user_input) - 1].find("Epic")) ?
-									 color("epic") : !(item_names[std::stoi(user_input) - 1].find("Rare")) ?
-									 color("rare") : color("common"))
-					<< item_names[std::stoi(user_input) - 1] << color("def") << "]" << std::endl << std::endl;
+									 color(ColorType::YELLOW) : !(item_names[std::stoi(user_input) - 1].find("Epic")) ?
+									 color(ColorType::RED) : !(item_names[std::stoi(user_input) - 1].find("Rare")) ?
+									 color(ColorType::BLUE) : color(ColorType::GREEN))
+					<< item_names[std::stoi(user_input) - 1] << color(ColorType::DEFAULT) << "]" << std::endl << std::endl;
 				std::cout << "Needed items: " << std::endl;
 				for (auto item : recipes[std::stoi(user_input) - 1])
 				{
-					std::cout << "- " << color(item.first->get_rarity()) << item.first->get_name() << color("def") << " x " << item.second;
+					std::cout << "- " << color(get_color_from_string(get_color_from_rarity(item.first->get_rarity()))) << item.first->get_name() << color(ColorType::DEFAULT) << " x " << item.second;
 					std::cout << " || " << "You have : " << check_quant(item.first->get_name()) << std::endl;
 				}
 
@@ -976,7 +976,7 @@ void Hero::show_shop_options()
 		std::cout << "[BUY]" << std::endl;
 		for (size_t i = 0; i < items.size(); i++)
 		{
-			std::cout << "" << i + 1 << ". " << color(items[i]->get_rarity()) << items[i]->get_name() << color("def")
+			std::cout << "" << i + 1 << ". " << color(get_color_from_string(get_color_from_rarity(items[i]->get_rarity()))) << items[i]->get_name() << color(ColorType::DEFAULT)
 				<< "  Price: " << items[i]->get_price() << " golds" << std::endl;
 		}
 		std::cout << std::endl << std::endl;
@@ -1035,8 +1035,8 @@ void Hero::show_shop_options()
 				std::cout << "---------------------------------------------" << std::endl;
 				for (size_t i = 0; i < this->inventory.size(); i++)
 				{
-					std::cout << i + 1 << ". " << color(this->inventory[i]->get_rarity()) << this->inventory[i]->get_name() <<
-						color("def") << " x " << this->inventory[i]->get_quantity() << " || " << this->inventory[i]->get_price() << " golds." << std::endl;
+					std::cout << i + 1 << ". " << color(get_color_from_string(get_color_from_rarity(this->inventory[i]->get_rarity()))) << this->inventory[i]->get_name() <<
+						color(ColorType::DEFAULT) << " x " << this->inventory[i]->get_quantity() << " || " << this->inventory[i]->get_price() << " golds." << std::endl;
 				}
 				std::cout << std::endl << std::endl << "Enter item number, or 'quit' to go back" << std::endl;
 				std::cout << std::endl << "Choice: ";
@@ -1047,8 +1047,8 @@ void Hero::show_shop_options()
 				}
 				else if (static_cast<size_t>(choice[0] - 49) < this->inventory.size() && static_cast<size_t>(choice[0] - 49) >= 0)
 				{
-					std::cout << "[SELECTED] -> " << color(this->inventory[static_cast<int>(choice[0] - 49)]->get_rarity())
-						<< this->inventory[static_cast<int>(choice[0] - 49)]->get_name() << color("def") << std::endl;
+					std::cout << "[SELECTED] -> " << color(get_color_from_string(get_color_from_rarity(this->inventory[static_cast<int>(choice[0] - 49)]->get_rarity())))
+						<< this->inventory[static_cast<int>(choice[0] - 49)]->get_name() << color(ColorType::DEFAULT) << std::endl;
 					std::cout << std::endl << "Enter quantity or '0' to cancel" << std::endl;
 					std::string quant;
 					std::cout << "Choice: ";
@@ -1128,8 +1128,8 @@ void Hero::level_up()
 	{
 		std::cout << "[LEVEL UP!]" << std::endl << std::endl;
 		std::cout << "Choose which one to increase: " << std::endl;
-		std::cout << "1. " << color("l_yellow") << "+1 Damage" << color("def") << std::endl;
-		std::cout << "2. " << color("l_yellow") << "+1 Health Point" << color("def") << std::endl;
+		std::cout << "1. " << color(ColorType::LYELLOW) << "+1 Damage" << color(ColorType::DEFAULT) << std::endl;
+		std::cout << "2. " << color(ColorType::LYELLOW) << "+1 Health Point" << color(ColorType::DEFAULT) << std::endl;
 		std::cout << "Your choice: ";
 		std::cin >> choice;
 		cls();

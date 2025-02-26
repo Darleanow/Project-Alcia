@@ -12,16 +12,18 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# Glob for source and header files in the src directory
-file(GLOB_RECURSE ALCIA_SOURCES
-    ${PROJECT_SOURCE_DIR}/src/*.cpp
-)
-file(GLOB_RECURSE ALCIA_HEADERS
-    ${PROJECT_SOURCE_DIR}/src/*.h
+# Add executable target including the main.cpp in the root directory
+add_executable(${PROJECT_NAME} 
+  main.cpp 
+  src/UI/SystemRelated.cpp
+  src/UI/UISystem.cpp
+  src/god.cpp
+  src/Hero.cpp
+  src/Item.cpp
+  src/Monster.cpp
 )
 
-# Add executable target including the main.cpp in the root directory
-add_executable(${PROJECT_NAME} main.cpp ${ALCIA_SOURCES} ${ALCIA_HEADERS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SRC_DIR}/src)
 
 # Organize sources into groups for IDEs
 source_group(TREE ${PROJECT_SOURCE_DIR}/src PREFIX "Source Files" FILES ${ALCIA_SOURCES})

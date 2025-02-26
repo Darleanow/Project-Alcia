@@ -1,4 +1,4 @@
-#include "system_related.h"
+#include "SystemRelated.h"
 
 #include <ctime>
 #include <random>
@@ -74,45 +74,77 @@ bool is_digits(const std::string& str)
 	return str.find_first_not_of("0123456789") == std::string::npos;
 }
 
-//COLORED TEXT
-std::string color(std::string attr)
+std::string get_color_from_rarity(std::string rarity)
 {
-	if (attr == "common" || attr == "Common")
-	{
-		return "\x1b[32m";
-	}
-	else if (attr == "red")
-	{
-		return "\x1b[31m";
-	}
-	else if (attr == "epic" || attr == "Epic")
-	{
-		return "\x1b[35m";
-	}
-	else if (attr == "rare" || attr == "Rare")
-	{
-		return "\x1b[34m";
-	}
-	else if (attr == "def")
-	{
-		return "\x1b[0m";
-	}
-	else if (attr == "legendary" || attr == "Legendary")
-	{
-		return "\x1b[33m";
-	}
-	else if (attr == "l_yellow")
-	{
-		return "\x1b[93m";
-	}
-	else if (attr == "potion")
-	{
-		return "\x1b[94m";
-	}
-	else
-	{
-		return "";
-	}
+  if (rarity == "Common" || rarity == "common")
+  {
+    return "green";
+  }
+  
+  if (rarity == "Rare" || rarity == "rare")
+  {
+    return "blue";
+  }
+
+  if (rarity == "Epic" || rarity == "epic")
+  {
+    return "red";
+  }
+
+  if (rarity == "Legendary" || rarity == "legendary")
+  {
+    return "yellow";
+  }
+
+  return "def";
+}
+
+ColorType get_color_from_string(std::string color)
+{
+  if (color == "green")
+  {
+    return ColorType::GREEN;
+  }
+
+  if (color == "blue")
+  {
+    return ColorType::BLUE;
+  }
+
+  if (color == "red")
+  {
+    return ColorType::RED;
+  }
+
+  if (color == "yellow")
+  {
+    return ColorType::YELLOW;
+  }
+
+  return ColorType::DEFAULT;
+}
+
+std::string color(ColorType color_type)
+{
+  switch(color_type)
+  {
+    case ColorType::DEFAULT:
+      return "\x1b[0m";
+    case ColorType::GREEN:
+      return "\x1b[32m";
+    case ColorType::YELLOW:
+      return "\x1b[33m";
+    case ColorType::BLUE:
+      return "\x1b[34m";
+    case ColorType::RED:
+      return "\x1b[35m";
+    case ColorType::LYELLOW:
+      return "\x1b[94m";
+    default:
+      return "";
+  }
+
+  return "";
 }
 
 #ifdef _WIN32

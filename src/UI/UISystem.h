@@ -3,9 +3,11 @@
 class UISystem
 {
 public:
-  UISystem();
-  ~UISystem();
+  UISystem ();
+  ~UISystem ();
 
-  void display_rules() const;
+  void greet () const;
+  void display_rules () const;
+
 private:
 };

@@ -1,6 +1,5 @@
 #include "god.h"
 
-// TODO ADD MONSTERS
 Monster *generate_monster(Hero *hero)
 {
   std::mt19937           gen(std::random_device {}());

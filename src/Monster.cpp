@@ -1,8 +1,6 @@
 #include "Monster.h"
 #include <cstdio>
 
-// TODO Functions drop,apply status, take dmg, set affected round
-
 int Zombie::get_atk()
 {
   return this->atk;

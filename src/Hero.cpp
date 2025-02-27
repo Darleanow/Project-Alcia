@@ -4,95 +4,72 @@
 #include "UI/Utils.h"
 #include "god.h"
 
-////////////////////////////////////////////////////////////////////////////////
-///									Darleanow
-//////
-///																			 ///
-///						Hero related functions //
-/// Inventory // Combat        ///
-///																			 ///
-////////////////////////////////////////////////////////////////////////////////
-
-// Return hero's hp      ////////////
-int Hero::get_hp() ///
-{                  ///
-  return this->hp; ///
-} ///
+int Hero::get_hp()
+{
+  return this->hp;
+}
 int Hero::get_max_hp()
 {
   return this->max_hp;
 }
-///
-void Hero::set_hp(int quantity) ///
-{                               ///
-  this->hp += quantity;         ///
-} ///
-////////////////////////////////////
 
-// Set name and return name		/////////////
-void Hero::set_name(std::string name) ///
-{                                     ///
-  this->name = name;                  ///
-} ///
-  ///
-std::string Hero::get_name() ///
-{                            ///
-  return this->name;         ///
-} ///
-  ///
-void Hero::take_dmg(int quantity) ///
-{                                 ///
-  this->hp -= quantity;           ///
-} ///
-/////////////////////////////////////////////
+void Hero::set_hp(int quantity)
+{
+  this->hp += quantity;
+}
+
+void Hero::set_name(std::string name)
+{
+  this->name = name;
+}
+
+std::string Hero::get_name()
+{
+  return this->name;
+}
+
+void Hero::take_dmg(int quantity)
+{
+  this->hp -= quantity;
+}
 
 void Hero::give_gold(int quantity)
 {
   this->gold += quantity;
 }
 
-// Get items
-// ////////////////////////////////////////////////////
-void Hero::give(Item *item, int amount)                             ///
-{                                                                   ///
-  bool found = false;                                               ///
-  for(size_t search = 0; search < this->inventory.size(); search++) ///
-  {                                                                 ///
-    if(this->inventory[search]->get_name() == item->get_name())     ///
-    {                                                               ///
-      found = true;                                                 ///
-      break;                                                        ///
-    } ///
-  } ///
-  item->add_quantity(amount);        ///
-  if(!found)                         ///
-  {                                  ///
-    this->inventory.push_back(item); ///
-  } ///
-} ///
-////////////////////////////////////////////////////////////////////////////
+void Hero::give(Item *item, int amount)
+{
+  bool found = false;
+  for(size_t search = 0; search < this->inventory.size(); search++) {
+    if(this->inventory[search]->get_name() == item->get_name()) {
+      found = true;
+      break;
+    }
+  }
+  item->add_quantity(amount);
+  if(!found) {
+    this->inventory.push_back(item);
+  }
+}
 
-// Main menu actions
-// ////////////////////////////////////////////////
-void Hero::display_actions()                                ///
-{                                                           ///
-  std::string choice = "0";                                 ///
-  while(!(choice == "1" || choice == "2" || choice == "3")) ///
-  {                                                         ///
-    Utils::clear_screen();                                  ///
-    std::cout << "[PROJECT:ALCIA]" << std::endl;            ///
-    std::cout << "What do you want to do ?" << std::endl;   ///
-    std::cout << "1. Search for a Monster" << std::endl;    ///
-    std::cout << "2. Go back in Town" << std::endl;         ///
-    std::cout << "3. Check your Inventory" << std::endl;    ///
-    std::cout << "Your choice: ";                           ///
-    std::cin >> choice;                                     ///
-  } ///
-    ///
-  Utils::clear_screen(); ///
-                         ///
-  if(choice == "1")      ///
-  {
+void Hero::display_actions()
+{
+  std::string choice = "0";
+  while(!(choice == "1" || choice == "2" || choice == "3")) {
+    Utils::clear_screen();
+    std::cout << "[PROJECT:ALCIA]" << std::endl;
+    std::cout << "What do you want to do ?" << std::endl;
+    std::cout << "1. Search for a Monster" << std::endl;
+    std::cout << "2. Go back in Town" << std::endl;
+    std::cout << "3. Check your Inventory" << std::endl;
+    std::cout << "Your choice: ";
+    std::cin >> choice;
+  }
+
+  Utils::clear_screen();
+
+  if(choice == "1") {
     this->combat_main();
   } else if(choice == "2") {
     this->show_Town_actions();
@@ -764,7 +741,6 @@ void Hero::show_black_smith_actions()
       "Epic Boots",         "Legendary Boots",
   };
 
-  // Objects init
   zombie_flesh                                 flesh;
   zombie_eye                                   eye;
   bone_shard                                   shards;
@@ -1171,8 +1147,6 @@ Item *Hero::get_right_hand()
   return nullptr;
 }
 
-// XP//////////////////////////////////////////////////////////////
-
 void Hero::give_xp(int amount)
 {
   this->xp += amount;
@@ -1219,8 +1193,6 @@ int Hero::compute_xp_needed()
     return xp;
   }
 }
-
-// COMBAT///////////////////////////////////////////////////////////
 
 int Hero::get_atk()
 {

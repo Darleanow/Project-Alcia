@@ -135,9 +135,9 @@ std::string Legendary_Sword::set_status()
   std::vector<std::string> status = {
       "Poison", "Fire", "Ice", "Haunted", "Nature"
   };
-  std::mt19937        gen(std::random_device {}());
-  std::vector<double> chances {10, 10, 10, 10, 10};
-  // size_t is suitable for indexing.
+  std::mt19937                            gen(std::random_device {}());
+  std::vector<double>                     chances {10, 10, 10, 10, 10};
+
   std::discrete_distribution<std::size_t> d {chances.begin(), chances.end()};
 
   std::string                             chosen_status = status[d(gen)];

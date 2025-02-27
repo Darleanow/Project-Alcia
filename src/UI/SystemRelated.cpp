@@ -6,16 +6,15 @@
 
 int generate_random_number(int min, int max)
 {
-  std::random_device              rd; // obtain a random number from hardware
-  std::mt19937                    gen(rd());       // seed the generator
-  std::uniform_int_distribution<> distr(min, max); // define the range
+  std::random_device              rd;
+  std::mt19937                    gen(rd());
+  std::uniform_int_distribution<> distr(min, max);
 
   return distr(gen);
 }
 
 bool roll_boolDice(int succes_percentage)
 {
-  // 1.0f means float instead of double so less memory consumed ^^
   float f  = rand() * 1.0f / static_cast<float>(RAND_MAX);
   float vv = succes_percentage / 10.0f;
   return f < vv;
@@ -44,7 +43,7 @@ std::string get_color_from_rarity(std::string rarity)
     return "yellow";
   }
 
-  return "def";
+  return "";
 }
 
 ColorType get_color_from_string(std::string color)

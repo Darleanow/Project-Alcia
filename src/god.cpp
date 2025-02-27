@@ -52,9 +52,8 @@ Item *generate_item()
 
 Item *random_item(std::vector<Item *> items, std::vector<size_t> odds)
 {
-  std::mt19937 gen(std::random_device {}());
+  std::mt19937                            gen(std::random_device {}());
 
-  // size_t is suitable for indexing.
   std::discrete_distribution<std::size_t> d {odds.begin(), odds.end()};
 
   Item                                   *item_rand = items[d(gen)];

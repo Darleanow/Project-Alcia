@@ -2,9 +2,13 @@
 #include "src/UI/UISystem.h"
 #include "src/UI/Utils.h"
 
+#include <nlohmann/json.hpp>
+
 int main()
 {
-  UISystem user_interface;
+  nlohmann::json j;
+
+  UISystem       user_interface;
   Utils::clear_screen();
   user_interface.greet();
 

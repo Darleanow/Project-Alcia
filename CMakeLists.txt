@@ -6,13 +6,8 @@ project(AlciaProject VERSION 1.0 DESCRIPTION "Alcia" LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Set the output directories for build files
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-# Add executable target including the main.cpp in the root directory
 add_executable(${PROJECT_NAME} 
   main.cpp 
   src/UI/SystemRelated.cpp
@@ -36,7 +31,7 @@ else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
 endif()
 
-include(FetchContent)
+include(FetchContent) 
 
 FetchContent_Declare(
   SQLiteCpp
@@ -50,15 +45,21 @@ FetchContent_Declare(
   GIT_TAG master
 )
 
-FetchContent_MakeAvailable(sqlite3 SQLiteCpp)
+FetchContent_Declare(
+  json 
+  URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+)
+
+FetchContent_MakeAvailable(sqlite3 SQLiteCpp json)
 
 # Link the libraries correctly
 target_link_libraries(${PROJECT_NAME} 
-  PRIVATE SQLiteCpp sqlite3 pthread dl
+  PRIVATE nlohmann_json::nlohmann_json SQLiteCpp sqlite3 pthread dl
 )
 
 # Ensure headers are included
 target_include_directories(${PROJECT_NAME} PRIVATE 
   ${CMAKE_BINARY_DIR}/_deps/sqlitecpp-src/include
   ${CMAKE_BINARY_DIR}/_deps/sqlite3-src
+  ${CMAKE_BINARY_DIR}/_deps/json-src/include
 )

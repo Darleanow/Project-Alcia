@@ -4,18 +4,18 @@
 #include <cstdio>
 #include <iostream>
 
-UISystem::UISystem ()  = default;
-UISystem::~UISystem () = default;
+UISystem::UISystem()  = default;
+UISystem::~UISystem() = default;
 
-void UISystem::greet () const
+void UISystem::greet() const
 {
-  std::cout << color (ColorType::RED) << "Project: Alcia\n"
-            << color (ColorType::DEFAULT);
-  std::cout << color (ColorType::LYELLOW) << "Greetings, Traveler !\n"
-            << color (ColorType::DEFAULT);
+  std::cout << color(ColorType::RED) << "Project: Alcia\n"
+            << color(ColorType::DEFAULT);
+  std::cout << color(ColorType::LYELLOW) << "Greetings, Traveler !\n"
+            << color(ColorType::DEFAULT);
 }
 
-void UISystem::display_rules () const
+void UISystem::display_rules() const
 {
   std::cout << "============= RULES ==================" << std::endl;
   std::cout << "- Cheating is prohibited, you can't anyways." << std::endl;
@@ -34,21 +34,21 @@ void UISystem::display_rules () const
             << std::endl;
   std::cout << "- You die, it's the end, no saves, no control+z !" << std::endl;
   std::cout << "- There are a few colors that you will see:" << std::endl;
-  std::cout << "    -> " << color (ColorType::GREEN) << "Green"
-            << color (ColorType::DEFAULT) << " is " << color (ColorType::GREEN)
-            << "Common" << color (ColorType::DEFAULT) << std::endl;
-  std::cout << "    -> " << color (ColorType::BLUE) << "Blue"
-            << color (ColorType::DEFAULT) << " is " << color (ColorType::BLUE)
-            << "Rare" << color (ColorType::DEFAULT) << std::endl;
-  std::cout << "    -> " << color (ColorType::RED) << "Purple"
-            << color (ColorType::DEFAULT) << " is " << color (ColorType::RED)
-            << "Epic" << color (ColorType::DEFAULT) << std::endl;
-  std::cout << "    -> " << color (ColorType::YELLOW) << "Yellow"
-            << color (ColorType::DEFAULT) << " is " << color (ColorType::YELLOW)
-            << "Legendary" << color (ColorType::DEFAULT) << std::endl;
+  std::cout << "    -> " << color(ColorType::GREEN) << "Green"
+            << color(ColorType::DEFAULT) << " is " << color(ColorType::GREEN)
+            << "Common" << color(ColorType::DEFAULT) << std::endl;
+  std::cout << "    -> " << color(ColorType::BLUE) << "Blue"
+            << color(ColorType::DEFAULT) << " is " << color(ColorType::BLUE)
+            << "Rare" << color(ColorType::DEFAULT) << std::endl;
+  std::cout << "    -> " << color(ColorType::RED) << "Purple"
+            << color(ColorType::DEFAULT) << " is " << color(ColorType::RED)
+            << "Epic" << color(ColorType::DEFAULT) << std::endl;
+  std::cout << "    -> " << color(ColorType::YELLOW) << "Yellow"
+            << color(ColorType::DEFAULT) << " is " << color(ColorType::YELLOW)
+            << "Legendary" << color(ColorType::DEFAULT) << std::endl;
   std::cout << "If u didn't read those rules, may the great Azeael gets you to "
                "perish. . ."
             << std::endl;
   std::cout << std::endl << "Get ready and press Enter to begin. . .";
-  getchar ();
+  getchar();
 }

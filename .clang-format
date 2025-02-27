@@ -27,8 +27,7 @@ IndentWrappedFunctionNames: true
 SpaceBeforeCtorInitializerColon: true
 PackConstructorInitializers: CurrentLine
 AllowShortIfStatementsOnASingleLine: Never
-SpaceBeforeParensOptions: {}
-SpaceBeforeParens: Always
+SpaceBeforeParens: Never
 AlignAfterOpenBracket: BlockIndent
 SpaceBeforeSquareBrackets: false
 BreakBeforeBraces: Mozilla

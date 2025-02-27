@@ -9,17 +9,17 @@ private:
   int quantity = 0;
 
 public:
-  virtual std::string get_name () = 0;
-  int                 get_quantity ();
-  void                set_quantity (int amount);
-  void                add_quantity (int amount = 1);
-  virtual std::string get_type ()      = 0;
-  virtual int         get_atk ()       = 0;
-  virtual int         get_crit_rate () = 0;
-  virtual std::string get_rarity ()    = 0;
-  virtual std::string get_status ()    = 0;
-  virtual int         get_price ()     = 0;
-  virtual int         get_hp ()        = 0;
+  virtual std::string get_name() = 0;
+  int                 get_quantity();
+  void                set_quantity(int amount);
+  void                add_quantity(int amount = 1);
+  virtual std::string get_type()      = 0;
+  virtual int         get_atk()       = 0;
+  virtual int         get_crit_rate() = 0;
+  virtual std::string get_rarity()    = 0;
+  virtual std::string get_status()    = 0;
+  virtual int         get_price()     = 0;
+  virtual int         get_hp()        = 0;
 };
 
 class Common_Sword : public Item
@@ -34,17 +34,17 @@ private:
   int         crit_rate = 10;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  int         get_atk () override;
-  int         get_crit_rate () override;
-  std::string get_rarity () override;
-  std::string get_status () override;
-  int         get_price () override;
-  int         get_hp () override
+  std::string get_type() override;
+  int         get_atk() override;
+  int         get_crit_rate() override;
+  std::string get_rarity() override;
+  std::string get_status() override;
+  int         get_price() override;
+  int         get_hp() override
   {
     return 0;
   }
@@ -62,17 +62,17 @@ private:
   int         crit_rate = 15;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  int         get_atk () override;
-  int         get_crit_rate () override;
-  std::string get_rarity () override;
-  std::string get_status () override;
-  int         get_price () override;
-  int         get_hp () override
+  std::string get_type() override;
+  int         get_atk() override;
+  int         get_crit_rate() override;
+  std::string get_rarity() override;
+  std::string get_status() override;
+  int         get_price() override;
+  int         get_hp() override
   {
     return 0;
   }
@@ -90,17 +90,17 @@ private:
   int         crit_rate = 20;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  int         get_atk () override;
-  int         get_crit_rate () override;
-  std::string get_rarity () override;
-  std::string get_status () override;
-  int         get_price () override;
-  int         get_hp () override
+  std::string get_type() override;
+  int         get_atk() override;
+  int         get_crit_rate() override;
+  std::string get_rarity() override;
+  std::string get_status() override;
+  int         get_price() override;
+  int         get_hp() override
   {
     return 0;
   }
@@ -112,24 +112,24 @@ private:
   std::string name      = "Legendary Sword";
   std::string type      = "right_hand";
   std::string rarity    = "legendary";
-  std::string status    = set_status ();
+  std::string status    = set_status();
   int         atk       = 35;
   int         price     = 15000;
   int         crit_rate = 20;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  int         get_atk () override;
-  std::string get_rarity () override;
-  int         get_crit_rate () override;
-  std::string set_status ();
-  std::string get_status () override;
-  int         get_price () override;
-  int         get_hp () override
+  std::string get_type() override;
+  int         get_atk() override;
+  std::string get_rarity() override;
+  int         get_crit_rate() override;
+  std::string set_status();
+  std::string get_status() override;
+  int         get_price() override;
+  int         get_hp() override
   {
     return 0;
   }
@@ -145,23 +145,23 @@ private:
   int         price  = 80;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -177,23 +177,23 @@ private:
   int         price  = 200;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -209,23 +209,23 @@ private:
   int         price  = 380;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -242,23 +242,23 @@ private:
   int         price = 600;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -275,23 +275,23 @@ private:
   int         price = 80;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -308,23 +308,23 @@ private:
   int         price = 200;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -340,23 +340,23 @@ private:
   int         price  = 380;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -372,23 +372,23 @@ private:
   int         price  = 1000;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -405,23 +405,23 @@ private:
   int         price = 80;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -437,23 +437,23 @@ private:
   int         price  = 200;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -469,23 +469,23 @@ private:
   int         price  = 380;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -501,23 +501,23 @@ private:
   int         price  = 600;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -533,23 +533,23 @@ private:
   int         price  = 80;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -565,23 +565,23 @@ private:
   int         price  = 200;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -597,23 +597,23 @@ private:
   int         price  = 380;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -629,23 +629,23 @@ private:
   int         price  = 600;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -661,23 +661,23 @@ private:
   int         price   = 50;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override;
-  std::string get_rarity () override;
-  int         get_price () override;
-  int         get_hp () override;
-  int         get_atk () override
+  std::string get_type() override;
+  std::string get_rarity() override;
+  int         get_price() override;
+  int         get_hp() override;
+  int         get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -692,35 +692,35 @@ private:
   int         price     = 120;
 
 public:
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   };
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   };
-  int get_atk () override
+  int get_atk() override
   {
     return this->given_atk;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
@@ -735,35 +735,35 @@ private:
   int         price  = 2;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -778,35 +778,35 @@ private:
   int         price  = 10;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -821,35 +821,35 @@ private:
   int         price  = 4;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -864,35 +864,35 @@ private:
   int         price  = 15;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -907,35 +907,35 @@ private:
   int         price  = 25;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -950,35 +950,35 @@ private:
   int         price  = 20;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -993,35 +993,35 @@ private:
   int         price  = 60;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1036,35 +1036,35 @@ private:
   int         price  = 30;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1079,35 +1079,35 @@ private:
   int         price  = 64;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1122,35 +1122,35 @@ private:
   int         price  = 10;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1165,35 +1165,35 @@ private:
   int         price  = 85;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1208,35 +1208,35 @@ private:
   int         price  = 75;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1251,35 +1251,35 @@ private:
   int         price  = 122;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }
@@ -1294,35 +1294,35 @@ private:
   int         price  = 999999;
 
 public:
-  std::string get_type () override
+  std::string get_type() override
   {
     return this->type;
   };
-  std::string get_rarity () override
+  std::string get_rarity() override
   {
     return this->rarity;
   };
-  int get_price () override
+  int get_price() override
   {
     return this->price;
   };
-  std::string get_name () override
+  std::string get_name() override
   {
     return this->name;
   }
-  int get_atk () override
+  int get_atk() override
   {
     return 0;
   }
-  int get_crit_rate () override
+  int get_crit_rate() override
   {
     return 0;
   }
-  std::string get_status () override
+  std::string get_status() override
   {
     return "";
   }
-  int get_hp () override
+  int get_hp() override
   {
     return 0;
   }

@@ -2,8 +2,8 @@
 #include <cstdlib>
 
 namespace Utils {
-static void clear_screen ()
+static void clear_screen()
 {
-  system ("clear");
+  system("clear");
 }
 } // namespace Utils

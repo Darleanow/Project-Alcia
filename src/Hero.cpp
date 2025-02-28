@@ -87,65 +87,8 @@ int Hero::combat_main()
 {
   std::string method_select;
   auto       *monster = generate_monster(this);
-  while(method_select != "1" && method_select != "2") {
-    std::cout << "[PLAINS]" << std::endl;
-    std::cout << "1. Search for a random monster" << std::endl;
-    std::cout << "2. Farm a monster (At your own risks)" << std::endl
-              << std::endl;
 
-    std::cout << "Choice: ";
-    std::cin >> method_select;
-    Utils::clear_screen();
-    std::cout << "[PLAINS]" << std::endl;
-    if(method_select == "2") {
-      std::string monster_choice = "ANTIBUG";
-      while(!(is_digits(monster_choice))) {
-        std::cout << "1. Zombie" << std::endl;
-        std::cout << "2. Skeletton" << std::endl;
-        std::cout << "3. Troll" << std::endl;
-        std::cout << "4. Super Troll" << std::endl;
-        std::cout << "5. Kobold" << std::endl;
-        std::cout << "6. Oreade" << std::endl;
-        std::cout << "7. Baby Dragon" << std::endl;
-        std::cout << "8. Mama Dragon" << std::endl;
-        std::cout << std::endl
-                  << std::endl
-                  << "Enter monster number to fight it or 'quit' to quit"
-                  << std::endl;
-
-        std::cout << "Choice: ";
-        std::cin >> monster_choice;
-        if(monster_choice == "quit") {
-          return 0;
-        }
-        if(is_digits(monster_choice) && std::stoi(monster_choice) <= 8 &&
-           std::stoi(monster_choice) >= 1) {
-          if(monster_choice == "1")
-            monster = new Zombie;
-          else if(monster_choice == "2")
-            monster = new Skeletton;
-          else if(monster_choice == "3")
-            monster = new Troll;
-          else if(monster_choice == "4")
-            monster = new SuperTroll;
-          else if(monster_choice == "5")
-            monster = new Kobold;
-          else if(monster_choice == "6")
-            monster = new Oreade;
-          else if(monster_choice == "7")
-            monster = new BabyDragon;
-          else if(monster_choice == "8")
-            monster = new MamaDragon;
-          Utils::clear_screen();
-        }
-      }
-    } else {
-      Utils::clear_screen();
-      break;
-    }
-  }
-
-  bool fight = true;
+  bool        fight = true;
   while(monster->get_hp() > 0 && this->get_hp() > 0) {
     std::string choice = "0";
     while(choice == "0" || (choice != "1" && choice != "2" && choice != "3")) {

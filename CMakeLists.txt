@@ -16,6 +16,10 @@ add_executable(${PROJECT_NAME}
   src/Hero.cpp
   src/Item.cpp
   src/Monster.cpp
+  src/Core/Action.cpp
+  src/Core/Location.cpp
+  src/Core/Parser.cpp
+  src/Core/World.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SRC_DIR}/src)
@@ -62,4 +66,11 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   ${CMAKE_BINARY_DIR}/_deps/sqlitecpp-src/include
   ${CMAKE_BINARY_DIR}/_deps/sqlite3-src
   ${CMAKE_BINARY_DIR}/_deps/json-src/include
+)
+
+# Copy data to build folder
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/data/Locations.json
+  ${CMAKE_CURRENT_BINARY_DIR}/data/Locations.json
+  COPYONLY
 )

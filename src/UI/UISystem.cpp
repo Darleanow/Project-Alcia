@@ -52,3 +52,36 @@ void UISystem::display_rules() const
   std::cout << std::endl << "Get ready and press Enter to begin. . .";
   getchar();
 }
+
+int UISystem::prompt_user_for_index_selection(
+    const std::string &message, Range range
+)
+{
+  std::cout << message << '\n';
+  std::cout << '>';
+  std::string selected_string;
+
+  int         selected = -1;
+  std::getline(std::cin, selected_string);
+  if(!selected_string.empty()) {
+    selected = std::stoi(selected_string);
+  }
+
+  std::cout << selected << " " << selected_string << std::endl;
+
+  while(selected < range.begin || selected > range.end) {
+    std::cout << color(ColorType::RED)
+              << "Error: Invalid input. It must be between " << range.begin
+              << " and " << range.end << ". (Your input: " << selected_string
+              << ")" << color(ColorType::DEFAULT) << '\n';
+
+    std::cout << '>';
+    std::getline(std::cin, selected_string);
+
+    if(!selected_string.empty()) {
+      selected = std::stoi(selected_string);
+    }
+  }
+
+  return selected;
+}

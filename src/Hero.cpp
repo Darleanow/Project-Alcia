@@ -56,7 +56,7 @@ void Hero::give(Item *item, int amount)
 void Hero::display_actions()
 {
   std::string choice = "0";
-  while(!(choice == "1" || choice == "2" || choice == "3")) {
+  while(choice != "1" && choice != "2" && choice != "3") {
     Utils::clear_screen();
     std::cout << "[PROJECT:ALCIA]" << std::endl;
     std::cout << "What do you want to do ?" << std::endl;
@@ -64,7 +64,7 @@ void Hero::display_actions()
     std::cout << "2. Go back in Town" << std::endl;
     std::cout << "3. Check your Inventory" << std::endl;
     std::cout << "Your choice: ";
-    std::cin >> choice;
+    std::getline(std::cin, choice);
   }
 
   Utils::clear_screen();
@@ -91,7 +91,7 @@ int Hero::combat_main()
   bool        fight = true;
   while(monster->get_hp() > 0 && this->get_hp() > 0) {
     std::string choice = "0";
-    while(choice == "0" || (choice != "1" && choice != "2" && choice != "3")) {
+    while(choice != "1" && choice != "2" && choice != "3") {
       std::cout << "[COMBAT]" << std::endl;
       std::cout << std::endl;
       std::cout << monster->get_name() << " :" << std::endl;
@@ -109,7 +109,7 @@ int Hero::combat_main()
       std::cout << "2.Use an item" << std::endl;
       std::cout << "3.Run (10% chance)" << std::endl;
       std::cout << "Choice: ";
-      std::cin >> choice;
+      std::getline(std::cin, choice);
       Utils::clear_screen();
     }
     if(choice == "1") {
@@ -210,7 +210,8 @@ void Hero::delete_an_item()
     this->show_inventory();
     std::cout << "Choose an element you want to delete (the number left to the "
                  "item name) or 'quit' to quit: ";
-    std::cin >> delete_choice;
+    std::getline(std::cin, delete_choice);
+
     if(delete_choice == "quit") {
       break;
     }
@@ -222,9 +223,6 @@ void Hero::delete_an_item()
         this->remove_elem(
             static_cast<int>(delete_choice[0] - 49), stoi(quantity_to_delete)
         );
-
-      } else {
-        delete_choice = "-1";
       }
     }
     Utils::clear_screen();
@@ -355,22 +353,24 @@ void Hero::prompt_unequip()
               << std::endl;
     valid_unequip.push_back(5);
   }
-  if(!(valid_unequip.size() < 1)) {
-    bool is_valid = false;
-    int  choice   = 0;
+  if(valid_unequip.size() > 0) {
+    bool        is_valid = false;
+    std::string choice;
+    int         ichoice = -1;
     while(!(is_valid)) {
       std::cout << "Enter number from the equipement you want to unequip"
                 << std::endl;
       std::cout << "Choice: ";
-      std::cin >> choice;
+      std::getline(std::cin, choice);
+      ichoice = std::stoi(choice);
       for(size_t it = 0; it < valid_unequip.size(); it++) {
-        if(choice == valid_unequip[it]) {
+        if(ichoice == valid_unequip[it]) {
           is_valid = true;
           break;
         }
       }
     }
-    unequip(choice);
+    unequip(ichoice);
     Utils::clear_screen();
     prompt_unequip();
   } else {
@@ -466,7 +466,8 @@ void Hero::show_equipeable_items()
       std::cout << "Enter item number to equip it or 'quit' to quit !"
                 << std::endl;
       std::cout << "Choice: ";
-      std::cin >> choice;
+      std::getline(std::cin, choice);
+
       if(choice != "quit" &&
          static_cast<size_t>(choice[0]) - 49 < equipeable_items.size()) {
         this->equip(equipeable_items[static_cast<int>(choice[0]) - 49]);
@@ -510,7 +511,7 @@ void Hero::show_useable_items()
       std::cout << std::endl << std::endl;
       std::cout << "Enter quit/exit to cancel." << std::endl;
       std::cout << "Your choice: ";
-      std::cin >> choice;
+      std::getline(std::cin, choice);
       if((static_cast<size_t>(choice[0] - 49) <= potions.size() &&
           static_cast<size_t>(choice[0] - 49) >= 0) ||
          choice == "quit" || choice == "exit") {
@@ -1109,7 +1110,7 @@ void Hero::level_up()
     std::cout << "2. " << color(ColorType::LYELLOW) << "+1 Health Point"
               << color(ColorType::DEFAULT) << std::endl;
     std::cout << "Your choice: ";
-    std::cin >> choice;
+    std::getline(std::cin, choice);
     Utils::clear_screen();
   }
   if(choice == "1") {

@@ -17,8 +17,6 @@ enum class ColorType
   LYELLOW
 };
 
-void        cls();
-
 int         generate_random_number(int min, int max);
 
 bool        roll_boolDice(int succes_percentage);

@@ -41,7 +41,7 @@ void World::execute_action_at(size_t index)
 
 void World::set_location(const std::string &new_location)
 {
-  auto found_location = get_location_from_name(new_location);
+  auto found_location = get_location_from_id(new_location);
 
   if(found_location) {
     m_current_location = std::move(found_location);
@@ -49,10 +49,10 @@ void World::set_location(const std::string &new_location)
 }
 
 std::shared_ptr<Location>
-    World::get_location_from_name(const std::string &location_name)
+    World::get_location_from_id(const std::string &location_id)
 {
   for(auto &location : m_locations) {
-    if(location->get_location_name() == location_name) {
+    if(location->get_id() == location_id) {
       return location;
     }
   }

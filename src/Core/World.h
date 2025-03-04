@@ -24,6 +24,6 @@ private:
   std::vector<std::shared_ptr<Location>> m_locations;
   std::shared_ptr<Location>              m_current_location;
 
-  std::shared_ptr<Location>
-      get_location_from_name(const std::string &location_name);
+  std::shared_ptr<Location> get_location_from_id(const std::string &location_id
+  );
 };

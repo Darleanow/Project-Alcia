@@ -6,16 +6,23 @@
 #include <iostream>
 
 Action::Action(
-    const std::string &action_name, const std::string &action_description,
+    const std::string &id, const std::string &action_name,
+    const std::string                        &action_description,
     std::unordered_map<std::string, std::any> action_results
 )
-    : m_name(std::move(action_name)),
+    : m_id(std::move(id)),
+      m_name(std::move(action_name)),
       m_description(std::move(action_description)),
       m_results(std::move(action_results))
 {
 }
 
 Action::~Action() = default;
+
+std::string_view Action::get_id() const
+{
+  return m_id;
+}
 
 std::string_view Action::get_name() const
 {

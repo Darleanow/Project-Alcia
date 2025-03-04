@@ -39,6 +39,7 @@ std::vector<std::shared_ptr<Location>>
     std::vector<std::unique_ptr<Action>> actions;
 
     for(const auto &location_action_json : location_json["actions"]) {
+      std::string id   = location_action_json["id"].get<std::string>();
       std::string name = location_action_json["name"].get<std::string>();
       std::string description =
           location_action_json["description"].get<std::string>();
@@ -54,17 +55,18 @@ std::vector<std::shared_ptr<Location>>
       }
 
       std::unique_ptr<Action> action =
-          std::make_unique<Action>(name, description, results);
+          std::make_unique<Action>(id, name, description, results);
 
       actions.push_back(std::move(action));
     }
 
+    std::string location_id   = location_json["id"].get<std::string>();
     std::string location_name = location_json["name"].get<std::string>();
     std::string location_description =
         location_json["description"].get<std::string>();
 
     std::shared_ptr<Location> location = std::make_shared<Location>(
-        location_name, location_description, std::move(actions)
+        location_id, location_name, location_description, std::move(actions)
     );
 
     locations.push_back(std::move(location));

@@ -2,7 +2,9 @@
 #include "src/Core/World.h"
 #include "src/UI/UISystem.h"
 #include "src/UI/Utils.h"
+
 #include <filesystem>
+#include <iostream>
 
 int main()
 {
@@ -36,13 +38,13 @@ int main()
 
   while(player->get_hp() > 0) {
     world.display_actions_for_current_location();
-    int        option_count = world.get_current_location_action_count();
+    size_t     option_count = world.get_current_location_action_count();
     Range      range {.begin = 1, .end = option_count};
 
     const auto input = user_interface.prompt_user_for_index_selection(
         "Select what to do", range
     );
 
-    world.execute_action_at(input);
+    world.execute_action_at(static_cast<size_t>(input));
   }
 }

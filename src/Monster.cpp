@@ -1,5 +1,8 @@
 #include "Monster.h"
 #include <cstdio>
+#include <iostream>
+
+Monster::~Monster() = default;
 
 int Zombie::get_atk()
 {

@@ -27,11 +27,22 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SRC_DIR}/src)
 source_group(TREE ${PROJECT_SOURCE_DIR}/src PREFIX "Source Files" FILES ${ALCIA_SOURCES})
 source_group(TREE ${PROJECT_SOURCE_DIR}/src PREFIX "Header Files" FILES ${ALCIA_HEADERS})
 
-if(MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /permissive- /Zc:preprocessor /Zc:__cplusplus)
-else()
-    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror)
-endif()
+target_compile_options( AlciaProject PRIVATE
+  -Wall
+  -Wextra
+  -Wpedantic
+  -Werror
+  -Wshadow
+  -Wnon-virtual-dtor
+  -Wold-style-cast
+  -Wcast-align
+  -Wunused
+  -Wconversion
+  -Wsign-conversion
+  -Wnull-dereference
+  -Wdouble-promotion
+  -Wimplicit-fallthrough
+)
 
 include(FetchContent) 
 

@@ -13,8 +13,8 @@ public:
   ~World();
 
   void                  display_actions_for_current_location();
-  void                  execute_action_at(int index);
-  [[nodiscard]] int     get_current_location_action_count() const;
+  void                  execute_action_at(size_t index);
+  [[nodiscard]] size_t  get_current_location_action_count() const;
 
   void                  set_location(const std::string &new_location);
   std::shared_ptr<Hero> get_player();

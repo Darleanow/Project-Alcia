@@ -15,8 +15,8 @@ int generate_random_number(int min, int max)
 
 bool roll_boolDice(int succes_percentage)
 {
-  float f  = rand() * 1.0f / static_cast<float>(RAND_MAX);
-  float vv = succes_percentage / 10.0f;
+  float f  = static_cast<float>(rand()) * 1.0f / static_cast<float>(RAND_MAX);
+  float vv = static_cast<float>(succes_percentage) / 10.0f;
   return f < vv;
 }
 

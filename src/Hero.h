@@ -1,9 +1,7 @@
 #pragma once
 #include "Item.h"
 #include <cmath>
-#include <iostream>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 #define BYE_THANKS_4_PLAY 0
@@ -11,24 +9,24 @@
 class Hero
 {
 private:
-  std::string         name;
-  std::vector<Item *> inventory;
-  int                 gold                  = 100;
-  int                 hp                    = 20;
-  int                 max_hp                = hp;
-  int                 atk                   = 5;
-  int                 crit_rate             = 5;
-  int                 status_rate           = 10;
-  int                 level                 = 1;
-  int                 xp                    = 0;
-  int                 xp_to_levelup         = get_xp_to_lvl();
-  int                 strength_potions_used = 0;
+  std::string         m_name;
+  std::vector<Item *> m_inventory;
+  int                 m_gold                  = 100;
+  int                 m_hp                    = 20;
+  int                 m_max_hp                = m_hp;
+  int                 m_atk                   = 5;
+  int                 m_crit_rate             = 5;
+  int                 m_status_rate           = 10;
+  int                 m_level                 = 1;
+  int                 m_xp                    = 0;
+  int                 m_xp_to_levelup         = get_xp_to_lvl();
+  int                 m_strength_potions_used = 0;
 
-  std::vector<Item *> right_hand;
-  std::vector<Item *> helmet;
-  std::vector<Item *> chestplate;
-  std::vector<Item *> pants;
-  std::vector<Item *> boots;
+  std::vector<Item *> m_right_hand;
+  std::vector<Item *> m_helmet;
+  std::vector<Item *> m_chestplate;
+  std::vector<Item *> m_pants;
+  std::vector<Item *> m_boots;
 
 public:
   int         get_hp();
@@ -36,7 +34,7 @@ public:
   void        set_hp(int quantity);
   void        take_dmg(int quantity);
 
-  void        set_name(std::string name);
+  void        set_name(const std::string &new_name);
   std::string get_name();
 
   void        give_gold(int quantity);
@@ -51,7 +49,7 @@ public:
   void        show_actions_inventory();
   void        show_equipeable_items();
   void        show_useable_items();
-  void        remove_elem(int index, int amount);
+  void        remove_elem(size_t index, int amount);
   void        rem_by_name(std::string name, int quantity);
   void        remove_from_inventory(Item *item);
   void        delete_an_item();

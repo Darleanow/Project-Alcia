@@ -3,8 +3,8 @@
 
 struct Range
 {
-  int begin;
-  int end;
+  size_t begin;
+  size_t end;
 };
 
 class UISystem

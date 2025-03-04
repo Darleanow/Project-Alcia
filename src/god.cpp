@@ -1,4 +1,5 @@
 #include "god.h"
+#include <random>
 
 Monster *generate_monster(Hero *hero)
 {

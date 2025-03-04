@@ -69,7 +69,8 @@ int UISystem::prompt_user_for_index_selection(
 
   std::cout << selected << " " << selected_string << std::endl;
 
-  while(selected < range.begin || selected > range.end) {
+  while(static_cast<size_t>(selected) < range.begin ||
+        static_cast<size_t>(selected) > range.end) {
     std::cout << color(ColorType::RED)
               << "Error: Invalid input. It must be between " << range.begin
               << " and " << range.end << ". (Your input: " << selected_string

@@ -1,11 +1,12 @@
 #pragma once
 #include "Hero.h"
 #include "UI/SystemRelated.h"
-#include <iostream>
 
 class Monster
 {
 public:
+  virtual ~Monster() = 0;
+
   virtual int         get_hp()                     = 0;
   virtual int         get_atk()                    = 0;
   virtual int         get_max_hp()                 = 0;

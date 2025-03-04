@@ -1,5 +1,9 @@
 #include "Item.h"
 
+#include <random>
+
+Item::~Item() = default;
+
 int Item::get_quantity()
 {
   return this->quantity;
@@ -132,7 +136,7 @@ std::string Legendary_Sword::get_type()
 
 std::string Legendary_Sword::set_status()
 {
-  std::vector<std::string> status = {
+  std::vector<std::string> statuses_list = {
       "Poison", "Fire", "Ice", "Haunted", "Nature"
   };
   std::mt19937                            gen(std::random_device {}());
@@ -140,7 +144,7 @@ std::string Legendary_Sword::set_status()
 
   std::discrete_distribution<std::size_t> d {chances.begin(), chances.end()};
 
-  std::string                             chosen_status = status[d(gen)];
+  std::string                             chosen_status = statuses_list[d(gen)];
 
   return chosen_status;
 }

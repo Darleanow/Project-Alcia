@@ -1,7 +1,5 @@
 #pragma once
-#include <random>
 #include <string>
-#include <vector>
 
 class Item
 {
@@ -9,6 +7,8 @@ private:
   int quantity = 0;
 
 public:
+  virtual ~Item() = 0;
+
   virtual std::string get_name() = 0;
   int                 get_quantity();
   void                set_quantity(int amount);

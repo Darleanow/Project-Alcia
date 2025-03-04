@@ -26,7 +26,7 @@ void World::display_actions_for_current_location()
   }
 }
 
-void World::execute_action_at(int index)
+void World::execute_action_at(size_t index)
 {
   Utils::clear_screen();
   m_current_location->get_location_actions().at(--index)->execute(
@@ -34,7 +34,7 @@ void World::execute_action_at(int index)
   );
 }
 
-[[nodiscard]] int World::get_current_location_action_count() const
+[[nodiscard]] size_t World::get_current_location_action_count() const
 {
   return m_current_location->get_location_actions().size();
 }

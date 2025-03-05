@@ -1,7 +1,6 @@
 #pragma once
+#include "System/SysCall.h"
 #include <cstdlib>
-
-struct Coords;
 
 namespace Utils {
 static inline void clear_screen()

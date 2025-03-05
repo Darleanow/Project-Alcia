@@ -24,5 +24,6 @@ public:
   void display_informations_of_current_location(
       std::shared_ptr<Location> location
   );
+
   void display_actions_for_current_location(std::shared_ptr<Location> location);
 };

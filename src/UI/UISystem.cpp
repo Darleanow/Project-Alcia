@@ -1,17 +1,16 @@
 #include "UISystem.h"
-#include "SystemRelated.h"
 #include "Utils/DrawUtils.h"
 
 #include <cstdio>
 #include <iostream>
 
+UISystem::UISystem()  = default;
+UISystem::~UISystem() = default;
+
 static inline void set_cursor_pos(int x, int y)
 {
   std::cout << "\033[" << y << ";" << x << "H";
 }
-
-UISystem::UISystem()  = default;
-UISystem::~UISystem() = default;
 
 void UISystem::greet() const
 {

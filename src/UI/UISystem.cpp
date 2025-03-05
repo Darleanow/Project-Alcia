@@ -1,14 +1,21 @@
 #include "UISystem.h"
 #include "SystemRelated.h"
+#include "Utils/DrawUtils.h"
 
 #include <cstdio>
 #include <iostream>
+
+static inline void set_cursor_pos(int x, int y)
+{
+  std::cout << "\033[" << y << ";" << x << "H";
+}
 
 UISystem::UISystem()  = default;
 UISystem::~UISystem() = default;
 
 void UISystem::greet() const
 {
+  set_cursor_pos(0, 0);
   std::cout << color(ColorType::RED) << "Project: Alcia\n"
             << color(ColorType::DEFAULT);
   std::cout << color(ColorType::LYELLOW) << "Greetings, Traveler !\n"
@@ -21,8 +28,7 @@ void UISystem::display_rules() const
   std::cout << "- Cheating is prohibited, you can't anyways." << std::endl;
   std::cout << "- Earn gold and xp by killing monsters." << std::endl;
   std::cout << "- When killing monsters, you have a 30% rate of getting a "
-               "random piece of stuff"
-            << std::endl;
+            << "random piece of stuff" << std::endl;
   std::cout
       << "- Get items using gold in Town (shop) or craft them (black-smith)"
       << std::endl;
@@ -30,8 +36,7 @@ void UISystem::display_rules() const
       << "- Leveling up fills up your health points, potions can do it too..."
       << std::endl;
   std::cout << "- You might wanna check Shop and Forge sometimes, items gets "
-               "better depending on your level !"
-            << std::endl;
+            << "better depending on your level !" << std::endl;
   std::cout << "- You die, it's the end, no saves, no control+z !" << std::endl;
   std::cout << "- There are a few colors that you will see:" << std::endl;
   std::cout << "    -> " << color(ColorType::GREEN) << "Green"
@@ -51,6 +56,28 @@ void UISystem::display_rules() const
             << std::endl;
   std::cout << std::endl << "Get ready and press Enter to begin. . .";
   getchar();
+}
+
+void UISystem::display_informations_of_current_location(
+    std::shared_ptr<Location> location
+)
+{
+  Utils::clear_screen();
+  std::cout << "[" << color(ColorType::BLUE) << location->get_name()
+            << color(ColorType::DEFAULT) << "]\n";
+  std::cout << location->get_description() << "\n\n";
+}
+
+void UISystem::display_actions_for_current_location(
+    std::shared_ptr<Location> location
+)
+{
+  int index = 1;
+
+  for(const auto &action : location.get()->get_location_actions()) {
+    std::cout << index << ". " << action.get()->get_name() << std::endl;
+    index++;
+  }
 }
 
 int UISystem::prompt_user_for_index_selection(Range range)

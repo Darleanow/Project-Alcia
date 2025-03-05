@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Core/Location.h"
+
 #include <cstddef>
 
 struct Range
@@ -18,4 +20,9 @@ public:
   void display_rules() const;
 
   int  prompt_user_for_index_selection(Range range);
+
+  void display_informations_of_current_location(
+      std::shared_ptr<Location> location
+  );
+  void display_actions_for_current_location(std::shared_ptr<Location> location);
 };

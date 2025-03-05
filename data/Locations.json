@@ -3,12 +3,12 @@
     {
       "id": "town_square",
       "name": "Alcia Town Square",
-      "description": "The vibrant heart of Alcia, where cobblestone paths wind between colorful merchant stalls and where travelers exchange tales by the ancient fountain. The distant sound of a blacksmith's hammer rings through the air, and town criers announce the latest news about monster sightings in the surrounding wilderness.",
+      "description": "The vibrant heart of Alcia, where cobblestone paths wind between colorful merchant stalls and where travelers exchange tales by the ancient fountain.\nThe distant sound of a blacksmith's hammer rings through the air, and town criers announce the latest news about monster sightings in the surrounding wilderness.",
       "actions": [
         {
           "id": "search_for_monsters",
           "name": "Hunt in the Wilds",
-          "description": "Venture beyond the town walls to track and hunt dangerous creatures that threaten Alcia's safety. Rewards await those brave enough to face these beasts.",
+          "description": "Venture beyond the town walls to track and hunt dangerous creatures that threaten Alcia's safety.\nRewards await those brave enough to face these beasts.",
           "results": {
             "trigger_encounter": true
           }
@@ -16,9 +16,17 @@
         {
           "id": "visit_blacksmith",
           "name": "Visit Master Blacksmith",
-          "description": "Seek the expertise of Dorn, the renowned weaponsmith whose creations are sought after throughout the realm. His forge offers weapons of exceptional quality, upgrades for your existing gear, and fair prices for adventurers looking to sell their spoils.",
+          "description": "Seek the expertise of Dorn, the renowned weaponsmith whose creations are sought after throughout the realm.\nHis forge offers weapons of exceptional quality, upgrades for your existing gear, and fair prices for adventurers looking to sell their spoils.",
           "results": {
             "location_change": "blacksmith_shop"
+          }
+        },
+        {
+          "id": "view_infos",
+          "name": "View your Stats & Inventory",
+          "description": "",
+          "results": {
+            "open_menu": "personal_infos"
           }
         }
       ]
@@ -26,12 +34,12 @@
     {
       "id": "blacksmith_shop",
       "name": "Dorn's Legendary Forge",
-      "description": "The scorching heat of the forge greets you as you enter. The air shimmers with embers and the rhythmic clanging of hammer on anvil echoes through the workshop. Weapons of all varieties line the walls, from simple daggers to ornate swords etched with ancient runes. Dorn, a mountain of a man with arms like tree trunks, nods in acknowledgment of your arrival.",
+      "description": "The scorching heat of the forge greets you as you enter.\nThe air shimmers with embers and the rhythmic clanging of hammer on anvil echoes through the workshop.\nWeapons of all varieties line the walls, from simple daggers to ornate swords etched with ancient runes.\nDorn, a mountain of a man with arms like tree trunks, nods in acknowledgment of your arrival.",
       "actions": [
         {
           "id": "buy_weapon",
           "name": "Browse Weaponry",
-          "description": "Examine Dorn's impressive selection of finely crafted weapons, from razor-sharp daggers to massive two-handed greatswords. Each weapon is meticulously forged for perfect balance and deadly precision.",
+          "description": "Examine Dorn's impressive selection of finely crafted weapons, from razor-sharp daggers to massive two-handed greatswords.\nEach weapon is meticulously forged for perfect balance and deadly precision.",
           "results": {
             "open_menu": "buy_weapons"
           }
@@ -39,7 +47,7 @@
         {
           "id": "sell_weapon",
           "name": "Trade Your Arms",
-          "description": "Present your surplus weapons to Dorn for appraisal. His expert eye evaluates craftsmanship and materials, offering fair prices for quality arms that he can refurbish and resell.",
+          "description": "Present your surplus weapons to Dorn for appraisal.\nHis expert eye evaluates craftsmanship and materials, offering fair prices for quality arms that he can refurbish and resell.",
           "results": {
             "open_menu": "sell_weapons"
           }
@@ -47,7 +55,7 @@
         {
           "id": "upgrade_equipment",
           "name": "Enhance Your Gear",
-          "description": "Commission Dorn to improve your existing equipment using rare materials gathered from your adventures. His masterful techniques can strengthen, sharpen, and imbue your gear with special properties.",
+          "description": "Commission Dorn to improve your existing equipment using rare materials gathered from your adventures.\nHis masterful techniques can strengthen, sharpen, and imbue your gear with special properties.",
           "requirements": {
             "has_equipment": true,
             "has_materials": true

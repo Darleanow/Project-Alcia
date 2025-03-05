@@ -53,11 +53,8 @@ void UISystem::display_rules() const
   getchar();
 }
 
-int UISystem::prompt_user_for_index_selection(
-    const std::string &message, Range range
-)
+int UISystem::prompt_user_for_index_selection(Range range)
 {
-  std::cout << message << '\n';
   std::cout << '>';
   std::string selected_string;
 

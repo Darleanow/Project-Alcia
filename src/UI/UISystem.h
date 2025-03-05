@@ -1,5 +1,6 @@
 #pragma once
-#include <string>
+
+#include <cstddef>
 
 struct Range
 {
@@ -16,7 +17,5 @@ public:
   void greet() const;
   void display_rules() const;
 
-  int  prompt_user_for_index_selection(
-       const std::string &input_message, Range range
-   );
+  int  prompt_user_for_index_selection(Range range);
 };

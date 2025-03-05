@@ -8,7 +8,7 @@ class Parser
 {
 public:
   Parser();
-  ~Parser();
+  ~Parser() = default;
 
   std::ifstream  open_file(std::filesystem::path file_path);
 

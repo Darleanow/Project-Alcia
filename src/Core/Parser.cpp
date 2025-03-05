@@ -5,8 +5,6 @@
 
 Parser::Parser() = default;
 
-Parser::~Parser() = default;
-
 std::ifstream Parser::open_file(std::filesystem::path file_path)
 {
   std::ifstream file_stream(file_path.c_str());

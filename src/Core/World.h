@@ -12,12 +12,12 @@ public:
   );
   ~World();
 
-  void                  display_actions_for_current_location();
-  void                  execute_action_at(size_t index);
-  [[nodiscard]] size_t  get_current_location_action_count() const;
+  [[nodiscard]] const std::shared_ptr<Location> &get_current_location() const;
+  [[nodiscard]] std::shared_ptr<Hero>            get_player() const;
+  [[nodiscard]] size_t get_current_location_action_count() const;
 
-  void                  set_location(const std::string &new_location);
-  std::shared_ptr<Hero> get_player();
+  void                 execute_action_at(size_t index);
+  void                 set_location(const std::string &new_location);
 
 private:
   std::shared_ptr<Hero>                  m_player;

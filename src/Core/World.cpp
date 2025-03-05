@@ -1,7 +1,4 @@
 #include "World.h"
-#include "../UI/Utils.h"
-
-#include <iostream>
 
 World::World(
     std::shared_ptr<Hero>                  player,
@@ -10,25 +7,13 @@ World::World(
     : m_player(player),
       m_locations(std::move(locations)),
       m_current_location(m_locations.at(0))
-
 {
 }
 
 World::~World() = default;
 
-void World::display_actions_for_current_location()
-{
-  int index = 1;
-
-  for(const auto &action : m_current_location.get()->get_location_actions()) {
-    std::cout << index << ". " << action.get()->get_name() << std::endl;
-    index++;
-  }
-}
-
 void World::execute_action_at(size_t index)
 {
-  Utils::clear_screen();
   m_current_location->get_location_actions().at(--index)->execute(
       *this, m_player
   );
@@ -60,7 +45,12 @@ std::shared_ptr<Location>
   return nullptr;
 }
 
-std::shared_ptr<Hero> World::get_player()
+const std::shared_ptr<Location> &World::get_current_location() const
+{
+  return m_current_location;
+}
+
+std::shared_ptr<Hero> World::get_player() const
 {
   return m_player;
 }

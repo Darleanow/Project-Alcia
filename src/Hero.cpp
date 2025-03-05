@@ -1,10 +1,12 @@
 #include "Hero.h"
 #include "UI/SystemRelated.h"
-#include "UI/Utils.h"
+#include "UI/Utils/DrawUtils.h"
 #include "god.h"
 
 #include <iostream>
 #include <unordered_map>
+
+Hero::Hero(const std::string &name) : m_name(std::move(name)) {}
 
 int Hero::get_hp()
 {
@@ -18,11 +20,6 @@ int Hero::get_max_hp()
 void Hero::set_hp(int quantity)
 {
   m_hp += quantity;
-}
-
-void Hero::set_name(const std::string &new_name)
-{
-  m_name = std::move(new_name);
 }
 
 std::string Hero::get_name()

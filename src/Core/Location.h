@@ -14,7 +14,7 @@ public:
       std::vector<std::unique_ptr<Action>> actions
   );
 
-  ~Location();
+  ~Location() = default;
 
   [[nodiscard]] std::string_view get_id() const;
   [[nodiscard]] std::string_view get_name() const;

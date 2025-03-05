@@ -17,8 +17,6 @@ Action::Action(
 {
 }
 
-Action::~Action() = default;
-
 std::string_view Action::get_id() const
 {
   return m_id;

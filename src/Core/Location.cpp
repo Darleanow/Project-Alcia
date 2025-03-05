@@ -11,8 +11,6 @@ Location::Location(
 {
 }
 
-Location::~Location() = default;
-
 std::string_view Location::get_id() const
 {
   return m_id;

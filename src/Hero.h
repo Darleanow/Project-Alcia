@@ -29,12 +29,14 @@ private:
   std::vector<Item *> m_boots;
 
 public:
+  Hero(const std::string &name);
+  ~Hero() = default;
+
   int         get_hp();
   int         get_max_hp();
   void        set_hp(int quantity);
   void        take_dmg(int quantity);
 
-  void        set_name(const std::string &new_name);
   std::string get_name();
 
   void        give_gold(int quantity);

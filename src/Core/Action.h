@@ -16,7 +16,7 @@ public:
       const std::string                        &action_description,
       std::unordered_map<std::string, std::any> results
   );
-  ~Action();
+  ~Action() = default;
 
   [[nodiscard]] std::string_view get_id() const;
   [[nodiscard]] std::string_view get_name() const;

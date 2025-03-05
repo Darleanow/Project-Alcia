@@ -12,6 +12,12 @@ int Hero::get_hp()
 {
   return m_hp;
 }
+
+int Hero::get_golds() const
+{
+  return m_gold;
+}
+
 int Hero::get_max_hp()
 {
   return m_max_hp;
@@ -84,6 +90,8 @@ int Hero::get_level()
 
 int Hero::combat_main()
 {
+  Utils::clear_screen();
+
   std::string method_select;
   auto       *monster = generate_monster(this);
 

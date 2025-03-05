@@ -19,13 +19,10 @@ add_executable(${PROJECT_NAME}
   src/Core/Location.cpp
   src/Core/Parser.cpp
   src/Core/World.cpp
+  src/UI/Utils/DrawUtils.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SRC_DIR}/src)
-
-# Organize sources into groups for IDEs
-source_group(TREE ${PROJECT_SOURCE_DIR}/src PREFIX "Source Files" FILES ${ALCIA_SOURCES})
-source_group(TREE ${PROJECT_SOURCE_DIR}/src PREFIX "Header Files" FILES ${ALCIA_HEADERS})
 
 target_compile_options( AlciaProject PRIVATE
   -Wall
@@ -47,31 +44,17 @@ target_compile_options( AlciaProject PRIVATE
 include(FetchContent) 
 
 FetchContent_Declare(
-  SQLiteCpp
-  GIT_REPOSITORY https://github.com/SRombauts/SQLiteCpp
-  GIT_TAG master
-)
-
-FetchContent_Declare(
-  sqlite3
-  GIT_REPOSITORY https://github.com/sqlite/sqlite.git 
-  GIT_TAG master
-)
-
-FetchContent_Declare(
   json 
   URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
 )
 
-FetchContent_MakeAvailable(sqlite3 SQLiteCpp json)
+FetchContent_MakeAvailable(json)
 
 target_link_libraries(${PROJECT_NAME} 
-  PRIVATE nlohmann_json::nlohmann_json SQLiteCpp sqlite3 pthread dl
+  PRIVATE nlohmann_json::nlohmann_json
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE 
-  ${CMAKE_BINARY_DIR}/_deps/sqlitecpp-src/include
-  ${CMAKE_BINARY_DIR}/_deps/sqlite3-src
   ${CMAKE_BINARY_DIR}/_deps/json-src/include
 )
 

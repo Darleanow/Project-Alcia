@@ -49,7 +49,7 @@ cmake --build . --config Release
 After building (now multiplatform):
 
 ```bash
-./AlciaProject
+./Alcia
 ```
 
 ## Loots list

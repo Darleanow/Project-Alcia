@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 
-project(AlciaProject VERSION 1.0 DESCRIPTION "Alcia" LANGUAGES CXX)
+project(Alcia VERSION 1.0 DESCRIPTION "Alcia" LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -24,7 +24,7 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SRC_DIR}/src)
 
-target_compile_options( AlciaProject PRIVATE
+target_compile_options( Alcia PRIVATE
   -Wall
   -Wextra
   -Wpedantic

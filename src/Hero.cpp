@@ -43,6 +43,11 @@ void Hero::give_gold(int quantity)
   m_gold += quantity;
 }
 
+const std::vector<Item *> Hero::get_inventory() const
+{
+  return m_inventory;
+}
+
 void Hero::give(Item *item, int amount)
 {
   bool found = false;

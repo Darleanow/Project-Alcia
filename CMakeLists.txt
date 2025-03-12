@@ -20,6 +20,7 @@ add_executable(${PROJECT_NAME}
   src/Core/Location.cpp
   src/Core/Parser.cpp
   src/Core/World.cpp
+  src/UI/Menu/InventoryMenu.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SRC_DIR}/src)

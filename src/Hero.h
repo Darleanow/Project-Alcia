@@ -32,48 +32,50 @@ public:
   Hero(const std::string &name);
   ~Hero() = default;
 
-  int         get_hp();
-  int         get_golds() const;
-  int         get_max_hp();
-  void        set_hp(int quantity);
-  void        take_dmg(int quantity);
+  int                       get_hp();
+  int                       get_golds() const;
+  int                       get_max_hp();
+  void                      set_hp(int quantity);
+  void                      take_dmg(int quantity);
 
-  std::string get_name();
+  const std::vector<Item *> get_inventory() const;
 
-  void        give_gold(int quantity);
-  void        give(Item *item, int amount = 1);
+  std::string               get_name();
 
-  void        display_actions();
+  void                      give_gold(int quantity);
+  void                      give(Item *item, int amount = 1);
 
-  void        show_inventory();
-  bool        check(std::string name);
-  int         check_quant(std::string item_name);
-  void        add(std::string name, int amount);
-  void        show_actions_inventory();
-  void        show_equipeable_items();
-  void        show_useable_items();
-  void        remove_elem(size_t index, int amount);
-  void        rem_by_name(std::string name, int quantity);
-  void        remove_from_inventory(Item *item);
-  void        delete_an_item();
-  void        equip(Item *item);
-  void        prompt_unequip();
-  void        unequip(int choice);
+  void                      display_actions();
 
-  void        show_Town_actions();
-  void        show_black_smith_actions();
-  void        show_shop_options();
+  void                      show_inventory();
+  bool                      check(std::string name);
+  int                       check_quant(std::string item_name);
+  void                      add(std::string name, int amount);
+  void                      show_actions_inventory();
+  void                      show_equipeable_items();
+  void                      show_useable_items();
+  void                      remove_elem(size_t index, int amount);
+  void                      rem_by_name(std::string name, int quantity);
+  void                      remove_from_inventory(Item *item);
+  void                      delete_an_item();
+  void                      equip(Item *item);
+  void                      prompt_unequip();
+  void                      unequip(int choice);
 
-  void        give_xp(int amount);
-  void        level_up();
-  int         get_level();
-  int         get_xp_to_lvl();
-  int         compute_xp_needed();
+  void                      show_Town_actions();
+  void                      show_black_smith_actions();
+  void                      show_shop_options();
 
-  int         get_atk();
-  int         get_total_dmg();
-  Item       *get_right_hand();
-  int         get_status_rate();
+  void                      give_xp(int amount);
+  void                      level_up();
+  int                       get_level();
+  int                       get_xp_to_lvl();
+  int                       compute_xp_needed();
 
-  int         combat_main();
+  int                       get_atk();
+  int                       get_total_dmg();
+  Item                     *get_right_hand();
+  int                       get_status_rate();
+
+  int                       combat_main();
 };

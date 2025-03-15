@@ -36,7 +36,7 @@ void Zombie::drop(Hero *hero)
   int amount_flesh = generate_random_number(0, 3);
   if(!(hero->check("Zombie flesh"))) {
     if(amount_flesh > 0) {
-      hero->give(new zombie_flesh);
+      hero->give(new ZombieFlesh);
       hero->add("Zombie flesh", amount_flesh - 1);
       std::cout << "- " << color(ColorType::GREEN) << "Zombie flesh "
                 << color(ColorType::DEFAULT) << "x" << amount_flesh
@@ -55,7 +55,7 @@ void Zombie::drop(Hero *hero)
   if(roll_boolDice(40)) {
     if(amount_eye > 0) {
       if(!(hero->check("Zombie eye"))) {
-        hero->give(new zombie_eye);
+        hero->give(new ZombieEye);
         hero->add("Zombie eye", amount_eye - 1);
       } else {
         hero->add("Zombie eye", amount_eye);
@@ -297,7 +297,7 @@ void Skeletton::drop(Hero *hero)
   int amount_bone_shard = generate_random_number(0, 5);
   if(!(hero->check("Bone shard"))) {
     if(amount_bone_shard > 0) {
-      hero->give(new bone_shard);
+      hero->give(new BoneShard);
       hero->add("Bone shard", amount_bone_shard - 1);
       std::cout << "-Bone shard(s) x" << amount_bone_shard << std::endl;
     }
@@ -312,7 +312,7 @@ void Skeletton::drop(Hero *hero)
   if(roll_boolDice(30)) {
     if(amount_bone > 0) {
       if(!(hero->check("Bone"))) {
-        hero->give(new bones);
+        hero->give(new Bones);
         hero->add("Bone", amount_bone - 1);
         std::cout << "-Bone x" << amount_bone << std::endl;
       } else {
@@ -561,7 +561,7 @@ void Troll::drop(Hero *hero)
   int amount_troll_finger = generate_random_number(0, 3);
   if(!(hero->check("Troll finger"))) {
     if(amount_troll_finger > 0) {
-      hero->give(new troll_finger);
+      hero->give(new TrollFinger);
       hero->add("Troll finger", amount_troll_finger - 1);
       std::cout << "-Troll finger(s) x" << amount_troll_finger << std::endl;
     }
@@ -576,7 +576,7 @@ void Troll::drop(Hero *hero)
   if(roll_boolDice(30)) {
     if(amount_empty_sack > 0) {
       if(!(hero->check("Empty sack"))) {
-        hero->give(new empty_sack);
+        hero->give(new EmptySack);
         hero->add("Empty sack", amount_empty_sack - 1);
         std::cout << "-Empty sack x" << amount_empty_sack << std::endl;
       } else {
@@ -601,7 +601,7 @@ void SuperTroll::drop(Hero *hero)
   int amount_troll_finger = generate_random_number(0, 5);
   if(!(hero->check("Troll finger"))) {
     if(amount_troll_finger > 0) {
-      hero->give(new troll_finger);
+      hero->give(new TrollFinger);
       hero->add("Troll finger", amount_troll_finger - 1);
       std::cout << "-Troll finger(s) x" << amount_troll_finger << std::endl;
     }
@@ -616,7 +616,7 @@ void SuperTroll::drop(Hero *hero)
   if(roll_boolDice(30)) {
     if(amount_troll_belt > 0) {
       if(!(hero->check("Old belt"))) {
-        hero->give(new troll_belt);
+        hero->give(new TrollBelt);
         hero->add("Old belt", amount_troll_belt - 1);
         std::cout << "-Old belt x" << amount_troll_belt << std::endl;
       } else {
@@ -641,7 +641,7 @@ void Kobold::drop(Hero *hero)
   int amount_kobold_tail = generate_random_number(0, 1);
   if(!(hero->check("Kobold tail"))) {
     if(amount_kobold_tail > 0) {
-      hero->give(new kobold_tails);
+      hero->give(new KoboldTails);
       hero->add("Kobold tail", amount_kobold_tail - 1);
       std::cout << "-Kobold tail x" << amount_kobold_tail << std::endl;
     }
@@ -656,7 +656,7 @@ void Kobold::drop(Hero *hero)
   if(roll_boolDice(10)) {
     if(amount_kobold_scepter > 0) {
       if(!(hero->check("Kobold Scepter"))) {
-        hero->give(new kobold_scepter);
+        hero->give(new KoboldScepter);
         hero->add("Kobold Scepter", amount_kobold_scepter - 1);
         std::cout << "-Kobold Scepter x" << amount_kobold_scepter << std::endl;
       } else {
@@ -681,7 +681,7 @@ void Oreade::drop(Hero *hero)
   int amount_oreade_powder = generate_random_number(2, 7);
   if(!(hero->check("Oreade powder"))) {
     if(amount_oreade_powder > 0) {
-      hero->give(new oreade_powder);
+      hero->give(new OreadePowder);
       hero->add("Oreade powder", amount_oreade_powder - 1);
       std::cout << "-Oreade powder x" << amount_oreade_powder << std::endl;
     }
@@ -696,7 +696,7 @@ void Oreade::drop(Hero *hero)
   if(roll_boolDice(10)) {
     if(amount_magic_fragment > 0) {
       if(!(hero->check("Magic fragment"))) {
-        hero->give(new magic_fragments);
+        hero->give(new MagicFragments);
       }
       hero->add("Magic fragment", amount_magic_fragment);
       std::cout << "-Magic fragment x" << amount_magic_fragment << std::endl;
@@ -719,7 +719,7 @@ void BabyDragon::drop(Hero *hero)
   if(roll_boolDice(20)) {
     if(amount_scale > 0) {
       if(!(hero->check("Dragon scale"))) {
-        hero->give(new dragon_scale);
+        hero->give(new DragonScale);
       }
       hero->add("Dragon scale", amount_scale);
       std::cout << "-Dragon scale x" << amount_scale << std::endl;
@@ -730,7 +730,7 @@ void BabyDragon::drop(Hero *hero)
   if(roll_boolDice(10)) {
     if(amount_dragon_tooth > 0) {
       if(!(hero->check("Dragon tooth"))) {
-        hero->give(new dragon_tooth);
+        hero->give(new DragonTooth);
       }
       hero->add("Dragon tooth", amount_dragon_tooth);
       std::cout << "-Dragon tooth x" << amount_dragon_tooth << std::endl;
@@ -753,7 +753,7 @@ void MamaDragon::drop(Hero *hero)
   if(roll_boolDice(30)) {
     if(amount_scale > 0) {
       if(!(hero->check("Dragon scale"))) {
-        hero->give(new dragon_scale);
+        hero->give(new DragonScale);
       }
       hero->add("Dragon scale", amount_scale);
       std::cout << "-Dragon scale x" << amount_scale << std::endl;
@@ -764,7 +764,7 @@ void MamaDragon::drop(Hero *hero)
   if(roll_boolDice(20)) {
     if(amount_dragon_tooth > 0) {
       if(!(hero->check("Dragon tooth"))) {
-        hero->give(new dragon_tooth);
+        hero->give(new DragonTooth);
       }
       hero->add("Dragon tooth", amount_dragon_tooth);
       std::cout << "-Dragon tooth x" << amount_dragon_tooth << std::endl;

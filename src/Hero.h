@@ -32,6 +32,7 @@ public:
   Hero(const std::string &name);
   ~Hero() = default;
 
+
   int                                       get_hp();
   int                                       get_golds() const;
   int                                       get_max_hp();

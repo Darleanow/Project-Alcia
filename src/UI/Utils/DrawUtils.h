@@ -3,11 +3,8 @@
 #include <string>
 
 namespace Utils {
-static inline void clear_screen()
-{
-  system("clear");
-}
 
+void clear_screen();
 } // namespace Utils
 
 enum class ColorType

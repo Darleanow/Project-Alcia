@@ -2,8 +2,10 @@
 #include "Item.h"
 #include "Monster.h"
 
-Monster *generate_monster(Hero *hero);
+#include <memory>
 
-Item    *generate_item();
+Monster              *generate_monster(Hero *hero);
 
-Item    *random_item(std::vector<Item *> items, std::vector<size_t> odds);
+std::unique_ptr<Item> generate_item();
+
+Item *random_item(std::vector<Item *> items, std::vector<size_t> odds);

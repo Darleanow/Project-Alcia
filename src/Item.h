@@ -1,45 +1,35 @@
 #pragma once
+#include "Core/Stats/Stats.h"
 #include <string>
-
-enum class ItemLocationEquipType
-{
-  PrimaryHand = 0,
-  Helmet      = 1,
-  Chestplate  = 2,
-  Leggings    = 3,
-  Boots       = 4,
-  Potion      = 5,
-  Loot        = 6
-};
 
 class Item
 {
 protected:
-  std::string           name;
-  ItemLocationEquipType type;
-  std::string           rarity;
-  std::string           status;
-  int                   atk;
-  int                   crit_rate;
-  int                   hp;
-  int                   price;
+  std::string name;
+  std::string type;
+  std::string rarity;
+  std::string status;
+  int         atk;
+  int         crit_rate;
+  int         hp;
+  int         price;
 
 public:
   Item(
-      const std::string &name, ItemLocationEquipType type,
-      const std::string &rarity, const std::string &status, int atk,
-      int crit_rate, int hp, int price
+      const std::string &name, std::string type, const std::string &rarity,
+      const std::string &status, int atk, int crit_rate, int hp, int price
   );
   virtual ~Item() = default;
 
-  std::string           get_name() const;
-  ItemLocationEquipType get_type() const;
-  std::string           get_rarity() const;
-  std::string           get_status() const;
-  int                   get_atk() const;
-  int                   get_crit_rate() const;
-  int                   get_hp() const;
-  int                   get_price() const;
+  std::string get_name() const;
+  std::string get_type() const;
+  std::string get_rarity() const;
+  std::string get_status() const;
+  int         get_atk() const;
+  int         get_crit_rate() const;
+  int         get_hp() const;
+  int         get_price() const;
+  StatsValues get_stats() const;
 };
 
 class CommonSword : public Item
@@ -257,4 +247,3 @@ class AzeaelHead : public Item
 public:
   AzeaelHead();
 };
-

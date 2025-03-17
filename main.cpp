@@ -35,6 +35,7 @@ int main()
   player->m_inventory->add_item(std::make_unique<EpicSword>());
   player->m_inventory->add_item(std::make_unique<CommonChestplate>());
   player->m_inventory->add_item(std::make_unique<CommonHelmet>());
+  player->m_inventory->add_item(std::make_unique<HealthPotion>(), 2);
 
   while(player->m_stats->is_alive()) {
 

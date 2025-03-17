@@ -15,9 +15,7 @@ static inline std::optional<EquipmentLocation>
           {"Helmet",       EquipmentLocation::Helmet     },
           {"Chestplate",   EquipmentLocation::Chestplate },
           {"Leggings",     EquipmentLocation::Leggings   },
-          {"Boots",        EquipmentLocation::Boots      },
-          {"Potion",       EquipmentLocation::Potion     },
-          {"Loot",         EquipmentLocation::Loot       }
+          {"Boots",        EquipmentLocation::Boots      }
   };
 
   if(const auto it = mapping.find(value); it != mapping.end()) {

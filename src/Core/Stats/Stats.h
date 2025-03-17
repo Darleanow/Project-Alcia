@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 class Item;
 
 struct StatsValues
@@ -16,11 +17,12 @@ struct StatsValues
 
   StatsValues &operator+=(const StatsValues &other)
   {
-    health += other.health ? other.health : 0;
-    max_health += other.max_health ? other.max_health : 0;
-    attack += other.attack ? other.attack : 0;
-    defense += other.defense ? other.defense : 0;
-    crit_rate += other.crit_rate ? other.crit_rate : 0;
+    max_health += other.max_health;
+    health = std::min(health + other.health, max_health);
+    attack += other.attack;
+    defense += other.defense;
+    crit_rate += other.crit_rate;
+
     return *this;
   }
 };

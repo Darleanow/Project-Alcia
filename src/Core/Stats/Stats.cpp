@@ -77,11 +77,14 @@ void Stats::compute_stats_from_item(StatsValues stats)
 
 StatsValues negate(StatsValues stats)
 {
-  return StatsValues(
-      {.health     = -stats.health,
-       .max_health = -stats.max_health,
-       .attack     = -stats.attack}
-  );
+  return StatsValues({
+      .health          = -stats.health,
+      .max_health      = -stats.max_health,
+      .attack          = -stats.attack,
+      .defense         = -stats.defense,
+      .crit_rate       = -stats.crit_rate,
+      .crit_multiplier = -stats.crit_multiplier,
+  });
 }
 
 void Stats::remove_stats_from_item(StatsValues stats)

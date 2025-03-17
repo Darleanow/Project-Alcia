@@ -2,48 +2,46 @@
 #include "../../Core/CoreUtils.h"
 #include "../UISystem.h"
 #include "../Utils/DrawUtils.h"
-
-#include <cstdio>
 #include <iostream>
 #include <stdexcept>
 
-InventoryStatsMenu::InventoryStatsMenu(const std::shared_ptr<Hero> player)
+InventoryStatsMenu::InventoryStatsMenu(const std::shared_ptr<Hero> &player)
     : AMenu(player)
 {
+  initialize_actions();
+}
+
+void InventoryStatsMenu::initialize_actions()
+{
+  actions_ = {
+      {1, [this] { equip_item(); }  },
+      {2, [this] { unequip_item(); }},
+      {3, [this] { use_item(); }    },
+      {4, [this] { throw_item(); }  },
+      {5, [] {}                     }
+  };
 }
 
 void InventoryStatsMenu::execute()
 {
   Utils::clear_screen();
-
   draw_gui();
-
   std::cout << "\n\n";
-
   show_actions();
 
   UISystem ui_system;
-  Range    range  = {.begin = 1, .end = 5};
-  int      result = ui_system.prompt_user_for_index_selection(range);
+  Range    range {1, actions_.size()};
+  int      selection = ui_system.prompt_user_for_index_selection(range);
 
-  switch(result) {
-  case 1:
-    equip_item();
-    break;
-  case 2:
-    unequip_item();
-    break;
-  case 3:
-    use_item();
-    break;
-  case 4:
-    throw_item();
-    break;
-  case 5:
-    break;
-  default:
-    throw std::runtime_error("Uknown validated Index.");
-    break;
+  handle_user_selection(selection);
+}
+
+void InventoryStatsMenu::handle_user_selection(int selection)
+{
+  if(actions_.find(selection) != actions_.end()) {
+    actions_[selection]();
+  } else {
+    throw std::runtime_error("Unknown action selection.");
   }
 }
 
@@ -147,74 +145,32 @@ void InventoryStatsMenu::show_actions() const
   std::cout << "[5] Go back\n";
 }
 
-// TODO(Darleanow): Move below in a manager
-
 void InventoryStatsMenu::equip_item()
 {
   Utils::clear_screen();
-
-  std::cout << "[" << color(ColorType::BLUE) << "Available Items"
-            << color(ColorType::DEFAULT) << "]\n\n";
-
   std::vector<size_t> equippable_indices;
-  size_t              display_index = 0;
-
-  const auto         &items = m_player->m_inventory->get_items();
-  for(size_t i = 0; i < items.size(); ++i) {
-    const auto &item_stack         = items[i];
-    const auto &type               = item_stack.item->get_type();
-    const auto &equipment_location = CoreUtils::to_equipment_location(type);
-
-    if(equipment_location &&
-       m_player->m_equipment->validate_slot(*equipment_location)) {
-      display_index++;
-      std::cout << "[" << display_index << "] "
-                << color(get_color_from_string(
-                       get_color_from_rarity(item_stack.item->get_rarity())
-                   ))
-                << item_stack.item->get_name() << color(ColorType::DEFAULT)
-                << " x" << item_stack.quantity << '\n';
-
-      equippable_indices.push_back(i);
-    }
-  }
+  show_equippable_items(equippable_indices);
 
   if(equippable_indices.empty()) {
-    std::cout << color(ColorType::RED) << "No items available for equipping."
-              << color(ColorType::DEFAULT) << std::endl;
+    std::cout << color(ColorType::RED) << "No items available for equipping.\n"
+              << color(ColorType::DEFAULT) << "Press enter to continue...";
+    getchar();
     return;
   }
 
   UISystem ui_system;
-  Range    range  = {.begin = 1, .end = display_index};
-  int      result = ui_system.prompt_user_for_index_selection(range);
+  Range    range {1, equippable_indices.size()};
+  int      selection = ui_system.prompt_user_for_index_selection(range) - 1;
 
-  if(result < 1 || static_cast<size_t>(result) > equippable_indices.size()) {
-    std::cout << color(ColorType::RED) << "Invalid selection."
-              << color(ColorType::DEFAULT) << std::endl;
+  size_t   inventory_index = equippable_indices[static_cast<size_t>(selection)];
+  auto     item_to_equip = m_player->m_inventory->extract_item(inventory_index);
+
+  if(!item_to_equip)
     return;
-  }
 
-  size_t inventory_index = equippable_indices[static_cast<size_t>(result - 1)];
-
-  const auto &selected_stack = items[inventory_index];
-  std::string item_name      = selected_stack.item->get_name();
-  auto        location =
-      CoreUtils::to_equipment_location(selected_stack.item->get_type());
-
-  if(!location) {
-    std::cout << color(ColorType::RED) << "Item cannot be equipped."
-              << color(ColorType::DEFAULT) << std::endl;
+  auto location = CoreUtils::to_equipment_location(item_to_equip->get_type());
+  if(!location)
     return;
-  }
-
-  auto item_to_equip = m_player->m_inventory->extract_item(inventory_index);
-
-  if(!item_to_equip) {
-    std::cout << color(ColorType::RED) << "Failed to retrieve item."
-              << color(ColorType::DEFAULT) << std::endl;
-    return;
-  }
 
   m_player->m_stats->compute_stats_from_item(item_to_equip->get_stats());
 
@@ -224,33 +180,114 @@ void InventoryStatsMenu::equip_item()
   if(unequipped_item) {
     m_player->m_stats->remove_stats_from_item(unequipped_item->get_stats());
     m_player->m_inventory->add_item(std::move(unequipped_item));
-    std::cout << color(ColorType::YELLOW)
-              << "Replaced previously equipped item."
-              << color(ColorType::DEFAULT) << std::endl;
   }
-
-  std::cout << color(ColorType::GREEN) << "Equipped: " << item_name
-            << color(ColorType::DEFAULT) << std::endl;
-
-  const auto &stats = m_player->m_stats->get_stats();
-
-  std::cout << "New stats:\nHealth: " << stats.health
-            << "\nAttack: " << stats.attack << "\n";
-
-  getchar();
 }
 
 void InventoryStatsMenu::unequip_item()
 {
+  Utils::clear_screen();
+  std::vector<EquipmentLocation> equipped_locations;
+  show_equipped_items(equipped_locations);
+
+  if(equipped_locations.empty()) {
+    std::cout << color(ColorType::RED) << "No equipment available to unequip."
+              << color(ColorType::DEFAULT) << "\nPress enter to continue...";
+    getchar();
+    return;
+  }
+
+  UISystem ui_system;
+  Range    range {1, equipped_locations.size()};
+  int      selection = ui_system.prompt_user_for_index_selection(range) - 1;
+
+  auto     item = m_player->m_equipment->unequip_item(
+      equipped_locations[static_cast<size_t>(selection)]
+  );
+
+  if(item) {
+    m_player->m_stats->remove_stats_from_item(item->get_stats());
+    m_player->m_inventory->add_item(std::move(item));
+  }
+
+  std::cout << color(ColorType::GREEN) << "\nSuccessfully unequipped item!\n"
+            << color(ColorType::DEFAULT) << "Press enter to continue...";
   getchar();
 }
 
 void InventoryStatsMenu::use_item()
 {
-  getchar();
+  Utils::clear_screen();
+  std::vector<size_t> useable_items_indices;
+  show_useable_items(useable_items_indices);
+
+  if(useable_items_indices.empty()) {
+    std::cout << color(ColorType::RED) << "No item to use."
+              << color(ColorType::DEFAULT) << "\nPress enter to continue...";
+
+    getchar();
+    return;
+  }
+
+  UISystem ui_system;
+  Range    range {1, useable_items_indices.size()};
+  int      selection = ui_system.prompt_user_for_index_selection(range) - 1;
+
+  auto     item = m_player->m_inventory->extract_item(
+      useable_items_indices[static_cast<size_t>(selection)]
+  );
+
+  m_player->m_stats->add_stats(item->get_stats());
 }
 
-void InventoryStatsMenu::throw_item()
+void InventoryStatsMenu::throw_item() {}
+
+void InventoryStatsMenu::show_equippable_items(std::vector<size_t> &indices
+) const
 {
-  getchar();
+  size_t display_index = 1;
+  for(size_t i = 0; i < m_player->m_inventory->get_items().size(); ++i) {
+    const auto &item = m_player->m_inventory->get_items()[i].item;
+    if(CoreUtils::to_equipment_location(item->get_type())) {
+      std::cout << '[' << display_index++ << "] "
+                << color(get_color_from_string(
+                       get_color_from_rarity(item->get_rarity())
+                   ))
+                << item->get_name() << color(ColorType::DEFAULT) << '\n';
+      indices.push_back(i);
+    }
+  }
+}
+
+void InventoryStatsMenu::show_useable_items(std::vector<size_t> &indices) const
+{
+  size_t display_index = 1;
+  for(size_t i = 0; i < m_player->m_inventory->get_items().size(); ++i) {
+    const auto &item = m_player->m_inventory->get_items()[i].item;
+    if(item->get_type() == "Potion") {
+      std::cout << '[' << display_index++ << "] "
+                << color(get_color_from_string(
+                       get_color_from_rarity(item->get_rarity())
+                   ))
+                << item->get_name() << color(ColorType::DEFAULT) << '\n';
+      indices.push_back(i);
+    }
+  }
+}
+
+void InventoryStatsMenu::show_equipped_items(
+    std::vector<EquipmentLocation> &locations
+) const
+{
+  size_t index = 1;
+  for(const auto location : EquipmentLocationList) {
+    const auto &item = m_player->m_equipment->get_item(location);
+    if(item) {
+      std::cout << '[' << index++ << "] "
+                << color(get_color_from_string(
+                       get_color_from_rarity(item->get_rarity())
+                   ))
+                << item->get_name() << color(ColorType::DEFAULT) << '\n';
+      locations.push_back(location);
+    }
+  }
 }

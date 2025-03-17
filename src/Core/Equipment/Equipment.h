@@ -15,6 +15,7 @@ public:
       equip_item(EquipmentLocation slot, std::unique_ptr<Item> item);
   std::unique_ptr<Item> unequip_item(EquipmentLocation slot);
   const Item           *get_item(EquipmentLocation slot) const;
+
   bool                  validate_slot(EquipmentLocation slot) const;
 
 private:

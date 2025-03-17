@@ -60,7 +60,7 @@ StatsValues Item::get_stats() const
 {
   return StatsValues(
       {.health     = get_hp(),
-       .max_health = get_hp(),
+       .max_health = get_type() == "Potion" ? 0 : get_hp(),
        .attack     = get_atk(),
        .crit_rate  = get_crit_rate()}
   );

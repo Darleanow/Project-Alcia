@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../../Item.h"
-#include "../CoreDefinitions.h"
+#include "CoreDefinitions.h"
+#include "Item.h"
+
 #include <memory>
 #include <unordered_map>
 

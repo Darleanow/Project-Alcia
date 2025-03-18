@@ -1,5 +1,7 @@
 #pragma once
+
 #include "Location.h"
+
 #include <filesystem>
 #include <fstream>
 #include <nlohmann/json.hpp>

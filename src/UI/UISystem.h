@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/Location.h"
+#include "Location.h"
 
 #include <cstddef>
 

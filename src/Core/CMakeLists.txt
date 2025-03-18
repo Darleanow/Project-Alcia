@@ -1,6 +1,6 @@
 add_library(Core STATIC)
 
-target_sources(Core PRIVATE 
+target_sources(Core PRIVATE
   Action.cpp
   Location.cpp
   Parser.cpp
@@ -10,12 +10,12 @@ target_sources(Core PRIVATE
   Stats/Stats.cpp
 )
 
-target_include_directories(Core PUBLIC 
+target_include_directories(Core PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(Core PRIVATE 
-  nlohmann_json::nlohmann_json 
-  Legacy 
+target_link_libraries(Core PRIVATE
+  nlohmann_json::nlohmann_json
+  Legacy
   UI
 )

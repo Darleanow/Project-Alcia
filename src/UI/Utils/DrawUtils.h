@@ -1,9 +1,9 @@
 #pragma once
+
 #include <cstdlib>
 #include <string>
 
 namespace Utils {
-
 void clear_screen();
 } // namespace Utils
 

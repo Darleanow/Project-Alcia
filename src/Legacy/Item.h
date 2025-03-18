@@ -1,5 +1,7 @@
 #pragma once
+
 #include "Stats/Stats.h"
+
 #include <string>
 
 class Item

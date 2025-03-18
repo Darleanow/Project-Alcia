@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Hero.h"
 
 class Monster

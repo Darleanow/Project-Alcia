@@ -1,4 +1,5 @@
 #include "Parser.h"
+
 #include <fstream>
 #include <iostream>
 #include <stdexcept>

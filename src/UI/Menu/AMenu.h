@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Hero.h"
+
 #include <memory>
 
 class AMenu

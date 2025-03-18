@@ -1,5 +1,7 @@
 #pragma once
+
 #include "AMenu.h"
+
 #include <functional>
 #include <unordered_map>
 

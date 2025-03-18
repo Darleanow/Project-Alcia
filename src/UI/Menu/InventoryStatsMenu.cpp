@@ -239,7 +239,50 @@ void InventoryStatsMenu::use_item()
   m_player->m_stats->add_stats(item->get_stats());
 }
 
-void InventoryStatsMenu::throw_item() {}
+void InventoryStatsMenu::throw_item()
+{
+  Utils::clear_screen();
+  size_t index = 0;
+
+  std::cout << "[" << color(ColorType::BLUE) << "Throw an item"
+            << color(ColorType::DEFAULT) << "]\n\n";
+
+  for(index = 0; index < m_player->m_inventory->get_items().size(); ++index) {
+    const auto &item_stack = m_player->m_inventory->get_items()[index];
+    std::cout << "[" << index + 1 << "] "
+              << color(get_color_from_string(
+                     get_color_from_rarity(item_stack.item->get_rarity())
+                 ))
+              << item_stack.item->get_name() << color(ColorType::DEFAULT)
+              << " x " << item_stack.quantity << '\n';
+  }
+
+  std::cout << "\nSelect an item\n";
+
+  UISystem    ui_system;
+  Range       range {1, index + 1};
+  const auto  selection = ui_system.prompt_user_for_index_selection(range) - 1;
+
+  const auto &selected_item =
+      m_player->m_inventory->get_items()[static_cast<size_t>(selection)];
+  const auto &item_name = selected_item.item->get_name();
+
+  std::cout << "\nSelect a quantity (0 - " << selected_item.quantity << ")\n";
+
+  Range      scd_range {0, static_cast<size_t>(selected_item.quantity)};
+  const auto quantity_selection =
+      ui_system.prompt_user_for_index_selection(scd_range);
+
+  m_player->m_inventory->remove_item(
+      static_cast<size_t>(selection), quantity_selection
+  );
+
+  std::cout << color(ColorType::GREEN) << "Successfully"
+            << color(ColorType::DEFAULT) << " removed " << quantity_selection
+            << " " << item_name << (quantity_selection > 1 ? "s" : "")
+            << "\nPress enter to continue...";
+  getchar();
+}
 
 void InventoryStatsMenu::show_equippable_items(std::vector<size_t> &indices
 ) const

@@ -1,5 +1,12 @@
 #include "DrawUtils.h"
 
+namespace Utils {
+void clear_screen()
+{
+  system("clear");
+}
+}; // namespace Utils
+
 ColorType get_color_from_string(std::string color)
 {
   if(color == "green") {

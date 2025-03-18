@@ -1,6 +1,5 @@
 #include "src/Core/Parser.h"
 #include "src/Core/World.h"
-#include "src/UI/SystemRelated.h"
 #include "src/UI/UISystem.h"
 #include "src/UI/Utils/DrawUtils.h"
 
@@ -33,7 +32,12 @@ int main()
 
   user_interface.display_rules();
 
-  while(player->get_hp() > 0) {
+  player->m_inventory->add_item(std::make_unique<EpicSword>());
+  player->m_inventory->add_item(std::make_unique<CommonChestplate>());
+  player->m_inventory->add_item(std::make_unique<CommonHelmet>());
+  player->m_inventory->add_item(std::make_unique<HealthPotion>(), 2);
+
+  while(player->m_stats->is_alive()) {
 
     user_interface.display_informations_of_current_location(
         world.get_current_location()
@@ -41,6 +45,7 @@ int main()
     user_interface.display_actions_for_current_location(
         world.get_current_location()
     );
+
     size_t     option_count = world.get_current_location_action_count();
     Range      range {.begin = 1, .end = option_count};
 

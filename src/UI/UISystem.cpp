@@ -1,6 +1,7 @@
 #include "UISystem.h"
 #include "Utils/DrawUtils.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <iostream>
 
@@ -74,7 +75,7 @@ void UISystem::display_actions_for_current_location(
   int index = 1;
 
   for(const auto &action : location.get()->get_location_actions()) {
-    std::cout << index << ". " << action.get()->get_name() << std::endl;
+    std::cout << "[" << index << "] " << action.get()->get_name() << std::endl;
     index++;
   }
 }
@@ -86,11 +87,10 @@ int UISystem::prompt_user_for_index_selection(Range range)
 
   int         selected = -1;
   std::getline(std::cin, selected_string);
-  if(!selected_string.empty()) {
+  if(!selected_string.empty() &&
+     !std::all_of(selected_string.begin(), selected_string.end(), isspace)) {
     selected = std::stoi(selected_string);
   }
-
-  std::cout << selected << " " << selected_string << std::endl;
 
   while(static_cast<size_t>(selected) < range.begin ||
         static_cast<size_t>(selected) > range.end) {
@@ -102,7 +102,8 @@ int UISystem::prompt_user_for_index_selection(Range range)
     std::cout << '>';
     std::getline(std::cin, selected_string);
 
-    if(!selected_string.empty()) {
+    if(!selected_string.empty() &&
+       !std::all_of(selected_string.begin(), selected_string.end(), isspace)) {
       selected = std::stoi(selected_string);
     }
   }

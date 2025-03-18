@@ -1,6 +1,6 @@
 #include "Action.h"
 #include "../Hero.h"
-#include "../UI/Menu/InventoryMenu.h"
+#include "../UI/Menu/InventoryStatsMenu.h"
 #include "World.h"
 
 #include <any>
@@ -46,8 +46,8 @@ void Action::execute(World &world, std::shared_ptr<Hero> player)
     } else if(key == "trigger_encounter") {
       player->combat_main();
     } else if(key == "open_menu") {
-      std::unique_ptr<InventoryMenu> inventory_menu =
-          std::make_unique<InventoryMenu>(player);
+      std::unique_ptr<InventoryStatsMenu> inventory_menu =
+          std::make_unique<InventoryStatsMenu>(player);
       inventory_menu->execute();
     }
   }

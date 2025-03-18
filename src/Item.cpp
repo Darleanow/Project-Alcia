@@ -1,495 +1,235 @@
 #include "Item.h"
+#include "Core/Stats/Stats.h"
 
-#include <random>
-
-Item::~Item() = default;
-
-int Item::get_quantity()
-{
-  return this->quantity;
-}
-
-void Item::set_quantity(int amount)
-{
-  this->quantity = amount;
-}
-
-void Item::add_quantity(int amount)
-{
-  this->quantity += amount;
-}
-
-std::string Common_Sword::get_type()
-{
-  return this->type;
-}
-
-int Common_Sword::get_atk()
-{
-  return this->atk;
-}
-
-int Common_Sword::get_crit_rate()
-{
-  return this->crit_rate;
-}
-
-std::string Common_Sword::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Common_Sword::get_status()
-{
-  return this->status;
-}
-
-int Common_Sword::get_price()
-{
-  return this->price;
-}
-
-std::string Rare_Sword::get_type()
-{
-  return this->type;
-}
-
-int Rare_Sword::get_atk()
-{
-  return this->atk;
-}
-
-int Rare_Sword::get_crit_rate()
-{
-  return this->crit_rate;
-}
-
-std::string Rare_Sword::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Rare_Sword::get_status()
-{
-  return this->status;
-}
-
-int Rare_Sword::get_price()
-{
-  return this->price;
-}
-
-std::string Epic_Sword::get_type()
-{
-  return this->type;
-}
-
-int Epic_Sword::get_atk()
-{
-  return this->atk;
-}
-
-int Epic_Sword::get_crit_rate()
-{
-  return this->crit_rate;
-}
-
-std::string Epic_Sword::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Epic_Sword::get_status()
-{
-  return this->status;
-}
-
-int Epic_Sword::get_price()
-{
-  return this->price;
-}
-
-int Legendary_Sword::get_atk()
-{
-  return this->atk;
-}
-
-int Legendary_Sword::get_crit_rate()
-{
-  return this->crit_rate;
-}
-
-int Legendary_Sword::get_price()
-{
-  return this->price;
-}
-
-std::string Legendary_Sword::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Legendary_Sword::get_type()
-{
-  return this->type;
-}
-
-std::string Legendary_Sword::set_status()
-{
-  std::vector<std::string> statuses_list = {
-      "Poison", "Fire", "Ice", "Haunted", "Nature"
-  };
-  std::mt19937                            gen(std::random_device {}());
-  std::vector<double>                     chances {10, 10, 10, 10, 10};
-
-  std::discrete_distribution<std::size_t> d {chances.begin(), chances.end()};
-
-  std::string                             chosen_status = statuses_list[d(gen)];
-
-  return chosen_status;
-}
-
-std::string Legendary_Sword::get_status()
-{
-  return this->status;
-}
-
-int Common_Helmet::get_hp()
-{
-  return this->hp;
-}
-
-int Common_Helmet::get_price()
-{
-  return this->price;
-}
-
-std::string Common_Helmet::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Common_Helmet::get_type()
-{
-  return this->type;
-}
-
-int Rare_Helmet::get_hp()
-{
-  return this->hp;
-}
-
-int Rare_Helmet::get_price()
-{
-  return this->price;
-}
-
-std::string Rare_Helmet::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Rare_Helmet::get_type()
-{
-  return this->type;
-}
-
-int Epic_Helmet::get_hp()
-{
-  return this->hp;
-}
-
-int Epic_Helmet::get_price()
-{
-  return this->price;
-}
-
-std::string Epic_Helmet::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Epic_Helmet::get_type()
-{
-  return this->type;
-}
-
-int Legendary_Helmet::get_hp()
-{
-  return this->hp;
-}
-
-int Legendary_Helmet::get_price()
-{
-  return this->price;
-}
-
-std::string Legendary_Helmet::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Legendary_Helmet::get_type()
-{
-  return this->type;
-}
-
-int Common_Chestplate::get_hp()
-{
-  return this->hp;
-}
-
-int Common_Chestplate::get_price()
-{
-  return this->price;
-}
-
-std::string Common_Chestplate::get_rarity()
-{
-  return this->rarity;
-}
-
-std::string Common_Chestplate::get_type()
-{
-  return this->type;
-}
-
-int Rare_Chestplate::get_hp()
-{
-  return this->hp;
-}
-
-int Rare_Chestplate::get_price()
-{
-  return this->price;
-}
-
-std::string Rare_Chestplate::get_rarity()
+Item::Item(
+    const std::string &name, std::string type, const std::string &rarity,
+    const std::string &status, int atk, int crit_rate, int hp, int price
+)
+    : name(name),
+      type(type),
+      rarity(rarity),
+      status(status),
+      atk(atk),
+      crit_rate(crit_rate),
+      hp(hp),
+      price(price)
 {
-  return this->rarity;
 }
 
-std::string Rare_Chestplate::get_type()
+std::string Item::get_name() const
 {
-  return this->type;
+  return name;
 }
 
-int Epic_Chestplate::get_hp()
+std::string Item::get_type() const
 {
-  return this->hp;
+  return type;
 }
 
-int Epic_Chestplate::get_price()
+std::string Item::get_rarity() const
 {
-  return this->price;
+  return rarity;
 }
 
-std::string Epic_Chestplate::get_rarity()
+std::string Item::get_status() const
 {
-  return this->rarity;
+  return status;
 }
 
-std::string Epic_Chestplate::get_type()
+int Item::get_atk() const
 {
-  return this->type;
+  return atk;
 }
 
-int Legendary_Chestplate::get_hp()
+int Item::get_crit_rate() const
 {
-  return this->hp;
+  return crit_rate;
 }
 
-int Legendary_Chestplate::get_price()
+int Item::get_hp() const
 {
-  return this->price;
+  return hp;
 }
 
-std::string Legendary_Chestplate::get_rarity()
+int Item::get_price() const
 {
-  return this->rarity;
+  return price;
 }
 
-std::string Legendary_Chestplate::get_type()
+StatsValues Item::get_stats() const
 {
-  return this->type;
+  return StatsValues(
+      {.health     = get_hp(),
+       .max_health = get_type() == "Potion" ? 0 : get_hp(),
+       .attack     = get_atk(),
+       .crit_rate  = get_crit_rate()}
+  );
 }
 
-int Common_Leggings::get_hp()
+CommonSword::CommonSword()
+    : Item("Common Sword", "Primary Hand", "common", "", 5, 10, 0, 150)
 {
-  return this->hp;
 }
 
-int Common_Leggings::get_price()
+RareSword::RareSword()
+    : Item("Rare Sword", "Primary Hand", "rare", "", 8, 15, 0, 300)
 {
-  return this->price;
 }
 
-std::string Common_Leggings::get_rarity()
+EpicSword::EpicSword()
+    : Item("Epic Sword", "Primary Hand", "epic", "", 15, 20, 0, 600)
 {
-  return this->rarity;
 }
 
-std::string Common_Leggings::get_type()
+LegendarySword::LegendarySword()
+    : Item(
+          "Legendary Sword", "Primary Hand", "legendary", "Fire", 35, 20, 0,
+          15000
+      )
 {
-  return this->type;
 }
 
-int Rare_Leggings::get_hp()
+CommonHelmet::CommonHelmet()
+    : Item("Common Helmet", "Helmet", "common", "", 0, 0, 5, 80)
 {
-  return this->hp;
 }
 
-int Rare_Leggings::get_price()
+RareHelmet::RareHelmet()
+    : Item("Rare Helmet", "Helmet", "rare", "", 0, 0, 8, 200)
 {
-  return this->price;
 }
 
-std::string Rare_Leggings::get_rarity()
+EpicHelmet::EpicHelmet()
+    : Item("Epic Helmet", "Helmet", "epic", "", 0, 0, 10, 380)
 {
-  return this->rarity;
 }
 
-std::string Rare_Leggings::get_type()
+LegendaryHelmet::LegendaryHelmet()
+    : Item("Legendary Helmet", "Helmet", "legendary", "", 0, 0, 15, 600)
 {
-  return this->type;
 }
 
-int Epic_Leggings::get_hp()
+CommonChestplate::CommonChestplate()
+    : Item("Common Chestplate", "Chestplate", "common", "", 0, 0, 7, 80)
 {
-  return this->hp;
 }
 
-int Epic_Leggings::get_price()
+RareChestplate::RareChestplate()
+    : Item("Rare Chestplate", "Chestplate", "rare", "", 0, 0, 12, 200)
 {
-  return this->price;
 }
 
-std::string Epic_Leggings::get_rarity()
+EpicChestplate::EpicChestplate()
+    : Item("Epic Chestplate", "Chestplate", "epic", "", 0, 0, 20, 380)
 {
-  return this->rarity;
 }
 
-std::string Epic_Leggings::get_type()
+LegendaryChestplate::LegendaryChestplate()
+    : Item(
+          "Legendary Chestplate", "Chestplate", "legendary", "", 0, 0, 25, 1000
+      )
 {
-  return this->type;
 }
 
-int Legendary_Leggings::get_hp()
+CommonLeggings::CommonLeggings()
+    : Item("Common Leggings", "Leggings", "common", "", 0, 0, 9, 80)
 {
-  return this->hp;
 }
 
-int Legendary_Leggings::get_price()
+RareLeggings::RareLeggings()
+    : Item("Rare Leggings", "Leggings", "rare", "", 0, 0, 11, 200)
 {
-  return this->price;
 }
 
-std::string Legendary_Leggings::get_rarity()
+EpicLeggings::EpicLeggings()
+    : Item("Epic Leggings", "Leggings", "epic", "", 0, 0, 17, 380)
 {
-  return this->rarity;
 }
 
-std::string Legendary_Leggings::get_type()
+LegendaryLeggings::LegendaryLeggings()
+    : Item("Legendary Leggings", "Leggings", "legendary", "", 0, 0, 20, 600)
 {
-  return this->type;
 }
 
-int Common_Boots::get_hp()
+CommonBoots::CommonBoots()
+    : Item("Common Boots", "Boots", "common", "", 0, 0, 5, 80)
 {
-  return this->hp;
 }
 
-int Common_Boots::get_price()
+RareBoots::RareBoots() : Item("Rare Boots", "Boots", "rare", "", 0, 0, 8, 200)
 {
-  return this->price;
 }
 
-std::string Common_Boots::get_rarity()
+EpicBoots::EpicBoots() : Item("Epic Boots", "Boots", "epic", "", 0, 0, 10, 380)
 {
-  return this->rarity;
 }
 
-std::string Common_Boots::get_type()
+LegendaryBoots::LegendaryBoots()
+    : Item("Legendary Boots", "Boots", "legendary", "", 0, 0, 15, 600)
 {
-  return this->type;
 }
 
-int Rare_Boots::get_hp()
+HealthPotion::HealthPotion()
+    : Item("Health Potion", "Potion", "common", "", 0, 0, 15, 50)
 {
-  return this->hp;
 }
 
-int Rare_Boots::get_price()
+StrengthPotion::StrengthPotion()
+    : Item("Strength Potion", "Potion", "common", "", 15, 0, 0, 120)
 {
-  return this->price;
 }
 
-std::string Rare_Boots::get_rarity()
+ZombieFlesh::ZombieFlesh()
+    : Item("Zombie Flesh", "Loot", "common", "", 0, 0, 0, 2)
 {
-  return this->rarity;
 }
 
-std::string Rare_Boots::get_type()
-{
-  return this->type;
-}
+ZombieEye::ZombieEye() : Item("Zombie Eye", "Loot", "rare", "", 0, 0, 0, 10) {}
 
-int Epic_Boots::get_hp()
-{
-  return this->hp;
-}
+BoneShard::BoneShard() : Item("Bone Shard", "Loot", "common", "", 0, 0, 0, 4) {}
 
-int Epic_Boots::get_price()
-{
-  return this->price;
-}
+Bones::Bones() : Item("Bones", "Loot", "rare", "", 0, 0, 0, 15) {}
 
-std::string Epic_Boots::get_rarity()
+TrollFinger::TrollFinger()
+    : Item("Troll Finger", "Loot", "rare", "", 0, 0, 0, 25)
 {
-  return this->rarity;
 }
 
-std::string Epic_Boots::get_type()
-{
-  return this->type;
-}
+EmptySack::EmptySack() : Item("Empty Sack", "Loot", "rare", "", 0, 0, 0, 20) {}
 
-int Legendary_Boots::get_hp()
-{
-  return this->hp;
-}
+TrollBelt::TrollBelt() : Item("Troll Belt", "Loot", "epic", "", 0, 0, 0, 60) {}
 
-int Legendary_Boots::get_price()
+KoboldTails::KoboldTails()
+    : Item("Kobold Tails", "Loot", "rare", "", 0, 0, 0, 30)
 {
-  return this->price;
 }
 
-std::string Legendary_Boots::get_rarity()
+KoboldScepter::KoboldScepter()
+    : Item("Kobold Scepter", "Loot", "epic", "", 0, 0, 0, 64)
 {
-  return this->rarity;
 }
 
-std::string Legendary_Boots::get_type()
+OreadePowder::OreadePowder()
+    : Item("Oreade Powder", "Loot", "common", "", 0, 0, 0, 10)
 {
-  return this->type;
 }
 
-int health_potion::get_hp()
+MagicFragments::MagicFragments()
+    : Item("Magic Fragments", "Loot", "epic", "", 0, 0, 0, 85)
 {
-  return this->hp_back;
 }
 
-int health_potion::get_price()
+DragonScale::DragonScale()
+    : Item("Dragon Scale", "Loot", "epic", "", 0, 0, 0, 75)
 {
-  return this->price;
 }
 
-std::string health_potion::get_rarity()
+DragonTooth::DragonTooth()
+    : Item("Dragon Tooth", "Loot", "legendary", "", 0, 0, 0, 122)
 {
-  return this->rarity;
 }
 
-std::string health_potion::get_type()
+AzeaelHead::AzeaelHead()
+    : Item("Azeael Head", "Loot", "legendary", "", 0, 0, 0, 999999)
 {
-  return this->type;
 }

@@ -17,6 +17,7 @@ public:
   ~Inventory() = default;
 
   void                  add_item(std::unique_ptr<Item> item, int quantity = 1);
+  void                  remove_item(size_t index, int quantity = 1);
   std::unique_ptr<Item> extract_item(size_t index);
   size_t                get_item_count() const;
   const std::vector<ItemStack> &get_items() const;

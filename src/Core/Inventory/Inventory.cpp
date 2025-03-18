@@ -22,6 +22,15 @@ void Inventory::add_item(std::unique_ptr<Item> item, int quantity)
   }
 }
 
+void Inventory::remove_item(size_t index, int quantity)
+{
+  if(m_inventory.at(index).quantity <= quantity) {
+    m_inventory.erase(m_inventory.begin() + static_cast<int>(index));
+  } else {
+    m_inventory.at(index).quantity -= quantity;
+  }
+}
+
 std::unique_ptr<Item> Inventory::extract_item(size_t index)
 {
   if(index >= m_inventory.size()) {

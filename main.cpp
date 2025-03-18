@@ -1,7 +1,7 @@
-#include "src/Core/Parser.h"
-#include "src/Core/World.h"
-#include "src/UI/UISystem.h"
-#include "src/UI/Utils/DrawUtils.h"
+#include "Parser.h"
+#include "World.h"
+#include "UISystem.h"
+#include "Utils/DrawUtils.h"
 
 #include <filesystem>
 #include <iostream>

@@ -1,6 +1,7 @@
-// InventoryStatsMenu.h
 #pragma once
+
 #include "AMenu.h"
+
 #include <functional>
 #include <unordered_map>
 
@@ -31,4 +32,3 @@ private:
   void show_useable_items(std::vector<size_t> &indices) const;
   void show_equipped_items(std::vector<EquipmentLocation> &locations) const;
 };
-

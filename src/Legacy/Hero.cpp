@@ -1,7 +1,7 @@
 #include "Hero.h"
 #include "Item.h"
-#include "UI/SystemRelated.h"
-#include "UI/Utils/DrawUtils.h"
+#include "SystemRelated.h"
+#include "Utils/DrawUtils.h"
 #include "god.h"
 
 #include <iostream>

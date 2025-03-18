@@ -1,7 +1,9 @@
 #pragma once
-#include "Core/Equipment/Equipment.h"
-#include "Core/Inventory/Inventory.h"
-#include "Core/Stats/Stats.h"
+
+#include "Equipment/Equipment.h"
+#include "Inventory/Inventory.h"
+#include "Stats/Stats.h"
+
 #include <cmath>
 #include <memory>
 #include <string>

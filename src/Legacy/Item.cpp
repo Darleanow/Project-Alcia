@@ -1,5 +1,5 @@
 #include "Item.h"
-#include "Core/Stats/Stats.h"
+#include "Stats/Stats.h"
 
 Item::Item(
     const std::string &name, std::string type, const std::string &rarity,

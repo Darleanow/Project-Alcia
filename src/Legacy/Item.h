@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Stats/Stats.h"
+#include "Stats/Stats.h"
 #include <string>
 
 class Item

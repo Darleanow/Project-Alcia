@@ -1,7 +1,7 @@
 #include "Monster.h"
-#include "Core/CoreDefinitions.h"
-#include "UI/SystemRelated.h"
-#include "UI/Utils/DrawUtils.h"
+#include "CoreDefinitions.h"
+#include "SystemRelated.h"
+#include "Utils/DrawUtils.h"
 
 #include <cstdio>
 #include <iostream>

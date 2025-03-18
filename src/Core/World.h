@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Hero.h"
+#include "Hero.h"
 #include "Location.h"
 
 class World

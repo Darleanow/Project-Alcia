@@ -1,6 +1,6 @@
 #include "Action.h"
-#include "../Hero.h"
-#include "../UI/Menu/InventoryStatsMenu.h"
+#include "Hero.h"
+#include "Menu/InventoryStatsMenu.h"
 #include "World.h"
 
 #include <any>

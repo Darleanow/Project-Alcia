@@ -12,8 +12,7 @@ class Action
 {
 public:
   Action(
-      const std::string &id, const std::string &action_name,
-      const std::string                        &action_description,
+      std::string id, std::string action_name, std::string action_description,
       std::unordered_map<std::string, std::any> results
   );
   ~Action() = default;

@@ -34,8 +34,8 @@ public:
   Stats();
   ~Stats() = default;
 
-  void        set_stats(const StatsValues &stats_values);
-  void        add_stats(const StatsValues &stats_values);
+  void        set_stats(StatsValues stats_values);
+  void        add_stats(StatsValues stats_values);
   StatsValues get_stats() const;
 
   void        take_damage(int amount);

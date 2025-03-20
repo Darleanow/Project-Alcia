@@ -26,7 +26,7 @@ inline std::optional<T> lookup(
 }
 
 inline std::optional<EquipmentLocation>
-    to_equipment_location(std::string_view value)
+    string_to_equipment_location(std::string_view value)
 {
   static constexpr std::array<std::pair<std::string_view, EquipmentLocation>, 5>
       mapping = {

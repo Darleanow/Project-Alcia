@@ -1,109 +1,120 @@
 {
   "items": [
     {
-      "name": "zombie_flesh",
+      "name": "Zombie Flesh",
       "type": "loot",
       "rarity": "common",
       "price": 2
     },
     {
-      "name": "zombie_eye",
+      "name": "Zombie Eye",
       "type": "loot",
       "rarity": "rare",
       "price": 10
     },
     {
-      "name": "bone_shard",
+      "name": "Bone Shard",
       "type": "loot",
       "rarity": "common",
       "price": 4
     },
     {
-      "name": "bones",
+      "name": "Bones",
       "type": "loot",
       "rarity": "rare",
       "price": 15
     },
     {
-      "name": "troll_finger",
+      "name": "Troll Finger",
       "type": "loot",
       "rarity": "rare",
       "price": 25
     },
     {
-      "name": "empty_sack",
+      "name": "Empty Sack",
       "type": "loot",
       "rarity": "rare",
       "price": 20
     },
     {
-      "name": "troll_belt",
+      "name": "Troll Belt",
       "type": "loot",
       "rarity": "epic",
       "price": 60
     },
     {
-      "name": "kobold_tails",
+      "name": "Kobold Tails",
       "type": "loot",
       "rarity": "rare",
       "price": 30
     },
     {
-      "name": "kobold_scepter",
+      "name": "Kobold Scepter",
       "type": "loot",
       "rarity": "epic",
       "price": 64
     },
     {
-      "name": "oreade_powder",
+      "name": "Oreade Powder",
       "type": "loot",
       "rarity": "common",
       "price": 10
     },
     {
-      "name": "magic_fragments",
+      "name": "Magic Fragments",
       "type": "loot",
       "rarity": "epic",
       "price": 85
     },
     {
-      "name": "dragon_scale",
+      "name": "Dragon Scale",
       "type": "loot",
       "rarity": "epic",
       "price": 75
     },
     {
-      "name": "dragon_tooth",
+      "name": "Dragon Tooth",
       "type": "loot",
       "rarity": "legendary",
       "price": 122
     },
     {
-      "name": "azeael_head",
+      "name": "Azeael's Head",
       "type": "loot",
       "rarity": "legendary",
       "price": 999999
     },
     {
-      "name": "health_potion",
+      "name": "Health Potion",
       "type": "potion",
       "rarity": "common",
       "stats": {
         "hp": 15
       },
-      "price": 50
+      "price": 50,
+      "recipe": {
+        "Zombie Flesh": 2,
+        "Bone Shard": 2,
+        "Oreade Powder": 1
+      }
     },
     {
-      "name": "strength_potion",
+      "name": "Strength Potion",
       "type": "potion",
       "rarity": "common",
       "stats": {
         "attack": 15
       },
-      "price": 120
+      "price": 120,
+      "recipe": {
+        "Zombie Eye": 2,
+        "Troll Finger": 1,
+        "Bone Shard": 1,
+        "Bones": 1
+      }
     },
     {
-      "name": "common_sword",
+      "name": "Common Sword",
       "type": "weapon",
       "slot": "primary_hand",
       "rarity": "common",
@@ -113,12 +124,12 @@
       },
       "price": 150,
       "recipe": {
-        "zombie_flesh": 10,
-        "zombie_eye": 4
+        "Zombie Flesh": 10,
+        "Zombie Eye": 4
       }
     },
     {
-      "name": "rare_sword",
+      "name": "Rare Sword",
       "type": "weapon",
       "slot": "primary_hand",
       "rarity": "rare",
@@ -128,12 +139,12 @@
       },
       "price": 300,
       "recipe": {
-        "zombie_flesh": 20,
-        "zombie_eye": 10
+        "Zombie Flesh": 20,
+        "Zombie Eye": 10
       }
     },
     {
-      "name": "epic_sword",
+      "name": "Epic Sword",
       "type": "weapon",
       "slot": "primary_hand",
       "rarity": "epic",
@@ -141,15 +152,15 @@
         "attack": 15,
         "crit_rate": 20
       },
-      "price": 600,
+      "price": 6541,
       "recipe": {
-        "troll_belt": 2,
-        "empty_sack": 4,
-        "bones": 15
+        "Troll Belt": 1,
+        "Empty Sack": 3,
+        "Bones": 10
       }
     },
     {
-      "name": "legendary_sword",
+      "name": "Legendary Sword",
       "type": "weapon",
       "slot": "primary_hand",
       "rarity": "legendary",
@@ -159,229 +170,250 @@
       },
       "price": 15000,
       "recipe": {
-        "kobold_scepter": 15,
-        "dragon_tooth": 3,
-        "troll_finger": 25,
-        "magic_fragments": 40,
-        "bones": 100
+        "Kobold Scepter": 3,
+        "Dragon Tooth": 2,
+        "Troll Finger": 10,
+        "Magic Fragments": 5,
+        "Bones": 50
       }
     },
     {
-      "name": "common_helmet",
+      "name": "Common Helmet",
       "type": "armor",
       "slot": "helmet",
       "rarity": "common",
       "stats": {
         "hp": 5
       },
-      "price": 80,
+      "price": 245,
       "recipe": {
-        "bone_shard": 5,
-        "bones": 10
+        "Bone Shard": 3,
+        "Bones": 5
       }
     },
     {
-      "name": "rare_helmet",
+      "name": "Rare Helmet",
       "type": "armor",
       "slot": "helmet",
       "rarity": "rare",
       "stats": {
         "hp": 8
       },
-      "price": 200,
+      "price": 640,
       "recipe": {
-        "bone_shard": 18,
-        "bones": 15
+        "Bone Shard": 10,
+        "Bones": 8
       }
     },
     {
-      "name": "epic_helmet",
+      "name": "Epic Helmet",
       "type": "armor",
       "slot": "helmet",
       "rarity": "epic",
       "stats": {
         "hp": 10
       },
-      "price": 380,
+      "price": 1543,
       "recipe": {
-        "bone_shard": 35,
-        "bones": 24,
-        "empty_sack": 2
+        "Bone Shard": 15,
+        "Bones": 12,
+        "Empty Sack": 1
       }
     },
     {
-      "name": "legendary_helmet",
+      "name": "Legendary Helmet",
       "type": "armor",
       "slot": "helmet",
       "rarity": "legendary",
       "stats": {
         "hp": 15
       },
-      "price": 600,
+      "price": 6541,
       "recipe": {
-        "oreade_powder": 12,
-        "magic_fragments": 4,
-        "dragon_scale": 2,
-        "bones": 67
+        "Oreade Powder": 6,
+        "Magic Fragments": 2,
+        "Dragon Scale": 1,
+        "Bones": 30
       }
     },
     {
-      "name": "common_chestplate",
+      "name": "Common Chestplate",
       "type": "armor",
       "slot": "chest",
       "rarity": "common",
       "stats": {
         "hp": 7
       },
-      "price": 80
+      "price": 245,
+      "recipe": {
+        "Bone Shard": 3,
+        "Bones": 5,
+        "Zombie Flesh": 1
+      }
     },
     {
-      "name": "rare_chestplate",
+      "name": "Rare Chestplate",
       "type": "armor",
       "slot": "chest",
       "rarity": "rare",
       "stats": {
         "hp": 12
       },
-      "price": 200
+      "price": 640,
+      "recipe": {
+        "Bone Shard": 7,
+        "Bones": 7,
+        "Zombie Eye": 1
+      }
     },
     {
-      "name": "epic_chestplate",
+      "name": "Epic Chestplate",
       "type": "armor",
       "slot": "chest",
       "rarity": "epic",
       "stats": {
         "hp": 20
       },
-      "price": 380
+      "price": 1543,
+      "recipe": {
+        "Bone Shard": 10,
+        "Bones": 10,
+        "Dragon Scale": 1
+      }
     },
     {
-      "name": "legendary_chestplate",
+      "name": "Legendary Chestplate",
       "type": "armor",
       "slot": "chest",
       "rarity": "legendary",
       "stats": {
         "hp": 25
       },
-      "price": 1000
+      "price": 1000,
+      "recipe": {
+        "Bone Shard": 10,
+        "Bones": 10,
+        "Dragon Tooth": 1,
+        "Magic Fragments": 3
+      }
     },
     {
-      "name": "common_leggings",
+      "name": "Common Leggings",
       "type": "armor",
       "slot": "legs",
       "rarity": "common",
       "stats": {
         "hp": 9
       },
-      "price": 80,
+      "price": 245,
       "recipe": {
-        "bone_shard": 8,
-        "bones": 14
+        "Bone Shard": 5,
+        "Bones": 10
       }
     },
     {
-      "name": "rare_leggings",
+      "name": "Rare Leggings",
       "type": "armor",
       "slot": "legs",
       "rarity": "rare",
       "stats": {
         "hp": 11
       },
-      "price": 200,
+      "price": 640,
       "recipe": {
-        "bone_shard": 21,
-        "bones": 19
+        "Bone Shard": 12,
+        "Bones": 10
       }
     },
     {
-      "name": "epic_leggings",
+      "name": "Epic Leggings",
       "type": "armor",
       "slot": "legs",
       "rarity": "epic",
       "stats": {
         "hp": 17
       },
-      "price": 380,
+      "price": 1543,
       "recipe": {
-        "kobold_tails": 2,
-        "dragon_tooth": 1,
-        "dragon_scale": 1,
-        "empty_sack": 8
+        "Kobold Tails": 1,
+        "Dragon Tooth": 1,
+        "Dragon Scale": 1,
+        "Empty Sack": 5
       }
     },
     {
-      "name": "legendary_leggings",
+      "name": "Legendary Leggings",
       "type": "armor",
       "slot": "legs",
       "rarity": "legendary",
       "stats": {
         "hp": 20
       },
-      "price": 600,
+      "price": 6541,
       "recipe": {
-        "oreade_powder": 14,
-        "dragon_tooth": 6,
-        "dragon_scale": 5,
-        "bones": 84
+        "Oreade Powder": 7,
+        "Dragon Tooth": 3,
+        "Dragon Scale": 3,
+        "Bones": 42
       }
     },
     {
-      "name": "common_boots",
+      "name": "Common Boots",
       "type": "armor",
       "slot": "feet",
       "rarity": "common",
       "stats": {
         "hp": 5
       },
-      "price": 80,
+      "price": 245,
       "recipe": {
-        "bone_shard": 4,
-        "zombie_flesh": 10
+        "Bone Shard": 3,
+        "Zombie Flesh": 6
       }
     },
     {
-      "name": "rare_boots",
+      "name": "Rare Boots",
       "type": "armor",
       "slot": "feet",
       "rarity": "rare",
       "stats": {
         "hp": 8
       },
-      "price": 200,
+      "price": 640,
       "recipe": {
-        "bone_shard": 7,
-        "zombie_flesh": 18
+        "Bone Shard": 5,
+        "Zombie Flesh": 12
       }
     },
     {
-      "name": "epic_boots",
+      "name": "Epic Boots",
       "type": "armor",
       "slot": "feet",
       "rarity": "epic",
       "stats": {
         "hp": 10
       },
-      "price": 380,
+      "price": 1543,
       "recipe": {
-        "troll_finger": 12,
-        "oreade_powder": 8,
-        "empty_sack": 14
+        "Troll Finger": 8,
+        "Oreade Powder": 6,
+        "Empty Sack": 10
       }
     },
     {
-      "name": "legendary_boots",
+      "name": "Legendary Boots",
       "type": "armor",
       "slot": "feet",
       "rarity": "legendary",
       "stats": {
         "hp": 15
       },
-      "price": 600,
+      "price": 6541,
       "recipe": {
-        "oreade_powder": 12,
-        "troll_finger": 4,
-        "dragon_scale": 2,
-        "bones": 54
+        "Oreade Powder": 6,
+        "Troll Finger": 2,
+        "Dragon Scale": 1,
+        "Bones": 27
       }
     }
   ]

@@ -11,8 +11,7 @@ class Location
 {
 public:
   Location(
-      const std::string &id, const std::string &name,
-      const std::string                   &description,
+      std::string id, std::string name, std::string description,
       std::vector<std::unique_ptr<Action>> actions
   );
 

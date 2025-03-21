@@ -60,5 +60,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/data/Locations.json
   ${CMAKE_CURRENT_BINARY_DIR}/data/Locations.json
+  ${CMAKE_CURRENT_SOURCE_DIR}/data/Items.json
+  ${CMAKE_CURRENT_BINARY_DIR}/data/Items.json
   COPYONLY
 )

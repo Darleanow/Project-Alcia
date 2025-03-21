@@ -1,7 +1,7 @@
 #include "Parser.h"
-#include "World.h"
 #include "UISystem.h"
 #include "Utils/DrawUtils.h"
+#include "World.h"
 
 #include <filesystem>
 #include <iostream>
@@ -13,12 +13,20 @@ int main()
   Utils::clear_screen();
 
   Parser                parser;
-  std::filesystem::path path("./data/Locations.json");
-  std::ifstream         file      = parser.open_file(path);
-  nlohmann::json        json      = parser.stream_to_json(file);
-  auto                  locations = parser.parse_locations(json);
 
-  UISystem              user_interface;
+  std::filesystem::path locations_path("./data/Locations.json");
+  std::filesystem::path items_path("./data/Items.json");
+
+  std::ifstream         locations_file = parser.open_file(locations_path);
+  std::ifstream         items_file     = parser.open_file(items_path);
+
+  nlohmann::json        locations_json = parser.stream_to_json(locations_file);
+  nlohmann::json        items_json     = parser.stream_to_json(items_file);
+
+  auto                  locations = parser.parse_locations(locations_json);
+  parser.parse_items(items_json);
+
+  UISystem user_interface;
   user_interface.greet();
 
   std::cout << "What's your name?\n";

@@ -1,8 +1,8 @@
 #include "Location.h"
 
 Location::Location(
-    const std::string &id, const std::string &name,
-    const std::string &description, std::vector<std::unique_ptr<Action>> actions
+    std::string id, const std::string name, std::string description,
+    std::vector<std::unique_ptr<Action>> actions
 )
     : m_id(std::move(id)),
       m_name(std::move(name)),

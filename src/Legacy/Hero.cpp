@@ -1,5 +1,6 @@
 #include "Hero.h"
-#include "Item.h"
+#include "CoreUtils.h"
+#include "ItemRegistry/ItemRegistry.h"
 #include "SystemRelated.h"
 #include "Utils/DrawUtils.h"
 #include "god.h"
@@ -94,12 +95,20 @@ int Hero::combat_main()
                      )]
                   << " your enemy, you saw a chest.." << std::endl
                   << "You opened it and found:";
-        auto item = generate_item();
-        std::cout << color(get_color_from_string(
-                         get_color_from_rarity(item->get_rarity())
-                     ))
-                  << item->get_name() << color(ColorType::DEFAULT);
-        m_inventory->add_item(std::move(item), 1);
+
+        std::unique_ptr<GearInstance> gear_instance =
+            ItemRegistry::get().generate_random_item(m_stats->get_stats().level
+            );
+
+        const auto &item_gear_instance = gear_instance->get_item();
+
+        std::cout
+            << color(get_color_from_string(get_color_from_rarity(
+                   CoreUtils::rarity_to_string(item_gear_instance->get_rarity())
+               )))
+            << item_gear_instance->get_name() << color(ColorType::DEFAULT);
+
+        m_inventory->add_item(std::move(gear_instance), 1);
         std::cout << std::endl << std::endl;
         std::cout << "Press enter to continue. . .";
         getchar();

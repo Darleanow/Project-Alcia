@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreDefinitions.h"
-#include "Item.h"
+#include "Item/Item.h"
 
 #include <memory>
 #include <unordered_map>

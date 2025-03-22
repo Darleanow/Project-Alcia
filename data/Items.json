@@ -4,84 +4,98 @@
       "name": "Zombie Flesh",
       "type": "loot",
       "rarity": "common",
+      "obtained_from": "Zombie",
       "price": 2
     },
     {
       "name": "Zombie Eye",
       "type": "loot",
       "rarity": "rare",
+      "obtained_from": "Zombie",
       "price": 10
     },
     {
       "name": "Bone Shard",
       "type": "loot",
       "rarity": "common",
+      "obtained_from": "Skeleton",
       "price": 4
     },
     {
       "name": "Bones",
       "type": "loot",
       "rarity": "rare",
+      "obtained_from": "Zombie",
       "price": 15
     },
     {
       "name": "Troll Finger",
       "type": "loot",
       "rarity": "rare",
+      "obtained_from": "Troll",
       "price": 25
     },
     {
       "name": "Empty Sack",
       "type": "loot",
       "rarity": "rare",
+      "obtained_from": "Troll",
       "price": 20
     },
     {
       "name": "Troll Belt",
       "type": "loot",
       "rarity": "epic",
+      "obtained_from": "Super Troll",
       "price": 60
     },
     {
       "name": "Kobold Tails",
       "type": "loot",
       "rarity": "rare",
+      "obtained_from": "Kobold",
       "price": 30
     },
     {
       "name": "Kobold Scepter",
       "type": "loot",
       "rarity": "epic",
+      "obtained_from": "Kobold",
       "price": 64
     },
     {
       "name": "Oreade Powder",
       "type": "loot",
       "rarity": "common",
+      "obtained_from": "Oreade",
       "price": 10
     },
     {
       "name": "Magic Fragments",
       "type": "loot",
       "rarity": "epic",
+      "obtained_from": "Oreade",
       "price": 85
     },
     {
       "name": "Dragon Scale",
       "type": "loot",
       "rarity": "epic",
+      "obtained_from": "Dragon",
       "price": 75
     },
     {
       "name": "Dragon Tooth",
       "type": "loot",
       "rarity": "legendary",
+      "obtained_from": "Dragon",
       "price": 122
     },
     {
       "name": "Azeael's Head",
       "type": "loot",
       "rarity": "legendary",
+      "obtained_from": "Azeael",
       "price": 999999
     },
     {

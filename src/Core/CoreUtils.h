@@ -1,11 +1,17 @@
 #pragma once
 
 #include "CoreDefinitions.h"
+#include "Item/Gear/Instance/GearInstance.h"
+#include "Item/Item.h"
 
 #include <array>
+#include <memory>
 #include <optional>
+#include <stdexcept>
+#include <string>
 #include <string_view>
 #include <unordered_map>
+#include <variant>
 
 namespace CoreUtils {
 
@@ -53,6 +59,22 @@ inline std::optional<Rarity> string_to_rarity(std::string_view rarity_string)
   return lookup(rarity_string, mapping);
 }
 
+inline std::string rarity_to_string(Rarity rarity)
+{
+  switch(rarity) {
+  case Rarity::Common:
+    return "common";
+  case Rarity::Rare:
+    return "rare";
+  case Rarity::Epic:
+    return "epic";
+  case Rarity::Legendary:
+    return "legendary";
+  default:
+    return "unknown";
+  }
+}
+
 inline std::optional<ItemType> string_to_type(std::string_view type_string)
 {
   static constexpr std::array<std::pair<std::string_view, ItemType>, 4>
@@ -64,6 +86,26 @@ inline std::optional<ItemType> string_to_type(std::string_view type_string)
   };
 
   return lookup(type_string, mapping);
+}
+
+inline const Item *get_item(
+    const std::variant<std::shared_ptr<Item>, std::unique_ptr<GearInstance>>
+        &item
+)
+{
+  std::visit(
+      [](auto &ptr) -> const Item * {
+        using T = std::decay_t<decltype(ptr)>;
+        if constexpr(std::is_same_v<T, std::shared_ptr<Item>>) {
+          return ptr.get();
+        } else if constexpr(std::is_same_v<T, std::unique_ptr<GearInstance>>) {
+          return std::move(ptr->get_item().get());
+        }
+      },
+      item
+  );
+
+  throw std::runtime_error("Invalid class type of Item");
 }
 
 } // namespace CoreUtils

@@ -2,61 +2,49 @@
 
 #include <algorithm>
 
-void Inventory::add_item(std::unique_ptr<Item> item, int quantity)
-{
-  if(!item)
-    return;
-
-  std::string item_name = item->get_name();
-
-  auto        it = std::find_if(
-      m_inventory.begin(), m_inventory.end(),
-      [&item_name](const ItemStack &stack) {
-        return stack.item->get_name() == item_name;
-      }
-  );
-
-  if(it != m_inventory.end()) {
-    it->quantity += quantity;
-  } else {
-    m_inventory.emplace_back(ItemStack {std::move(item), quantity});
-  }
-}
-
 void Inventory::remove_item(size_t index, int quantity)
 {
-  if(m_inventory.at(index).quantity <= quantity) {
+  auto &stack = m_inventory.at(index);
+
+  if(stack.quantity <= quantity) {
     m_inventory.erase(m_inventory.begin() + static_cast<int>(index));
   } else {
-    m_inventory.at(index).quantity -= quantity;
+    stack.quantity -= quantity;
   }
 }
 
-std::unique_ptr<Item> Inventory::extract_item(size_t index)
+std::optional<
+    std::variant<std::shared_ptr<Item>, std::unique_ptr<GearInstance>>>
+    Inventory::extract_item(size_t index)
 {
   if(index >= m_inventory.size()) {
-    return nullptr;
+    return std::nullopt;
   }
 
-  auto                 &stack = m_inventory[index];
+  auto &stack = m_inventory[index];
+  std::variant<std::shared_ptr<Item>, std::unique_ptr<GearInstance>> result;
 
-  std::unique_ptr<Item> result = nullptr;
+  std::visit(
+      [&](auto &ptr) {
+        using PtrType = std::decay_t<decltype(ptr)>;
 
-  if(stack.quantity <= 1) {
-    result = std::move(stack.item);
-    m_inventory.erase(m_inventory.begin() + static_cast<int>(index));
-  } else {
-    auto factory = [](const Item &original) -> std::unique_ptr<Item> {
-      return std::make_unique<Item>(original);
-    };
+        if(stack.quantity <= 1) {
+          result = std::move(ptr);
+          m_inventory.erase(m_inventory.begin() + index);
+          return;
+        }
 
-    try {
-      result = factory(*stack.item);
-      stack.quantity--;
-    } catch(const std::exception &) {
-      stack.quantity--;
-    }
-  }
+        if constexpr(std::is_same_v<PtrType, std::shared_ptr<Item>>) {
+          result = std::shared_ptr<Item>(ptr);
+        } else if constexpr(std::is_same_v<
+                                PtrType, std::unique_ptr<GearInstance>>) {
+          result = std::make_unique<GearInstance>(*ptr);
+        }
+
+        stack.quantity--;
+      },
+      stack.item
+  );
 
   return result;
 }

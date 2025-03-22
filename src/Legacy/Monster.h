@@ -67,17 +67,10 @@ public:
   void drop(Hero *player) override;
 };
 
-class BabyDragon : public Monster
+class Dragon : public Monster
 {
 public:
-  BabyDragon();
-  void drop(Hero *player) override;
-};
-
-class MamaDragon : public Monster
-{
-public:
-  MamaDragon();
+  Dragon();
   void drop(Hero *player) override;
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Location.h"
+#include "Stats/Stats.h"
 
 #include <filesystem>
 #include <fstream>
@@ -9,7 +10,7 @@
 class Parser
 {
 public:
-  Parser();
+  Parser()  = default;
   ~Parser() = default;
 
   std::ifstream  open_file(std::filesystem::path file_path);
@@ -17,7 +18,12 @@ public:
   nlohmann::json stream_to_json(std::ifstream &file_stream);
 
   std::vector<std::shared_ptr<Location>>
-      parse_locations(nlohmann::json json_content) const;
+       parse_locations(nlohmann::json json_content) const;
 
-  // todo(Darleanow): Add parse for items there
+  void parse_items(nlohmann::json json_content) const;
+
+private:
+  StatsValues parse_stats_scaled(
+      const nlohmann::json &json_stats, float multiplier
+  ) const;
 };

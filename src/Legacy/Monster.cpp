@@ -1,5 +1,6 @@
 #include "Monster.h"
 #include "CoreDefinitions.h"
+#include "ItemRegistry/ItemRegistry.h"
 #include "SystemRelated.h"
 #include "Utils/DrawUtils.h"
 
@@ -33,56 +34,11 @@ void Monster::set_affected_rounds(int num)
   remained_rounds_affected = num;
 }
 
-int Monster::apply_status(Hero *hero)
-{
-  std::string hero_status =
-      hero->m_equipment->get_item(EquipmentLocation::PrimaryHand)->get_status();
-  int rate = hero->get_status_rate();
-
-  if(roll_boolDice(rate) && status == false) {
-    if(hero_status == "Poison") {
-      set_affected_rounds(4);
-      status = true;
-    } else if(hero_status == "Fire") {
-      set_affected_rounds(2);
-      status = true;
-    } else if(hero_status == "Ice") {
-      set_affected_rounds(1);
-      status = true;
-    } else if(hero_status == "Haunted") {
-      set_affected_rounds(2);
-      status = true;
-    }
-  }
-  return 0;
-}
-
 int Monster::take_dmg(Hero *hero)
 {
   bool will_attk     = true;
   int  actual_attack = get_atk();
   hp -= hero->m_stats->compute_attack_damage();
-  if(status) {
-    std::string hero_status =
-        hero->m_equipment->get_item(EquipmentLocation::PrimaryHand)
-            ->get_status();
-    if(hero_status == "Poison") {
-      hp -= (hp / 100) * 5;
-    } else if(hero_status == "Fire") {
-      hp -= hero->m_stats->compute_attack_damage() / 5;
-    } else if(hero_status == "Ice") {
-      if(roll_boolDice(50)) {
-        will_attk = false;
-      }
-    } else if(hero_status == "Haunted") {
-      if(roll_boolDice(25)) {
-        actual_attack /= 2;
-      }
-    } else if(hero_status == "Nature") {
-      hero->m_stats->heal((hero->m_stats->get_stats().health / 100) * 5);
-    }
-  }
-
   if(will_attk && hp > 0) {
     hero->m_stats->take_damage(actual_attack);
   }
@@ -90,6 +46,7 @@ int Monster::take_dmg(Hero *hero)
   return 0;
 }
 
+/*STATS*/
 Zombie::Zombie()
 {
   name                     = "Zombie";
@@ -109,7 +66,9 @@ void Zombie::drop(Hero *hero)
 
   int amount_flesh = generate_random_number(0, 3);
   if(amount_flesh > 0) {
-    hero->m_inventory->add_item(std::make_unique<ZombieFlesh>(), amount_flesh);
+    hero->m_inventory->add_item(
+        ItemRegistry::get().get_item("Zombie Flesh"), amount_flesh
+    );
     std::cout << "- " << color(ColorType::GREEN) << "Zombie flesh "
               << color(ColorType::DEFAULT) << "x" << amount_flesh << std::endl;
   }
@@ -117,7 +76,9 @@ void Zombie::drop(Hero *hero)
   int amount_eye = generate_random_number(1, 2);
   if(roll_boolDice(40)) {
     if(amount_eye > 0) {
-      hero->m_inventory->add_item(std::make_unique<ZombieEye>(), amount_eye);
+      hero->m_inventory->add_item(
+          ItemRegistry::get().get_item("Zombie Eye"), amount_eye
+      );
       std::cout << "- " << color(ColorType::BLUE) << "Zombie eye "
                 << color(ColorType::DEFAULT) << "x" << amount_eye << std::endl;
     }
@@ -148,7 +109,7 @@ void Skeletton::drop(Hero *hero)
   int amount_bone_shard = generate_random_number(0, 5);
   if(amount_bone_shard > 0) {
     hero->m_inventory->add_item(
-        std::make_unique<BoneShard>(), amount_bone_shard
+        ItemRegistry::get().get_item("Bone Shard"), amount_bone_shard
     );
     std::cout << "-Bone shard(s) x" << amount_bone_shard << std::endl;
   }
@@ -156,7 +117,9 @@ void Skeletton::drop(Hero *hero)
   int amount_bone = generate_random_number(0, 2);
   if(roll_boolDice(30)) {
     if(amount_bone > 0) {
-      hero->m_inventory->add_item(std::make_unique<Bones>(), amount_bone);
+      hero->m_inventory->add_item(
+          ItemRegistry::get().get_item("Bones"), amount_bone
+      );
       std::cout << "-Bone x" << amount_bone << std::endl;
     }
   }
@@ -186,7 +149,7 @@ void Troll::drop(Hero *hero)
   int amount_troll_finger = generate_random_number(0, 3);
   if(amount_troll_finger > 0) {
     hero->m_inventory->add_item(
-        std::make_unique<TrollFinger>(), amount_troll_finger
+        ItemRegistry::get().get_item("Troll Finder"), amount_troll_finger
     );
     std::cout << "-Troll finger(s) x" << amount_troll_finger << std::endl;
   }
@@ -195,7 +158,7 @@ void Troll::drop(Hero *hero)
   if(roll_boolDice(30)) {
     if(amount_empty_sack > 0) {
       hero->m_inventory->add_item(
-          std::make_unique<EmptySack>(), amount_empty_sack
+          ItemRegistry::get().get_item("Empty Sack"), amount_empty_sack
       );
       std::cout << "-Empty sack x" << amount_empty_sack << std::endl;
     }
@@ -208,7 +171,7 @@ void Troll::drop(Hero *hero)
 
 SuperTroll::SuperTroll()
 {
-  name                     = "SUPAAA TROLL";
+  name                     = "Super Troll";
   hp                       = generate_random_number(27, 39);
   max_hp                   = hp;
   atk                      = generate_random_number(4, 8);
@@ -223,19 +186,11 @@ void SuperTroll::drop(Hero *hero)
   std::cout << "-Xp x" << (get_max_hp() - 5) * 2 << std::endl;
   std::cout << "-Gold x" << get_max_hp() + get_atk() << std::endl;
 
-  int amount_troll_finger = generate_random_number(0, 5);
-  if(amount_troll_finger > 0) {
-    hero->m_inventory->add_item(
-        std::make_unique<TrollFinger>(), amount_troll_finger
-    );
-    std::cout << "-Troll finger(s) x" << amount_troll_finger << std::endl;
-  }
-
   int amount_troll_belt = generate_random_number(0, 1);
   if(roll_boolDice(30)) {
     if(amount_troll_belt > 0) {
       hero->m_inventory->add_item(
-          std::make_unique<TrollBelt>(), amount_troll_belt
+          ItemRegistry::get().get_item("Troll Belt"), amount_troll_belt
       );
       std::cout << "-Old belt x" << amount_troll_belt << std::endl;
     }
@@ -266,7 +221,7 @@ void Kobold::drop(Hero *hero)
   int amount_kobold_tail = generate_random_number(0, 1);
   if(amount_kobold_tail > 0) {
     hero->m_inventory->add_item(
-        std::make_unique<KoboldTails>(), amount_kobold_tail
+        ItemRegistry::get().get_item("Kobold Tail"), amount_kobold_tail
     );
     std::cout << "-Kobold tail x" << amount_kobold_tail << std::endl;
   }
@@ -275,7 +230,7 @@ void Kobold::drop(Hero *hero)
   if(roll_boolDice(10)) {
     if(amount_kobold_scepter > 0) {
       hero->m_inventory->add_item(
-          std::make_unique<KoboldScepter>(), amount_kobold_scepter
+          ItemRegistry::get().get_item("Kobold Scepter"), amount_kobold_scepter
       );
       std::cout << "-Kobold Scepter x" << amount_kobold_scepter << std::endl;
     }
@@ -306,7 +261,7 @@ void Oreade::drop(Hero *hero)
   int amount_oreade_powder = generate_random_number(2, 7);
   if(amount_oreade_powder > 0) {
     hero->m_inventory->add_item(
-        std::make_unique<OreadePowder>(), amount_oreade_powder
+        ItemRegistry::get().get_item("Oreade Powder"), amount_oreade_powder
     );
     std::cout << "-Oreade powder x" << amount_oreade_powder << std::endl;
   }
@@ -315,7 +270,7 @@ void Oreade::drop(Hero *hero)
   if(roll_boolDice(10)) {
     if(amount_magic_fragment > 0) {
       hero->m_inventory->add_item(
-          std::make_unique<MagicFragments>(), amount_magic_fragment
+          ItemRegistry::get().get_item("Magic Fragments"), amount_magic_fragment
       );
       std::cout << "-Magic fragment x" << amount_magic_fragment << std::endl;
     }
@@ -326,9 +281,9 @@ void Oreade::drop(Hero *hero)
   getchar();
 }
 
-BabyDragon::BabyDragon()
+Dragon::Dragon()
 {
-  name                     = "Baby Dragon";
+  name                     = "Dragon";
   hp                       = generate_random_number(30, 50);
   max_hp                   = hp;
   atk                      = generate_random_number(20, 30);
@@ -336,7 +291,7 @@ BabyDragon::BabyDragon()
   status                   = false;
 }
 
-void BabyDragon::drop(Hero *hero)
+void Dragon::drop(Hero *hero)
 {
   hero->give_gold(get_max_hp() + get_atk());
   hero->m_stats->earn_xp((get_max_hp() - 5) * 2);
@@ -347,7 +302,7 @@ void BabyDragon::drop(Hero *hero)
   if(roll_boolDice(20)) {
     if(amount_scale > 0) {
       hero->m_inventory->add_item(
-          std::make_unique<DragonScale>(), amount_scale
+          ItemRegistry::get().get_item("Dragon Scale"), amount_scale
       );
       std::cout << "-Dragon scale x" << amount_scale << std::endl;
     }
@@ -357,49 +312,7 @@ void BabyDragon::drop(Hero *hero)
   if(roll_boolDice(10)) {
     if(amount_dragon_tooth > 0) {
       hero->m_inventory->add_item(
-          std::make_unique<DragonTooth>(), amount_dragon_tooth
-      );
-      std::cout << "-Dragon tooth x" << amount_dragon_tooth << std::endl;
-    }
-  }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
-}
-
-MamaDragon::MamaDragon()
-{
-  name                     = "Mama Dragon";
-  hp                       = generate_random_number(60, 100);
-  max_hp                   = hp;
-  atk                      = generate_random_number(35, 45);
-  remained_rounds_affected = 0;
-  status                   = false;
-}
-
-void MamaDragon::drop(Hero *hero)
-{
-  hero->give_gold(get_max_hp() + get_atk());
-  hero->m_stats->earn_xp((get_max_hp() - 5) * 2);
-  std::cout << "-Xp x" << (get_max_hp() - 5) * 2 << std::endl;
-  std::cout << "-Gold x" << get_max_hp() + get_atk() << std::endl;
-
-  int amount_scale = generate_random_number(0, 15);
-  if(roll_boolDice(30)) {
-    if(amount_scale > 0) {
-      hero->m_inventory->add_item(
-          std::make_unique<DragonScale>(), amount_scale
-      );
-      std::cout << "-Dragon scale x" << amount_scale << std::endl;
-    }
-  }
-
-  int amount_dragon_tooth = generate_random_number(0, 4);
-  if(roll_boolDice(20)) {
-    if(amount_dragon_tooth > 0) {
-      hero->m_inventory->add_item(
-          std::make_unique<DragonTooth>(), amount_dragon_tooth
+          ItemRegistry::get().get_item("Dragon Tooth"), amount_dragon_tooth
       );
       std::cout << "-Dragon tooth x" << amount_dragon_tooth << std::endl;
     }
@@ -422,6 +335,7 @@ Azeael::Azeael()
 
 void Azeael::drop(Hero *hero)
 {
+  Utils::clear_screen();
   std::cout << "Congrats, you've beaten Azeael..." << std::endl;
   std::cout << "Light kisses your eyes...";
   getchar();

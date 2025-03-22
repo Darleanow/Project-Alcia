@@ -5,12 +5,12 @@
 
 Stats::Stats() = default;
 
-void Stats::set_stats(const StatsValues &stats_values)
+void Stats::set_stats(StatsValues stats_values)
 {
   m_stats = stats_values;
 }
 
-void Stats::add_stats(const StatsValues &stats_values)
+void Stats::add_stats(StatsValues stats_values)
 {
   m_stats += stats_values;
 }

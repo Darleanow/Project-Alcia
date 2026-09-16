@@ -25,7 +25,6 @@ void UISystem::greet() const
 void UISystem::display_rules() const
 {
   std::cout << "============= RULES ==================" << std::endl;
-  std::cout << "- Cheating is prohibited, you can't anyways." << std::endl;
   std::cout << "- Earn gold and xp by killing monsters." << std::endl;
   std::cout << "- When killing monsters, you have a 30% rate of getting a "
             << "random piece of stuff" << std::endl;

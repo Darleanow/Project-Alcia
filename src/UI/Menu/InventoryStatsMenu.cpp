@@ -1,8 +1,8 @@
 #include "InventoryStatsMenu.h"
 #include "CoreUtils.h"
+#include "Item.h"
 #include "UISystem.h"
 #include "Utils/DrawUtils.h"
-#include "Item.h"
 
 #include <iostream>
 #include <stdexcept>
@@ -16,26 +16,30 @@ InventoryStatsMenu::InventoryStatsMenu(const std::shared_ptr<Hero> &player)
 void InventoryStatsMenu::initialize_actions()
 {
   actions_ = {
-      {1, [this] { equip_item(); }  },
-      {2, [this] { unequip_item(); }},
-      {3, [this] { use_item(); }    },
-      {4, [this] { throw_item(); }  },
-      {5, [] {}                     }
+      {1, [this] { equip_item(); }     },
+      {2, [this] { unequip_item(); }   },
+      {3, [this] { use_item(); }       },
+      {4, [this] { throw_item(); }     },
+      {5, [this] { m_running = false; }}
   };
 }
 
 void InventoryStatsMenu::execute()
 {
-  Utils::clear_screen();
-  draw_gui();
-  std::cout << "\n\n";
-  show_actions();
+  m_running = true;
 
-  UISystem ui_system;
-  Range    range {1, actions_.size()};
-  int      selection = ui_system.prompt_user_for_index_selection(range);
+  while(m_running) {
+    Utils::clear_screen();
+    draw_gui();
+    std::cout << "\n\n";
+    show_actions();
 
-  handle_user_selection(selection);
+    UISystem ui_system;
+    Range    range {1, actions_.size()};
+    int      selection = ui_system.prompt_user_for_index_selection(range);
+
+    handle_user_selection(selection);
+  }
 }
 
 void InventoryStatsMenu::handle_user_selection(int selection)
@@ -141,7 +145,7 @@ void InventoryStatsMenu::draw_gui() const
 void InventoryStatsMenu::show_actions() const
 {
   std::cout << "[1] Equip something\n";
-  std::cout << "[2] Unequip a piece of equipment \n";
+  std::cout << "[2] Unequip a piece of equipment\n";
   std::cout << "[3] Use an item\n";
   std::cout << "[4] Throw an item\n";
   std::cout << "[5] Go back\n";
@@ -149,8 +153,8 @@ void InventoryStatsMenu::show_actions() const
 
 void InventoryStatsMenu::equip_item()
 {
-  Utils::clear_screen();
   std::vector<size_t> equippable_indices;
+  std::cout << "Choose which item to equip:\n";
   show_equippable_items(equippable_indices);
 
   if(equippable_indices.empty()) {
@@ -187,8 +191,8 @@ void InventoryStatsMenu::equip_item()
 
 void InventoryStatsMenu::unequip_item()
 {
-  Utils::clear_screen();
   std::vector<EquipmentLocation> equipped_locations;
+  std::cout << "Choose which item to unequip:\n";
   show_equipped_items(equipped_locations);
 
   if(equipped_locations.empty()) {
@@ -210,16 +214,12 @@ void InventoryStatsMenu::unequip_item()
     m_player->m_stats->remove_stats_from_item(item->get_stats());
     m_player->m_inventory->add_item(std::move(item));
   }
-
-  std::cout << color(ColorType::GREEN) << "\nSuccessfully unequipped item!\n"
-            << color(ColorType::DEFAULT) << "Press enter to continue...";
-  getchar();
 }
 
 void InventoryStatsMenu::use_item()
 {
-  Utils::clear_screen();
   std::vector<size_t> useable_items_indices;
+  std::cout << "Useable items:\n";
   show_useable_items(useable_items_indices);
 
   if(useable_items_indices.empty()) {
@@ -286,7 +286,8 @@ void InventoryStatsMenu::throw_item()
   getchar();
 }
 
-void InventoryStatsMenu::show_equippable_items(std::vector<size_t> &indices
+void InventoryStatsMenu::show_equippable_items(
+    std::vector<size_t> &indices
 ) const
 {
   size_t display_index = 1;
@@ -328,6 +329,7 @@ void InventoryStatsMenu::show_equipped_items(
     const auto &item = m_player->m_equipment->get_item(location);
     if(item) {
       std::cout << '[' << index++ << "] "
+                << "(" << item->get_type() << "): "
                 << color(get_color_from_string(
                        get_color_from_rarity(item->get_rarity())
                    ))

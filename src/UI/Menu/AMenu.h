@@ -14,6 +14,7 @@ public:
 
 protected:
   std::shared_ptr<Hero> m_player;
+  bool                  m_running;
 
   virtual void          draw_gui() const     = 0;
   virtual void          show_actions() const = 0;

@@ -122,10 +122,6 @@ void Zombie::drop(Hero *hero)
                 << color(ColorType::DEFAULT) << "x" << amount_eye << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 Skeletton::Skeletton()
@@ -160,10 +156,6 @@ void Skeletton::drop(Hero *hero)
       std::cout << "-Bone x" << amount_bone << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 Troll::Troll()
@@ -200,10 +192,6 @@ void Troll::drop(Hero *hero)
       std::cout << "-Empty sack x" << amount_empty_sack << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 SuperTroll::SuperTroll()
@@ -240,10 +228,6 @@ void SuperTroll::drop(Hero *hero)
       std::cout << "-Old belt x" << amount_troll_belt << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 Kobold::Kobold()
@@ -280,10 +264,6 @@ void Kobold::drop(Hero *hero)
       std::cout << "-Kobold Scepter x" << amount_kobold_scepter << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 Oreade::Oreade()
@@ -320,10 +300,6 @@ void Oreade::drop(Hero *hero)
       std::cout << "-Magic fragment x" << amount_magic_fragment << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 BabyDragon::BabyDragon()
@@ -362,10 +338,6 @@ void BabyDragon::drop(Hero *hero)
       std::cout << "-Dragon tooth x" << amount_dragon_tooth << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 MamaDragon::MamaDragon()
@@ -404,10 +376,6 @@ void MamaDragon::drop(Hero *hero)
       std::cout << "-Dragon tooth x" << amount_dragon_tooth << std::endl;
     }
   }
-
-  std::cout << std::endl << std::endl;
-  std::cout << "Press enter to continue. . .";
-  getchar();
 }
 
 Azeael::Azeael()

@@ -79,39 +79,41 @@ int Hero::combat_main()
     if(monster->get_hp() <= 0) {
       std::cout << color(ColorType::BLUE) << "[VICTORY]"
                 << color(ColorType::DEFAULT) << std::endl;
-      std::cout << "[DROPS]" << std::endl;
       std::cout << "You've got:" << std::endl;
       monster->drop(this);
-      int will_drop = generate_random_number(0, 100);
+
+      int will_drop     = generate_random_number(0, 100);
+      int levels_gained = m_stats->level_up();
+
       if(will_drop <= 30) {
         std::vector<std::string> killing_sentences = {
             "cutting in half", "ripping off", "dismembering"
         };
-        std::cout << std::endl << std::endl;
+        std::cout << std::endl;
         std::cout << "While you were "
                   << killing_sentences[static_cast<size_t>(
                          generate_random_number(0, 2)
                      )]
                   << " your enemy, you saw a chest.." << std::endl
-                  << "You opened it and found:";
+                  << "You opened it and found: ";
         auto item = generate_item();
         std::cout << color(get_color_from_string(
                          get_color_from_rarity(item->get_rarity())
                      ))
-                  << item->get_name() << color(ColorType::DEFAULT);
+                  << item->get_name() << color(ColorType::DEFAULT) << " x1";
         m_inventory->add_item(std::move(item), 1);
-        std::cout << std::endl << std::endl;
-        std::cout << "Press enter to continue. . .";
-        getchar();
-        Utils::clear_screen();
       }
 
-      int levels_gained = m_stats->level_up();
+      std::cout << "\n\n";
 
       if(levels_gained > 0) {
-        std::cout << "Level + 1\n";
-        getchar();
+        std::cout << color(ColorType::CYAN) << "[LEVEL UP]\n\n"
+                  << color(ColorType::DEFAULT) << "Level +" << levels_gained
+                  << "\n\n";
       }
+
+      std::cout << "Press enter to continue . . .";
+      getchar();
     } else {
       std::cout << color(ColorType::RED) << "[DEFEAT]"
                 << color(ColorType::DEFAULT) << std::endl;
